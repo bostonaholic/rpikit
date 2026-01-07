@@ -1,0 +1,18 @@
+{
+  "name": "rpikit",
+  "description": "Research-Plan-Implement framework for disciplined software engineering",
+  "owner": {
+    "name": "Matthew Boston"
+  },
+  "plugins": [
+    {
+      "name": "rpikit",
+      "description": "General-purpose software engineering framework following the Research-Plan-Implement methodology",
+      "version": "0.1.0",
+      "source": "./",
+      "author": {
+        "name": "Matthew Boston"
+      }
+    }
+  ]
+}

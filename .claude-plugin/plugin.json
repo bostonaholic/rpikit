@@ -1,0 +1,11 @@
+{
+  "name": "rpikit",
+  "version": "0.1.0",
+  "description": "General-purpose software engineering framework following the Research-Plan-Implement methodology",
+  "author": {
+    "name": "Matthew Boston"
+  },
+  "repository": "https://github.com/bostonaholic/rpikit",
+  "license": "MIT",
+  "keywords": ["research", "planning", "implementation", "workflow", "software-engineering"]
+}
