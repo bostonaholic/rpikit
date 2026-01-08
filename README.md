@@ -113,13 +113,11 @@ The plugin includes methodology skills that are automatically activated:
 - [superpowers](https://github.com/obra/superpowers) - Composable skills
 - [BMAD Method](https://github.com/bmad-code-org/BMAD-METHOD) - Scale-adaptive
   planning
-- [SuperClaude Framework][superclaude] - Behavioral modes and deep research
+- [SuperClaude Framework](https://github.com/SuperClaude-Org/SuperClaude_Framework) - Behavioral modes and deep research
 - [RPI Framework](https://github.com/acampb/claude-rpi-framework) - RPI
   structure
 - [HumanLayer](https://github.com/humanlayer/humanlayer) - Human-in-the-loop
   approval patterns
-
-[superclaude]: https://github.com/SuperClaude-Org/SuperClaude_Framework
 
 ## License
 
