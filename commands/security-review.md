@@ -1,6 +1,6 @@
 ---
 description: Review code changes for security vulnerabilities and risks
-argument-hint: [files-or-scope]
+argument-hint: <files or changes to review>
 disable-model-invocation: true
 ---
 

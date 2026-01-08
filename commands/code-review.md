@@ -1,6 +1,6 @@
 ---
 description: Review code changes for quality, design, and maintainability
-argument-hint: [files-or-scope]
+argument-hint: <files or changes to review>
 disable-model-invocation: true
 ---
 
