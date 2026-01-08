@@ -1,2 +1,23 @@
 # Beads (local-only issue tracking)
 .beads/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Test output
+coverage/
+*.test.log
+
+# Node (if tests use npm)
+node_modules/
+
+# Local plugin settings
+*.local.md
