@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `/rpikit:brainstorm` command for creative exploration before research/planning
+- 8 new methodology skills:
+  - `test-driven-development` - RED-GREEN-REFACTOR cycle enforcement
+  - `systematic-debugging` - Root cause investigation before fixes
+  - `verification-before-completion` - Evidence before claims
+  - `brainstorming` - Collaborative design before research/planning
+  - `finishing-work` - Structured completion (merge, PR, cleanup)
+  - `receiving-code-review` - Verification-first response to feedback
+  - `git-worktrees` - Isolated workspaces for parallel work
+  - `parallel-agents` - Concurrent dispatch for independent tasks
+- 3 new autonomous agents:
+  - `test-runner` - Execute tests with RED/GREEN status for TDD workflow
+  - `verifier` - Comprehensive verification checks before completion claims
+  - `debugger` - Systematic error investigation with hypothesis-driven analysis
+
+### Changed
+
+- Updated README with brainstorming vs research guidance in workflow section
+
 ## [0.2.0] - 2026-01-07
 
 ### Added
