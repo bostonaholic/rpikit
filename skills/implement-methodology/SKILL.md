@@ -23,7 +23,9 @@ step before proceeding.
 
 ### 1. Verify Plan Exists
 
-Look for plan at: `docs/plans/$ARGUMENTS.md`
+Look for plan at: `docs/plans/YYYY-MM-DD-$ARGUMENTS-plan.md`
+
+(Search for files matching `*-$ARGUMENTS-plan.md` pattern)
 
 **If plan exists:**
 
@@ -201,7 +203,7 @@ Summary:
 - Files changed: [list]
 - Tests: [pass/fail status]
 
-Plan updated: docs/plans/$ARGUMENTS.md
+Plan updated: docs/plans/YYYY-MM-DD-$ARGUMENTS-plan.md
 
 All success criteria met.
 ```

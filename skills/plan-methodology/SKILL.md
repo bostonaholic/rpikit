@@ -23,7 +23,9 @@ between human and AI, ensuring alignment before code is written.
 
 ### 1. Check for Research
 
-Look for existing research at: `docs/plans/research/$ARGUMENTS.md`
+Look for existing research at: `docs/plans/YYYY-MM-DD-$ARGUMENTS-research.md`
+
+(Search for files matching `*-$ARGUMENTS-research.md` pattern)
 
 If research exists:
 
@@ -161,12 +163,14 @@ Include rollback strategy for high-stakes changes.
 
 ### 6. Write Plan Document
 
-Create plan at: `docs/plans/$ARGUMENTS.md`
+Create plan at: `docs/plans/YYYY-MM-DD-$ARGUMENTS-plan.md`
+
+(Use today's date in YYYY-MM-DD format)
 
 Use this structure:
 
 ```markdown
-# Plan: $ARGUMENTS
+# Plan: $ARGUMENTS (YYYY-MM-DD)
 
 ## Summary
 
@@ -230,7 +234,7 @@ Use this structure:
 
 Present plan summary and request explicit approval:
 
-"Plan created for '$ARGUMENTS' at docs/plans/$ARGUMENTS.md.
+"Plan created for '$ARGUMENTS' at docs/plans/YYYY-MM-DD-$ARGUMENTS-plan.md.
 
 **Summary**: [brief description]
 **Stakes**: [level]
@@ -249,7 +253,9 @@ Skill tool with skill "rpikit:implement-methodology".
 
 ## Plan Iteration
 
-If a plan already exists at `docs/plans/$ARGUMENTS.md`:
+If a plan already exists at `docs/plans/YYYY-MM-DD-$ARGUMENTS-plan.md`:
+
+(Search for files matching `*-$ARGUMENTS-plan.md` pattern)
 
 1. Read the existing plan
 2. Ask user's intent:

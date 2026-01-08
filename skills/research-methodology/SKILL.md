@@ -137,10 +137,12 @@ assessments.
 
 ## Phase 3: Document Findings
 
-Create research document at: `docs/plans/research/<topic>.md`
+Create research document at: `docs/plans/YYYY-MM-DD-<topic>-research.md`
+
+(Use today's date in YYYY-MM-DD format)
 
 ```markdown
-# Research: <Topic>
+# Research: <Topic> (YYYY-MM-DD)
 
 ## Problem Statement
 
