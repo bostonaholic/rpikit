@@ -29,11 +29,12 @@ agents/                  # Autonomous agents for specialized tasks
 
 **CRITICAL: Always update README.md.** The README is the primary user-facing documentation and MUST stay synchronized with the codebase. After ANY change that affects user-visible behavior, update README.md in the same commit. This includes:
 
-- Commands (adding, removing, renaming, or changing behavior)
+- Commands (adding, removing, renaming)
 - Workflow or phase structure
 - Output artifact locations or formats
 - Installation instructions
-- Skills or agents referenced in user-facing documentation
+
+Do NOT document implementation details (specific agents, internal patterns) in README - these change frequently and create maintenance burden.
 
 Never leave README.md out of sync. An outdated README misleads users and undermines trust in the project.
 
