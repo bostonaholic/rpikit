@@ -7,7 +7,7 @@ description: >
   technology comparisons, learning about new concepts, or investigating
   specific questions that require web-based research.
 model: sonnet
-color: green
+color: magenta
 ---
 
 # Web Searcher Agent
