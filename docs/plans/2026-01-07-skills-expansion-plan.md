@@ -250,6 +250,7 @@ Add 8 new skills to the rpikit plugin to fill identified workflow gaps: test-dri
 ## Rollback Strategy
 
 Delete skill directories:
+
 ```bash
 rm -rf skills/test-driven-development
 rm -rf skills/systematic-debugging

@@ -47,6 +47,7 @@ workflow and provide general-purpose development capabilities.
 ### Existing Patterns in rpikit
 
 **Strengths:**
+
 - Strong interrogation-first approach in research phase
 - Stakes-based enforcement in plan/implement phases
 - Integrated code review and security review in implement phase
@@ -54,6 +55,7 @@ workflow and provide general-purpose development capabilities.
 - Clear artifact output (docs/plans/*.md)
 
 **Gaps identified:**
+
 - No explicit TDD methodology (mentioned briefly, not enforced)
 - No debugging methodology for investigating failures
 - No explicit verification discipline (implicit in implement)
@@ -66,11 +68,13 @@ workflow and provide general-purpose development capabilities.
 ### Dependencies
 
 **Internal:**
+
 - New skills should integrate with existing agents (file-finder, web-researcher)
 - New skills should follow existing artifact conventions (docs/plans/)
 - New skills should respect stakes-based enforcement
 
 **External:**
+
 - Superpowers plugin as reference implementation
 - Claude Code skill/agent architecture
 
@@ -90,6 +94,7 @@ workflow and provide general-purpose development capabilities.
 **Gap:** rpikit's implement-methodology mentions TDD briefly ("follow TDD:
 Red-Green-Refactor") but provides no methodology. Superpowers has rigorous
 enforcement including:
+
 - Non-negotiable "no production code without failing test first"
 - Mandatory verification at RED and GREEN phases
 - Explicit rejection of common rationalizations
@@ -109,6 +114,7 @@ there's no structured approach to investigation.
 creating new bugs and wasting time.
 
 **Recommendation:** Create `systematic-debugging` skill covering:
+
 - Root cause investigation before fixes
 - Hypothesis formation and testing
 - Pattern analysis against working code
@@ -126,6 +132,7 @@ no explicit "evidence before claims" discipline. Easy to skip or shortcut.
 and lost trust.
 
 **Recommendation:** Create `verification-before-completion` skill that:
+
 - Makes verification non-negotiable before any completion claim
 - Lists common failure modes (tests, lints, builds)
 - Identifies rationalization red flags
@@ -140,6 +147,7 @@ and security review pass, what happens? Merge? PR? Cleanup?
 forgotten.
 
 **Recommendation:** Create `finishing-work` skill covering:
+
 - Test verification before any completion action
 - Structured options: merge locally, create PR, defer, discard
 - Cleanup procedures (branch deletion, worktree removal)
@@ -154,6 +162,7 @@ approaches exist.
 **Impact:** Jumps from vague idea to planning without proper design exploration.
 
 **Recommendation:** Create `brainstorming` skill covering:
+
 - Idea refinement through progressive questioning
 - Exploring multiple approaches with trade-offs
 - Design documentation before planning
@@ -170,6 +179,7 @@ and responding to feedback appropriately.
 rigorous evaluation. Bad suggestions implemented without pushback.
 
 **Recommendation:** Create `receiving-code-review` skill with:
+
 - Verification-first approach to feedback
 - When to push back with technical reasoning
 - Implementation sequence (blocking first, simple next, complex last)
@@ -183,6 +193,7 @@ rigorous evaluation. Bad suggestions implemented without pushback.
 disruptive.
 
 **Recommendation:** Create `git-worktrees` skill covering:
+
 - Directory selection (project-local vs external)
 - Safety verification (.gitignore)
 - Setup automation (npm install, etc.)
@@ -196,6 +207,7 @@ independent problems.
 **Impact:** Sequential investigation of independent failures wastes time.
 
 **Recommendation:** Create `parallel-agents` skill covering:
+
 - Decision framework (when to parallelize)
 - Agent prompt structure (focused, self-contained)
 - Result integration and conflict resolution
@@ -224,15 +236,15 @@ independent problems.
 
 ### Near-term additions (Priority 2)
 
-3. **`verification-before-completion`** - Evidence before claims
-4. **`finishing-work`** - Completion workflow with merge/PR options
-5. **`brainstorming`** - Creative design before research/planning
+1. **`verification-before-completion`** - Evidence before claims
+2. **`finishing-work`** - Completion workflow with merge/PR options
+3. **`brainstorming`** - Creative design before research/planning
 
 ### Future additions (Priority 3)
 
-6. **`receiving-code-review`** - Handle feedback with rigor
-7. **`git-worktrees`** - Isolated workspaces
-8. **`parallel-agents`** - Concurrent agent dispatch
+1. **`receiving-code-review`** - Handle feedback with rigor
+2. **`git-worktrees`** - Isolated workspaces
+3. **`parallel-agents`** - Concurrent agent dispatch
 
 ### Suggested implementation order
 
@@ -257,6 +269,7 @@ Phase 4: Advanced patterns
 ### Integration approach
 
 New skills should:
+
 - Follow existing `skills/<name>/SKILL.md` structure
 - Use existing agents (file-finder, web-researcher) where appropriate
 - Respect stakes-based enforcement model
@@ -265,5 +278,5 @@ New skills should:
 
 ## References
 
-- Superpowers plugin: https://github.com/obra/superpowers/tree/main/skills
+- Superpowers plugin: <https://github.com/obra/superpowers/tree/main/skills>
 - rpikit plugin structure: `.claude-plugin/`, `commands/`, `skills/`, `agents/`
