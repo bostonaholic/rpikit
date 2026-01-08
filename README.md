@@ -12,16 +12,18 @@ implementation and ensures human oversight at critical decision points.
 
 ## Commands
 
-| Command      | Purpose                                         |
-| ------------ | ----------------------------------------------- |
-| `/research`  | Deep codebase exploration and context gathering |
-| `/plan`      | Create actionable implementation strategy       |
-| `/implement` | Execute plan with checkpoint validation         |
+| Command             | Purpose                                         |
+| ------------------- | ----------------------------------------------- |
+| `/rpikit:research`  | Deep codebase exploration and context gathering |
+| `/rpikit:plan`      | Create actionable implementation strategy       |
+| `/rpikit:implement` | Execute plan with checkpoint validation         |
 
 ## Workflow
 
 ```text
-/research ──[approval]──► /plan ──[approval]──► /implement
+/rpikit:research ──► /rpikit:plan ──► /rpikit:implement
+       │                  │                  │
+       └──[approval]──────┴───[approval]─────┘
 ```
 
 Each phase produces artifacts in `docs/plans/` and requires human approval
