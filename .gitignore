@@ -1,6 +1,9 @@
 # Beads (local-only issue tracking)
 .beads/
 
+# Git worktrees
+.worktrees/
+
 # OS artifacts
 .DS_Store
 Thumbs.db
