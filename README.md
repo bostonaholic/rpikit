@@ -12,11 +12,11 @@ implementation and ensures human oversight at critical decision points.
 
 ## Commands
 
-| Command             | Purpose                                   |
-| ------------------- | ----------------------------------------- |
+| Command             | Purpose                                    |
+| ------------------- | ------------------------------------------ |
 | `/rpikit:research`  | Understand the codebase and gather context |
-| `/rpikit:plan`      | Create an actionable implementation plan  |
-| `/rpikit:implement` | Execute the plan with discipline          |
+| `/rpikit:plan`      | Create an actionable implementation plan   |
+| `/rpikit:implement` | Execute the plan with discipline           |
 
 ## Workflow
 
