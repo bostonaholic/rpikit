@@ -58,6 +58,19 @@ Never leave README.md out of sync. An outdated README misleads users and undermi
 /skills
 ```
 
+## Releasing
+
+When releasing a new version:
+
+1. Update version in `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
+2. Move CHANGELOG.md unreleased section to new version with date
+3. Commit with message `chore(release): X.Y.Z`
+4. Create git tag: `git tag -a vX.Y.Z -m "Release X.Y.Z"`
+5. Push with tags: `git push origin main --tags`
+6. Create GitHub release: `gh release create vX.Y.Z --title "vX.Y.Z" --notes "..."`
+
+GitHub releases: <https://github.com/bostonaholic/rpikit/releases>
+
 ## Component Conventions
 
 **Commands** (in `commands/`):
