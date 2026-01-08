@@ -1,0 +1,88 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+rpikit is a Claude Code plugin implementing the **Research-Plan-Implement (RPI)** framework. It enforces disciplined software engineering through structured workflows with human approval gates between phases.
+
+## Architecture
+
+```text
+.claude-plugin/          # Plugin manifest (plugin.json, marketplace.json)
+commands/                # Entry points that delegate to skills
+  ├── research.md        # /rpikit:research command
+  ├── plan.md            # /rpikit:plan command
+  └── implement.md       # /rpikit:implement command
+skills/                  # Detailed methodology instructions
+  ├── research-methodology/SKILL.md
+  ├── plan-methodology/SKILL.md
+  └── implement-methodology/SKILL.md
+agents/                  # Autonomous agents for specialized tasks
+  ├── file-finder.md     # Locates files using systematic search
+  └── web-researcher.md  # Conducts web research with citations
+```
+
+**Workflow:** `/rpikit:research` → (approval) → `/rpikit:plan` → (approval) → `/rpikit:implement`
+
+## Documentation Requirements
+
+**CRITICAL: Always update README.md.** The README is the primary user-facing documentation and MUST stay synchronized with the codebase. After ANY change that affects user-visible behavior, update README.md in the same commit. This includes:
+
+- Commands (adding, removing, renaming, or changing behavior)
+- Workflow or phase structure
+- Output artifact locations or formats
+- Installation instructions
+- Skills or agents referenced in user-facing documentation
+
+Never leave README.md out of sync. An outdated README misleads users and undermines trust in the project.
+
+## Key Patterns
+
+- **Commands are thin wrappers** - They delegate to skills via `Skill tool invoke: skill-name`
+- **Skills contain methodology** - Detailed instructions in `skills/<name>/SKILL.md`
+- **Agents are reusable** - file-finder and web-researcher used across all phases
+- **Output artifacts** - Research and plans written to `docs/plans/` in user's project
+
+## Plugin Development Commands
+
+```bash
+# Test plugin locally (run from any project)
+/plugin add /path/to/rpikit
+
+# Verify plugin structure
+/plugin validate rpikit
+
+# View installed skills
+/skills
+```
+
+## Component Conventions
+
+**Commands** (in `commands/`):
+
+- Use markdown frontmatter for metadata
+- Should be minimal - delegate to skills immediately
+- Arguments passed via `$ARGUMENTS` variable
+
+**Skills** (in `skills/<name>/SKILL.md`):
+
+- Self-contained methodology documentation
+- Use agents (file-finder, web-researcher) for exploration
+- Include verification criteria and anti-patterns
+
+**Agents** (in `agents/`):
+
+- Frontmatter defines: name, description, model (haiku/sonnet), color
+- Include structured output format specifications
+- Document search strategies and failure handling
+
+## Stakes Classification
+
+The framework uses stakes-based enforcement:
+
+- **Low stakes**: Quick fixes, documentation, formatting
+- **Medium stakes**: New functions, refactors, bug fixes
+- **High stakes**: Architecture changes, security, data migrations
+
+Higher stakes require more thorough planning and explicit approval.
