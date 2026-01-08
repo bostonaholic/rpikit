@@ -164,7 +164,15 @@ When all steps are done:
 1. Mark all todos complete
 2. Update plan document status section
 3. Run final verification (full test suite if applicable)
-4. Summarize results
+4. Run security review:
+
+   ```text
+   Task tool with subagent_type: "security-reviewer"
+   Prompt: "Review implementation changes for: $ARGUMENTS"
+   ```
+
+   If verdict is FAIL, stop and address findings before completing.
+5. Summarize results
 
 ```text
 Implementation complete for '$ARGUMENTS'.
@@ -332,5 +340,6 @@ At completion:
 
 - [ ] All plan steps marked done
 - [ ] All verifications passed
+- [ ] Security review completed (security-reviewer agent)
 - [ ] Plan document updated with completion status
 - [ ] Final summary provided
