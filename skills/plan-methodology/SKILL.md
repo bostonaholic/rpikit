@@ -248,8 +248,8 @@ Use AskUserQuestion with options:
 - "Request changes" - Specify what to modify
 - "Return to research" - Gather more context first
 
-If approved, guide user to use `/rpikit:implement $ARGUMENTS` or invoke the
-Skill tool with skill "rpikit:implement-methodology".
+If approved, invoke the Skill tool with skill "rpikit:implement-methodology"
+to begin implementation.
 
 ## Plan Iteration
 

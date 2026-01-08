@@ -46,10 +46,10 @@ Look for plan at: `docs/plans/YYYY-MM-DD-$ARGUMENTS-plan.md`
 Cannot proceed without an approved plan.
 
 High-stakes implementations require:
-1. Research phase (rpikit:research)
-2. Approved plan (rpikit:plan)
+1. Research phase (rpikit:research-methodology skill)
+2. Approved plan (rpikit:plan-methodology skill)
 
-Use /rpikit:plan $ARGUMENTS to create a plan first.
+Invoke the Skill tool with skill "rpikit:plan-methodology" to create a plan first.
 ```
 
 Stop and do not proceed.
@@ -71,7 +71,7 @@ Use AskUserQuestion with options:
 **Low Stakes** (isolated, easy rollback):
 
 ```text
-Note: Consider /rpikit:research and /rpikit:plan for better results.
+Note: Consider rpikit:research-methodology and rpikit:plan-methodology skills for better results.
 Proceeding with implementation...
 ```
 
