@@ -74,22 +74,22 @@ docs/plans/
 
 ### Basic Workflow
 
-Start with research to understand the codebase:
+Start with research to understand the codebase before building:
 
 ```bash
-/rpikit:research user-authentication
+/rpikit:research I want to add OAuth login - what auth patterns exist?
 ```
 
-Review the research output in `docs/plans/`, then create a plan:
+Review the research output in `docs/plans/`, then create a plan from it:
 
 ```bash
-/rpikit:plan user-authentication
+/rpikit:plan docs/plans/2025-01-07-oauth-login-research.md
 ```
 
-Review and approve the plan, then implement:
+Review and approve the plan, then implement from it:
 
 ```bash
-/rpikit:implement user-authentication
+/rpikit:implement docs/plans/2025-01-07-oauth-login-plan.md
 ```
 
 ### Ad-hoc Code Review

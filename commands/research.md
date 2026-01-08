@@ -1,6 +1,6 @@
 ---
 description: Deep codebase exploration before planning or implementation
-argument-hint: [topic]
+argument-hint: <question or goal>
 disable-model-invocation: true
 ---
 

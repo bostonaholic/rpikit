@@ -1,6 +1,6 @@
 ---
 description: Execute approved plan with checkpoint validation and progress tracking
-argument-hint: [plan-name]
+argument-hint: <plan to execute>
 disable-model-invocation: true
 ---
 

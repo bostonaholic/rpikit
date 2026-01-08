@@ -1,6 +1,6 @@
 ---
 description: Explore ideas and design approaches before research or planning
-argument-hint: [topic]
+argument-hint: <idea or feature to explore>
 disable-model-invocation: true
 ---
 

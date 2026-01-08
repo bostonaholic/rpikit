@@ -1,6 +1,6 @@
 ---
 description: Create actionable implementation plan with verification criteria
-argument-hint: [plan-name]
+argument-hint: <research findings to plan from>
 disable-model-invocation: true
 ---
 
