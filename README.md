@@ -38,16 +38,16 @@ docs/plans/
 
 ## Installation
 
-### Option 1: Direct install
-
-```bash
-/plugin install bostonaholic/rpikit
-```
-
-### Option 2: Add as marketplace
+### Step 1: Add the marketplace
 
 ```bash
 /plugin marketplace add bostonaholic/rpikit
+```
+
+### Step 2: Install the plugin
+
+```bash
+/plugin install rpikit@bostonaholic-rpikit
 ```
 
 ## Skills
