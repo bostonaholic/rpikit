@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#
+# Start Claude Code with rpikit plugin loaded for local development.
+#
+# Usage:
+#   bin/start           # Start normally
+#   bin/start --debug   # Start with debug output
+#   bin/start [args]    # Pass additional arguments to claude
+
+set -euo pipefail
+
+# Get the plugin directory (parent of bin/)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PLUGIN_DIR="$(dirname "$SCRIPT_DIR")"
+
+# Build command arguments
+args=(--plugin-dir "$PLUGIN_DIR")
+
+# Check for --debug flag and other arguments
+for arg in "$@"; do
+    case "$arg" in
+        --debug)
+            args+=(--debug)
+            ;;
+        *)
+            args+=("$arg")
+            ;;
+    esac
+done
+
+exec claude "${args[@]}"
