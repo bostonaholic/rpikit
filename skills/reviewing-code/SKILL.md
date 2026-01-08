@@ -1,5 +1,5 @@
 ---
-name: code-review
+name: reviewing-code
 description: >-
   Code review methodology for evaluating implementation changes. Use when
   reviewing code changes for quality, design, correctness, and maintainability.

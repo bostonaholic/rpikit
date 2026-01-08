@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `/rpikit:code-review` command now works correctly (renamed internal skill to `reviewing-code` to avoid naming collision with command)
+
 ## [0.3.0] - 2026-01-07
 
 ### Added

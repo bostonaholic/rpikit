@@ -123,7 +123,7 @@ The plugin includes methodology skills that guide disciplined development:
 - **research-methodology** - Thorough codebase research through interrogation
 - **plan-methodology** - Granular, verifiable implementation plans
 - **implement-methodology** - Disciplined execution with checkpoint verification
-- **code-review** - Quality review using Conventional Comments
+- **reviewing-code** - Quality review using Conventional Comments
 - **security-review** - Security-focused review for vulnerabilities
 
 ### Development Discipline

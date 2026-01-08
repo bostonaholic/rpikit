@@ -6,4 +6,4 @@ disable-model-invocation: true
 
 # Code Review Command instructions
 
-Invoke the rpikit:code-review skill and follow it exactly as presented to you.
+Invoke the rpikit:reviewing-code skill and follow it exactly as presented to you.
