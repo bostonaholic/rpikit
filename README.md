@@ -12,13 +12,13 @@ implementation and ensures human oversight at critical decision points.
 
 ## Commands
 
-| Command                | Purpose                                        |
-| ---------------------- | ---------------------------------------------- |
-| `/rpikit:research`     | Understand the codebase and gather context     |
-| `/rpikit:plan`         | Create an actionable implementation plan       |
-| `/rpikit:implement`    | Execute the plan with discipline               |
-| `/rpikit:code-review`  | Review changes for quality and maintainability |
-| `/rpikit:security-review` | Review changes for security vulnerabilities |
+| Command                   | Purpose                                        |
+| ------------------------- | ---------------------------------------------- |
+| `/rpikit:research`        | Understand the codebase and gather context     |
+| `/rpikit:plan`            | Create an actionable implementation plan       |
+| `/rpikit:implement`       | Execute the plan with discipline               |
+| `/rpikit:code-review`     | Review changes for quality and maintainability |
+| `/rpikit:security-review` | Review changes for security vulnerabilities    |
 
 ## Workflow
 
