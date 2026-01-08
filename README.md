@@ -29,7 +29,7 @@ implementation and ensures human oversight at critical decision points.
      (optional)               └──[approval]──────┴───[approval]─────┘
 ```
 
-Each phase produces artifacts in `docs/plans/` and requires human approval
+Each phase produces artifacts in `/` and requires human approval
 before transitioning to the next phase.
 
 ### When to Use Brainstorming
@@ -80,16 +80,16 @@ Start with research to understand the codebase before building:
 /rpikit:research I want to add OAuth login - what auth patterns exist?
 ```
 
-Review the research output in `docs/plans/`, then create a plan from it:
+Review the research output in `/`, then create a plan from it:
 
 ```bash
-/rpikit:plan docs/plans/2025-01-07-oauth-login-research.md
+/rpikit:plan @/2025-01-07-oauth-login-research.md
 ```
 
 Review and approve the plan, then implement from it:
 
 ```bash
-/rpikit:implement docs/plans/2025-01-07-oauth-login-plan.md
+/rpikit:implement @/2025-01-07-oauth-login-plan.md
 ```
 
 ### Ad-hoc Code Review
