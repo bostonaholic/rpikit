@@ -52,9 +52,8 @@ need to understand the codebase first.
 
 ```text
 docs/plans/
-├── research/
-│   └── <topic>.md      # Research findings with file:line references
-└── <plan-name>.md      # Implementation plan with tasks and criteria
+├── YYYY-MM-DD-<topic>-research.md   # Research findings with file:line references
+└── YYYY-MM-DD-<topic>-plan.md       # Implementation plan with tasks and criteria
 ```
 
 ## Installation
@@ -81,7 +80,7 @@ Start with research to understand the codebase:
 /rpikit:research user-authentication
 ```
 
-Review the research output in `docs/plans/research/`, then create a plan:
+Review the research output in `docs/plans/`, then create a plan:
 
 ```bash
 /rpikit:plan user-authentication
