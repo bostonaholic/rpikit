@@ -77,7 +77,59 @@ Proceeding with implementation...
 
 Proceed with inline planning.
 
-### 3. Initialize Progress Tracking
+### 3. Offer Worktree Isolation
+
+Before making changes, offer to create an isolated worktree.
+
+**First, check if already in an additional worktree:**
+
+```bash
+# Check if .git is a file (indicates additional worktree, not main repo)
+test -f .git
+```
+
+Run this command via the Bash tool:
+
+- Exit code 0 (success): `.git` is a file → this is an additional worktree → skip the prompt and proceed to progress tracking
+- Exit code 1 (failure): `.git` is a directory → this is the main repository → continue with the worktree offer below
+
+**If not in a worktree, offer based on stakes level:**
+
+**High Stakes:**
+
+Use AskUserQuestion with options:
+
+- "Use worktree (Recommended)" - Create isolated workspace for safer changes
+- "Continue in current directory" - Proceed without isolation
+
+**Medium Stakes:**
+
+Use AskUserQuestion with options:
+
+- "Use worktree" - Create isolated workspace
+- "Continue in current directory" - Proceed without isolation
+
+**Low Stakes:**
+
+Brief mention only:
+
+```text
+Tip: For isolation, you can use the git-worktrees skill.
+Proceeding in current directory...
+```
+
+Skip the prompt and continue.
+
+**If user chooses worktree:**
+
+Invoke Skill tool with skill: "rpikit:git-worktrees"
+
+After worktree is created:
+
+1. Implementation continues in the new worktree directory
+2. The finishing-work skill handles cleanup when done
+
+### 4. Initialize Progress Tracking
 
 Convert plan steps to TodoWrite todos:
 
@@ -87,7 +139,7 @@ Read each step from the plan and create corresponding todos:
 - Mark all as pending initially
 - This provides visible progress tracking
 
-### 4. Execute Steps in Order
+### 5. Execute Steps in Order
 
 For each step in the plan:
 
@@ -106,7 +158,7 @@ For each step in the plan:
 7. **Mark completed** - Update TodoWrite immediately
 8. **Update plan** - Mark step complete in plan document
 
-### 5. Checkpoint After Phases
+### 6. Checkpoint After Phases
 
 After completing each phase:
 
@@ -127,7 +179,7 @@ Use AskUserQuestion:
 - "Review changes so far"
 - "Pause implementation"
 
-### 6. Handle Failures
+### 7. Handle Failures
 
 When verification fails:
 
@@ -159,7 +211,7 @@ Use AskUserQuestion:
 - "Return to planning"
 - "Cancel implementation"
 
-### 7. Complete Implementation
+### 8. Complete Implementation
 
 When all steps are done:
 

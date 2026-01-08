@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Implement command now offers worktree isolation before making changes
+  - Detects if already in a worktree (skips prompt if so)
+  - Stakes-based recommendation: high stakes strongly recommends, medium offers, low gives brief tip
+  - Integrates with existing `git-worktrees` skill for creation and `finishing-work` skill for cleanup
+
 ### Fixed
 
 - `/rpikit:code-review` command now works correctly (renamed internal skill to `reviewing-code` to avoid naming collision with command)
