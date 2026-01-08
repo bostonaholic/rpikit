@@ -21,25 +21,30 @@ echo "0" > "$PASS_FILE"
 echo "0" > "$FAIL_FILE"
 echo "0" > "$SKIP_FILE"
 
-# Cleanup on exit
+# Cleanup on exit (used by trap)
+# shellcheck disable=SC2329
 cleanup() {
     rm -f "$PASS_FILE" "$FAIL_FILE" "$SKIP_FILE"
 }
 trap cleanup EXIT
 
 # Print test result and increment counter
+# These functions are used by sourced test scripts
+# shellcheck disable=SC2329
 pass() {
     echo -e "${GREEN}PASS${NC}: $1"
     count=$(<"$PASS_FILE")
     echo $((count + 1)) > "$PASS_FILE"
 }
 
+# shellcheck disable=SC2329
 fail() {
     echo -e "${RED}FAIL${NC}: $1"
     count=$(<"$FAIL_FILE")
     echo $((count + 1)) > "$FAIL_FILE"
 }
 
+# shellcheck disable=SC2329
 skip() {
     echo -e "${YELLOW}SKIP${NC}: $1"
     count=$(<"$SKIP_FILE")
@@ -70,6 +75,7 @@ echo "Project root: $PROJECT_ROOT"
 run_suite "agents"
 run_suite "skills"
 run_suite "commands"
+run_suite "frontmatter"
 run_suite "plugin"
 
 # Read final counts

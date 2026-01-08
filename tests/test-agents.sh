@@ -68,7 +68,7 @@ for agent_file in $AGENT_FILES; do
     fi
 
     # Check that file has content after frontmatter
-    content_lines=$(sed -n '/^---$/,/^---$/d; p' "$agent_file" | grep -v "^$" | wc -l)
+    content_lines=$(sed -n '/^---$/,/^---$/d; p' "$agent_file" | grep -vc "^$")
     if [[ $content_lines -gt 5 ]]; then
         pass "$agent_name: has substantive content ($content_lines non-empty lines)"
     else
