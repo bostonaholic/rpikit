@@ -14,6 +14,7 @@ implementation and ensures human oversight at critical decision points.
 
 | Command                   | Purpose                                        |
 | ------------------------- | ---------------------------------------------- |
+| `/rpikit:brainstorm`      | Explore ideas when requirements are unclear    |
 | `/rpikit:research`        | Understand the codebase and gather context     |
 | `/rpikit:plan`            | Create an actionable implementation plan       |
 | `/rpikit:implement`       | Execute the plan with discipline               |
@@ -23,13 +24,29 @@ implementation and ensures human oversight at critical decision points.
 ## Workflow
 
 ```text
-/rpikit:research ──► /rpikit:plan ──► /rpikit:implement
-       │                  │                  │
-       └──[approval]──────┴───[approval]─────┘
+/rpikit:brainstorm ──► /rpikit:research ──► /rpikit:plan ──► /rpikit:implement
+         │                    │                  │                  │
+     (optional)               └──[approval]──────┴───[approval]─────┘
 ```
 
 Each phase produces artifacts in `docs/plans/` and requires human approval
 before transitioning to the next phase.
+
+### When to Use Brainstorming
+
+**Brainstorming** (optional) is for creative/design work when requirements are
+unclear:
+
+- "Add user authentication" → What kind? OAuth? JWT? Sessions?
+- "Improve performance" → Which areas? What trade-offs are acceptable?
+
+**Research** is for investigative work when requirements are clear:
+
+- "Where is authentication implemented?" → Finds files, traces flow
+- "How does the existing caching work?" → Documents patterns
+
+Skip brainstorming and start with research when you know what to build but
+need to understand the codebase first.
 
 ## Output Structure
 
@@ -100,13 +117,32 @@ The framework adapts to change complexity:
 
 ## Skills
 
-The plugin includes methodology skills that are automatically activated:
+The plugin includes methodology skills that guide disciplined development:
 
-- **research-methodology** - How to conduct thorough codebase research
-- **plan-methodology** - How to create granular, verifiable plans
-- **implement-methodology** - How to execute with discipline and verification
-- **code-review** - Review changes for quality, design, and maintainability
-- **security-review** - Review changes for vulnerabilities and security risks
+### Core RPI Workflow
+
+- **research-methodology** - Thorough codebase research through interrogation
+- **plan-methodology** - Granular, verifiable implementation plans
+- **implement-methodology** - Disciplined execution with checkpoint verification
+- **code-review** - Quality review using Conventional Comments
+- **security-review** - Security-focused review for vulnerabilities
+
+### Development Discipline
+
+- **test-driven-development** - RED-GREEN-REFACTOR cycle enforcement
+- **systematic-debugging** - Root cause investigation before fixes
+- **verification-before-completion** - Evidence before claims
+
+### Workflow Support
+
+- **brainstorming** - Collaborative design before research/planning
+- **finishing-work** - Structured completion (merge, PR, cleanup)
+- **receiving-code-review** - Verification-first response to feedback
+
+### Advanced Patterns
+
+- **git-worktrees** - Isolated workspaces for parallel work
+- **parallel-agents** - Concurrent dispatch for independent tasks
 
 ## Inspired By
 
