@@ -8,127 +8,161 @@ allowed-tools: Read, Glob, Grep, Task, TodoWrite, AskUserQuestion, Write
 
 Research topic: **$ARGUMENTS**
 
-## The Iron Law
+## STOP - READ THIS FIRST
 
-**DO NOT explore the codebase yet.**
+**YOUR FIRST ACTION MUST BE: Use AskUserQuestion to ask Question 1 below.**
 
-First, conduct interrogation to understand what the user actually needs.
-Ask questions ONE AT A TIME. Only explore code after sufficient understanding.
+Do NOT:
 
-## Phase 1: Interrogation (REQUIRED)
+- Read any files
+- Search the codebase
+- Use Glob or Grep
+- Explore anything
+- Make assumptions about what the user wants
 
-Before touching any code, ask clarifying questions. Use AskUserQuestion for
-each question below. Ask ONE question, wait for the answer, then proceed.
+You MUST ask clarifying questions FIRST. The topic "$ARGUMENTS" is NOT
+enough information to begin research. Even if it seems clear, ASK ANYWAY.
 
-### Question 1: Understand the Goal
+## Phase 1: Interrogation (MANDATORY)
 
-Start with this question using AskUserQuestion:
+Ask these questions ONE AT A TIME using AskUserQuestion. Wait for each
+answer before asking the next question.
 
-**Question**: "Which best describes what you're trying to accomplish with
-'$ARGUMENTS'?"
+### Question 1 - ASK THIS NOW
 
-**Options**:
+Use AskUserQuestion immediately with:
 
-- "Build something new" - Add new functionality
-- "Change existing behavior" - Modify how something works
-- "Fix something broken" - Resolve a bug or issue
-- "Understand how it works" - Learn about implementation
+- **Header**: "Goal"
+- **Question**: "Which best describes what you're trying to accomplish?"
+- **Options**:
+  - "Build something new" (description: "Add new functionality")
+  - "Change existing behavior" (description: "Modify how something works")
+  - "Fix something broken" (description: "Resolve a bug or issue")
+  - "Understand how it works" (description: "Learn about implementation")
 
-### Question 2: Clarify Specifics
+**STOP HERE. Do not continue until the user answers.**
 
-Based on their answer, ask ONE follow-up:
+### Question 2 - After Q1 is answered
 
-- If "Build something new": "What should this new feature do?"
-- If "Change existing behavior": "What should be different from now?"
-- If "Fix something broken": "What's happening that shouldn't be?"
-- If "Understand how it works": "What specific aspect is unclear?"
+Based on their Q1 answer, use AskUserQuestion:
 
-### Question 3: Scope the Work
+If "Build something new":
 
-Ask about size using AskUserQuestion:
+- **Header**: "Feature"
+- **Question**: "What should this new feature do?"
+- **Options**: Let user type (no predefined options needed)
 
-**Question**: "How big do you expect this change to be?"
+If "Change existing behavior":
 
-**Options**:
+- **Header**: "Change"
+- **Question**: "What should be different from current behavior?"
+- **Options**: Let user type
 
-- "Small" - One file, isolated change
-- "Medium" - Multiple related files
-- "Large" - Architectural, touches many areas
-- "Unknown" - Need to explore to find out
+If "Fix something broken":
 
-### Question 4: Surface Constraints
+- **Header**: "Problem"
+- **Question**: "What's happening that shouldn't be?"
+- **Options**: Let user type
 
-Ask about limitations using AskUserQuestion:
+If "Understand how it works":
 
-**Question**: "Are there constraints I should know about?"
+- **Header**: "Aspect"
+- **Question**: "What specific aspect is unclear?"
+- **Options**: Let user type
 
-**Options** (allow multiple selection):
+**STOP. Wait for answer.**
 
-- "Performance requirements"
-- "Compatibility/backward compatibility"
-- "Security considerations"
-- "Timeline pressure"
-- "No specific constraints"
+### Question 3 - After Q2 is answered
 
-### Question 5: Prior Context
+Use AskUserQuestion:
 
-Ask about existing knowledge:
+- **Header**: "Scope"
+- **Question**: "How big do you expect this change to be?"
+- **Options**:
+  - "Small" (description: "One file, isolated change")
+  - "Medium" (description: "Multiple related files")
+  - "Large" (description: "Architectural, touches many areas")
+  - "Unknown" (description: "Need to explore to find out")
 
-**Question**: "Have you already identified relevant code or tried anything?"
+**STOP. Wait for answer.**
 
-**Options**:
+### Question 4 - After Q3 is answered
 
-- "Yes, I know where to look" - Ask them to share
-- "I have some ideas" - Ask them to elaborate
-- "No, starting fresh" - Proceed to exploration
+Use AskUserQuestion with multiSelect: true:
 
-### Question 6: Confirm Understanding
+- **Header**: "Constraints"
+- **Question**: "Are there constraints I should know about?"
+- **multiSelect**: true
+- **Options**:
+  - "Performance" (description: "Speed/efficiency requirements")
+  - "Compatibility" (description: "Must work with existing systems")
+  - "Security" (description: "Security considerations apply")
+  - "Timeline" (description: "Time pressure exists")
 
-Before exploring, summarize what you've learned:
+**STOP. Wait for answer.**
+
+### Question 5 - After Q4 is answered
+
+Use AskUserQuestion:
+
+- **Header**: "Context"
+- **Question**: "Have you already identified relevant code or tried anything?"
+- **Options**:
+  - "Yes, I know where to look" (description: "I'll share specific files")
+  - "I have some ideas" (description: "I have hunches to share")
+  - "No, starting fresh" (description: "No prior investigation")
+
+If they answer "Yes" or "I have some ideas", ask them to share before
+proceeding.
+
+**STOP. Wait for answer.**
+
+### Question 6 - After Q5 is answered
+
+Summarize what you learned, then use AskUserQuestion:
 
 ```text
 Let me confirm I understand:
 
-- Goal: [their goal from Q1/Q2]
-- Scope: [their scope from Q3]
-- Constraints: [their constraints from Q4]
-- Prior context: [their context from Q5]
-
-Is this accurate?
+- Goal: [from Q1]
+- Specifics: [from Q2]
+- Scope: [from Q3]
+- Constraints: [from Q4]
+- Prior context: [from Q5]
 ```
 
-Use AskUserQuestion with options:
+- **Header**: "Confirm"
+- **Question**: "Is this understanding accurate?"
+- **Options**:
+  - "Yes, proceed" (description: "Begin codebase exploration")
+  - "Let me clarify" (description: "I need to correct something")
 
-- "Yes, that's right" - Proceed to exploration
-- "Let me clarify" - Ask what needs adjustment
+If "Let me clarify", ask what needs adjustment before proceeding.
 
-**DO NOT proceed to Phase 2 until they confirm understanding.**
+**STOP. Do not explore code until user confirms "Yes, proceed".**
 
-## Phase 2: Exploration (After Interrogation Only)
+## Phase 2: Exploration (ONLY after Phase 1 complete)
 
-Only after completing Phase 1 interrogation, explore the codebase.
+You may ONLY reach this phase after:
 
-### Create Research Tracking
+1. All 6 questions have been asked
+2. User has confirmed understanding with "Yes, proceed"
 
-Use TodoWrite to track exploration progress based on what you learned:
+If you have not done both, GO BACK TO PHASE 1.
 
-- Questions to answer (from interrogation)
-- Areas to explore (based on their context)
-- Findings to document
+### Now explore the codebase
 
-### Explore Systematically
-
-Based on what you learned in interrogation:
+Use TodoWrite to track exploration based on interrogation answers.
 
 **Map relevant territory:**
 
-- Identify directories related to their goal
+- Identify directories related to their stated goal
 - Find entry points and key files
 - Note patterns and conventions
 
 **Trace relevant data flow:**
 
-- Follow data through areas they mentioned
+- Follow data through areas relevant to their goal
 - Identify inputs, transformations, outputs
 - Document state changes and side effects
 
@@ -144,23 +178,23 @@ Based on what you learned in interrogation:
 - Performance considerations
 - Security implications
 
-### Validate Findings
+### Validate findings with user
 
-After exploring, check back with the user:
+After exploring, use AskUserQuestion:
 
-```text
-I found [summary of key findings]. Does this align with what you expected,
-or should I look elsewhere?
-```
+- **Header**: "Validate"
+- **Question**: "I found [brief summary]. Does this align with expectations?"
+- **Options**:
+  - "Yes, looks right" (description: "Proceed to documentation")
+  - "Look elsewhere" (description: "I'll redirect you")
+  - "Need more detail" (description: "Dig deeper in current area")
 
 ## Phase 3: Document Findings
 
-Create research document at: `docs/plans/research/$ARGUMENTS.md`
-
-Include both interrogation results AND exploration findings:
+Create research document at: `docs/plans/research/<topic>.md`
 
 ```markdown
-# Research: $ARGUMENTS
+# Research: <Topic>
 
 ## Problem Statement
 
@@ -168,14 +202,11 @@ Include both interrogation results AND exploration findings:
 
 ## User Requirements
 
-- **Goal**: [from interrogation]
-- **Scope**: [from interrogation]
-- **Constraints**: [from interrogation]
-- **Prior context**: [from interrogation]
-
-## Key Questions
-
-- [Questions that guided exploration]
+- **Goal**: [from Q1]
+- **Specifics**: [from Q2]
+- **Scope**: [from Q3]
+- **Constraints**: [from Q4]
+- **Prior context**: [from Q5]
 
 ## Findings
 
@@ -208,30 +239,23 @@ Include both interrogation results AND exploration findings:
 
 ## Phase 4: Transition to Planning
 
-After documenting findings, ask:
+Use AskUserQuestion:
 
-"Research complete for '$ARGUMENTS'. Findings documented at
-docs/plans/research/$ARGUMENTS.md.
+- **Header**: "Next step"
+- **Question**: "Research complete. What would you like to do?"
+- **Options**:
+  - "Create implementation plan" (description: "Proceed to /rpikit:plan")
+  - "Continue researching" (description: "Gather more context")
+  - "Done for now" (description: "End research phase")
 
-Ready to create an implementation plan based on this research?"
+## Checklist
 
-Use AskUserQuestion with options:
-
-- "Yes, create a plan" - Proceed to invoke rpikit:plan
-- "Continue researching" - Gather more context
-- "Done for now" - End research phase
-
-If user chooses to create a plan, guide them to use `/rpikit:plan $ARGUMENTS`
-or invoke the Skill tool with skill "rpikit:plan".
-
-## Quality Checklist
-
-Before completing research:
-
-- [ ] Interrogation completed (all 6 questions asked)
-- [ ] User confirmed understanding before exploration
-- [ ] Key questions answered or documented as open
-- [ ] Relevant files identified with line references
-- [ ] Existing patterns documented
-- [ ] Constraints understood (user AND technical)
-- [ ] Research document created at docs/plans/research/
+- [ ] Question 1 asked and answered
+- [ ] Question 2 asked and answered
+- [ ] Question 3 asked and answered
+- [ ] Question 4 asked and answered
+- [ ] Question 5 asked and answered
+- [ ] Question 6 asked and user confirmed
+- [ ] Exploration completed
+- [ ] Findings validated with user
+- [ ] Research document created
