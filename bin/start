@@ -14,7 +14,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PLUGIN_DIR="$(dirname "$SCRIPT_DIR")"
 
 # Build command arguments
-args=(--plugin-dir "$PLUGIN_DIR")
+args=(--dangerously-skip-permissions --plugin-dir "$PLUGIN_DIR")
 
 # Check for --debug flag and other arguments
 for arg in "$@"; do
