@@ -48,15 +48,25 @@ Never leave README.md out of sync. An outdated README misleads users and undermi
 ## Plugin Development Commands
 
 ```bash
-# Test plugin locally (run from any project)
-/plugin add /path/to/rpikit
+# Test plugin locally (launches Claude Code with the plugin loaded)
+claude --plugin-dir /path/to/rpikit
 
-# Verify plugin structure
-/plugin validate rpikit
+# Validate plugin structure (run from plugin directory)
+claude plugin validate .
 
-# View installed skills
+# Debug plugin loading issues
+claude --plugin-dir /path/to/rpikit --debug
+
+# View installed skills (from within Claude Code session)
 /skills
 ```
+
+**Development workflow:**
+
+1. Make changes to plugin files
+2. Restart Claude Code with `--plugin-dir` to reload
+3. Test commands via `/rpikit:command-name`
+4. Use `--debug` flag to troubleshoot loading issues
 
 ## Releasing
 

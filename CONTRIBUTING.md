@@ -12,17 +12,30 @@ guidelines for contributing to the project.
    cd rpikit
    ```
 
-2. Test the plugin locally from any project:
+2. Launch Claude Code with the plugin loaded:
 
    ```bash
-   /plugin add /path/to/rpikit
+   claude --plugin-dir /path/to/rpikit
    ```
 
-3. Verify the plugin structure:
+3. Validate the plugin structure (from the plugin directory):
 
    ```bash
-   /plugin validate rpikit
+   claude plugin validate .
    ```
+
+4. Debug plugin loading issues:
+
+   ```bash
+   claude --plugin-dir /path/to/rpikit --debug
+   ```
+
+**Development workflow:**
+
+- Make changes to plugin files
+- Restart Claude Code with `--plugin-dir` to reload changes
+- Test commands via `/rpikit:command-name`
+- Use `--debug` flag to troubleshoot loading issues
 
 ## Making Changes
 
