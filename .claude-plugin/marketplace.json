@@ -4,6 +4,9 @@
   "owner": {
     "name": "Matthew Boston"
   },
+  "metadata": {
+    "description": "Research-Plan-Implement framework for disciplined software engineering with human approval gates between phases"
+  },
   "plugins": [
     {
       "name": "rpikit",
