@@ -140,6 +140,7 @@ Add five new CI checks to improve code quality and catch issues early: shellchec
 ## Rollback Strategy
 
 Each phase is independent. If a check causes problems:
+
 1. Remove the job from `.github/workflows/ci.yml`
 2. Optionally keep config files for future re-enablement
 
