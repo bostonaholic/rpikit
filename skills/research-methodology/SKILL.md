@@ -64,24 +64,43 @@ If anything needs clarification, ask follow-up questions.
 
 **Only proceed after confirming understanding with the user.**
 
-Use TodoWrite to track exploration based on what you learned.
+### Locate Relevant Files
 
-**Map relevant territory:**
+Use the **file-finder** agent to locate files relevant to the research objective:
 
-- Identify directories related to their stated goal
-- Find entry points and key files
+```text
+Task tool with subagent_type: "file-finder"
+Prompt: "Find files related to [topic from interrogation]. Goal: [user's stated purpose]"
+```
+
+The file-finder will return a structured report with:
+
+- Core files to examine first
+- Supporting files and utilities
+- Test files
+- Configuration files
+- Suggested reading order
+
+### Explore the Discovered Files
+
+Use TodoWrite to track exploration based on the file-finder report.
+
+**Examine core files first:**
+
+- Read files in the suggested order
+- Understand the main flow and architecture
 - Note patterns and conventions
 
 **Trace relevant data flow:**
 
-- Follow data through areas relevant to their goal
+- Follow data through the identified files
 - Identify inputs, transformations, outputs
 - Document state changes and side effects
 
-**Find existing patterns:**
+**Review supporting files:**
 
-- Search for analogous implementations
-- Note reusable utilities and helpers
+- Examine utilities and helpers
+- Note reusable patterns
 - Document conventions for testing and error handling
 
 **Identify technical constraints:**

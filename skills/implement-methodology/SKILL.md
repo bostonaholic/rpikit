@@ -90,12 +90,19 @@ Read each step from the plan and create corresponding todos:
 For each step in the plan:
 
 1. **Mark in_progress** - Update TodoWrite
-2. **Read target files** - Always read before modifying
-3. **Make the change** - Follow plan specification exactly
-4. **Run verification** - Execute the verify criteria
-5. **Confirm success** - Only proceed if verification passes
-6. **Mark completed** - Update TodoWrite immediately
-7. **Update plan** - Mark step complete in plan document
+2. **Locate target files** - If file path is unclear or missing, use file-finder:
+
+   ```text
+   Task tool with subagent_type: "file-finder"
+   Prompt: "Find [what the step describes]. Need to [action from plan]"
+   ```
+
+3. **Read target files** - Always read before modifying
+4. **Make the change** - Follow plan specification exactly
+5. **Run verification** - Execute the verify criteria
+6. **Confirm success** - Only proceed if verification passes
+7. **Mark completed** - Update TodoWrite immediately
+8. **Update plan** - Mark step complete in plan document
 
 ### 5. Checkpoint After Phases
 
@@ -236,8 +243,15 @@ If implementation reveals the plan needs changes:
 
 1. Stop current step
 2. Document the issue
-3. Propose plan modification
-4. Get approval before continuing
+3. If additional files are needed, use file-finder to locate them:
+
+   ```text
+   Task tool with subagent_type: "file-finder"
+   Prompt: "Find files related to [issue discovered]. Need to [proposed change]"
+   ```
+
+4. Propose plan modification with updated file references
+5. Get approval before continuing
 
 Never deviate silently from the approved plan.
 

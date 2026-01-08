@@ -34,8 +34,13 @@ If research exists:
 If no research exists:
 
 - Ask if research should be conducted first
-- For low-stakes tasks, proceed with inline exploration
 - For high-stakes tasks, recommend research first
+- For low-stakes tasks, use the **file-finder** agent to locate relevant files:
+
+```text
+Task tool with subagent_type: "file-finder"
+Prompt: "Find files related to [task]. Goal: [what will be implemented]"
+```
 
 ### 2. Define Success Criteria
 
@@ -61,9 +66,19 @@ Document the classification and rationale in the plan.
 
 ### 4. Break Down Tasks
 
-Decompose work into granular, verifiable steps:
+Decompose work into granular, verifiable steps.
 
-For each task include:
+**Identify target files:**
+
+Use file paths from research document, or if unavailable, use the
+**file-finder** agent to locate files for each task area:
+
+```text
+Task tool with subagent_type: "file-finder"
+Prompt: "Find files for [specific task]. Looking for [what to modify]"
+```
+
+**For each task include:**
 
 - **Description**: Clear statement of what to do
 - **Files**: Target files with line references when known
