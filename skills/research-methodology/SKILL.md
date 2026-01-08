@@ -109,6 +109,26 @@ Use TodoWrite to track exploration based on the file-finder report.
 - Performance considerations
 - Security implications
 
+### Research External Context (When Needed)
+
+If codebase exploration reveals external factors that need investigation, use
+the **web-researcher** agent:
+
+```text
+Task tool with subagent_type: "web-researcher"
+Prompt: "[specific research question about external topic]"
+```
+
+Use web research for:
+
+- Understanding external libraries or APIs the code depends on
+- Comparing implementation approaches or best practices
+- Investigating third-party service documentation
+- Researching security implications or known issues
+
+The web-researcher returns findings with source citations and confidence
+assessments.
+
 **Present findings incrementally:**
 
 - Share what you find in digestible sections
@@ -145,6 +165,10 @@ Create research document at: `docs/plans/research/<topic>.md`
 ### Dependencies
 
 [External and internal dependencies]
+
+### External Research
+
+[Findings from web research, if conducted - include sources]
 
 ### Technical Constraints
 

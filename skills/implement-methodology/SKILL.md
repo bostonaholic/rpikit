@@ -131,8 +131,15 @@ When verification fails:
 
 1. **Stop** - Do not proceed to next step
 2. **Report** - Explain what failed and why
-3. **Diagnose** - Investigate the cause
-4. **Propose fix** - Suggest correction
+3. **Diagnose** - Investigate the cause. If the error involves external
+   libraries or unfamiliar issues, use web-researcher:
+
+   ```text
+   Task tool with subagent_type: "web-researcher"
+   Prompt: "[error message or issue] in [library/context]"
+   ```
+
+4. **Propose fix** - Suggest correction based on diagnosis
 
 If fix requires plan changes:
 

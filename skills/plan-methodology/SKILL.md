@@ -90,6 +90,16 @@ Prefer small tasks (2-5 minute verification time).
 
 Group related tasks into phases with checkpoint verifications.
 
+**Research implementation approaches (when needed):**
+
+If the plan involves unfamiliar libraries, APIs, or patterns, use the
+**web-researcher** agent to inform task design:
+
+```text
+Task tool with subagent_type: "web-researcher"
+Prompt: "[specific question about implementation approach, library usage, or best practice]"
+```
+
 #### Good Task Examples
 
 ```markdown
@@ -138,6 +148,14 @@ Identify what could go wrong:
 - Performance implications
 - Security considerations
 - Dependencies that might fail
+
+For external dependencies or security concerns, use the **web-researcher**
+agent to investigate known issues:
+
+```text
+Task tool with subagent_type: "web-researcher"
+Prompt: "Known issues, security vulnerabilities, or breaking changes in [library/API version]"
+```
 
 Include rollback strategy for high-stakes changes.
 
