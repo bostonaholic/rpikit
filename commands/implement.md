@@ -37,10 +37,10 @@ Look for plan at: `docs/plans/$ARGUMENTS.md`
 Cannot proceed without an approved plan.
 
 High-stakes implementations require:
-1. Research phase (rpi:research)
-2. Approved plan (rpi:plan)
+1. Research phase (rpikit:research)
+2. Approved plan (rpikit:plan)
 
-Use /rpi:plan $ARGUMENTS to create a plan first.
+Use /rpikit:plan $ARGUMENTS to create a plan first.
 ```
 
 Stop and do not proceed.
@@ -62,7 +62,7 @@ Use AskUserQuestion with options:
 **Low Stakes** (isolated, easy rollback):
 
 ```text
-Note: Consider /rpi:research and /rpi:plan for better results.
+Note: Consider /rpikit:research and /rpikit:plan for better results.
 Proceeding with implementation...
 ```
 

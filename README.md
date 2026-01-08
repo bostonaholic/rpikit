@@ -12,16 +12,16 @@ implementation and ensures human oversight at critical decision points.
 
 ## Commands
 
-| Command         | Purpose                                            |
-| --------------- | -------------------------------------------------- |
-| `rpi:research`  | Deep codebase exploration and context gathering    |
-| `rpi:plan`      | Create actionable implementation strategy          |
-| `rpi:implement` | Execute plan with checkpoint validation            |
+| Command      | Purpose                                         |
+| ------------ | ----------------------------------------------- |
+| `/research`  | Deep codebase exploration and context gathering |
+| `/plan`      | Create actionable implementation strategy       |
+| `/implement` | Execute plan with checkpoint validation         |
 
 ## Workflow
 
 ```text
-rpi:research ──[approval]──► rpi:plan ──[approval]──► rpi:implement
+/research ──[approval]──► /plan ──[approval]──► /implement
 ```
 
 Each phase produces artifacts in `docs/plans/` and requires human approval
@@ -47,7 +47,7 @@ docs/plans/
 ### Step 2: Install the plugin
 
 ```bash
-/plugin install rpikit@bostonaholic-rpikit
+/plugin install rpikit
 ```
 
 ## Skills

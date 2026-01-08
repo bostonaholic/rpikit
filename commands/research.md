@@ -119,12 +119,12 @@ Ready to create an implementation plan based on this research?"
 
 Use AskUserQuestion with options:
 
-- "Yes, create a plan" - Proceed to invoke rpi:plan
+- "Yes, create a plan" - Proceed to invoke rpikit:plan
 - "Continue researching" - Gather more context
 - "Done for now" - End research phase
 
-If user chooses to create a plan, guide them to use `/rpi:plan $ARGUMENTS`
-or invoke the Skill tool with skill "rpi:plan".
+If user chooses to create a plan, guide them to use `/rpikit:plan $ARGUMENTS`
+or invoke the Skill tool with skill "rpikit:plan".
 
 ## Quality Checklist
 

@@ -160,12 +160,12 @@ Ready to approve and begin implementation?"
 
 Use AskUserQuestion with options:
 
-- "Approve and implement" - Mark approved, proceed to rpi:implement
+- "Approve and implement" - Mark approved, proceed to rpikit:implement
 - "Request changes" - Specify what to modify
 - "Return to research" - Gather more context first
 
-If approved, guide user to use `/rpi:implement $ARGUMENTS` or invoke the
-Skill tool with skill "rpi:implement".
+If approved, guide user to use `/rpikit:implement $ARGUMENTS` or invoke the
+Skill tool with skill "rpikit:implement".
 
 ## Plan Iteration
 
