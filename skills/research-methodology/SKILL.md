@@ -10,12 +10,22 @@ description: >-
 
 # Research Methodology
 
-## Purpose
+Research topic: **$ARGUMENTS**
 
-Research is the foundation of disciplined software engineering. Before
-exploring code or planning changes, develop deep understanding of what the
-user actually needs through systematic questioning. Only after sufficient
-understanding should codebase exploration begin.
+## STOP - READ THIS FIRST
+
+**YOUR FIRST ACTION MUST BE: Use AskUserQuestion to ask Question 1 below.**
+
+Do NOT:
+
+- Read any files
+- Search the codebase
+- Use Glob or Grep
+- Explore anything
+- Make assumptions about what the user wants
+
+You MUST ask clarifying questions FIRST. The topic "$ARGUMENTS" is NOT
+enough information to begin research. Even if it seems clear, ASK ANYWAY.
 
 ## The Iron Law
 
@@ -24,217 +34,210 @@ understanding should codebase exploration begin.
 Do not touch the codebase until the problem is thoroughly understood.
 Resist the urge to immediately search for files or read code.
 
-## Core Principles
+## Phase 1: Interrogation (MANDATORY)
 
-### Interrogate Before Exploring
+Ask these questions ONE AT A TIME using AskUserQuestion. Wait for each
+answer before asking the next question.
 
-The research phase has TWO distinct stages:
+### Question 1 - ASK THIS NOW
 
-1. **Interrogation** - Ask questions to understand intent, scope, constraints
-2. **Exploration** - Only after interrogation, examine the codebase
+Use AskUserQuestion immediately with:
 
-Never skip or rush interrogation. Most failed implementations stem from
-misunderstanding the problem, not misunderstanding the code.
+- **Header**: "Goal"
+- **Question**: "Which best describes what you're trying to accomplish?"
+- **Options**:
+  - "Build something new" (description: "Add new functionality")
+  - "Change existing behavior" (description: "Modify how something works")
+  - "Fix something broken" (description: "Resolve a bug or issue")
+  - "Understand how it works" (description: "Learn about implementation")
 
-### One Question at a Time
+**STOP HERE. Do not continue until the user answers.**
 
-Do not overwhelm with multiple questions. Ask a single focused question,
-wait for the answer, then ask the next question based on that answer.
+### Question 2 - After Q1 is answered
 
-**Wrong:**
+Based on their Q1 answer, use AskUserQuestion:
 
-```text
-What is the goal? What constraints exist? What have you tried?
-Who are the users? What's the timeline?
-```
+If "Build something new":
 
-**Right:**
+- **Header**: "Feature"
+- **Question**: "What should this new feature do?"
+- **Options**: Let user type (no predefined options needed)
 
-```text
-What problem are you trying to solve?
-```
+If "Change existing behavior":
 
-Then based on the answer, ask the next relevant question.
+- **Header**: "Change"
+- **Question**: "What should be different from current behavior?"
+- **Options**: Let user type
 
-### Multiple Choice Preferred
+If "Fix something broken":
 
-When possible, offer constrained options rather than open-ended questions.
-This makes it easier for users to respond and surfaces your assumptions.
+- **Header**: "Problem"
+- **Question**: "What's happening that shouldn't be?"
+- **Options**: Let user type
 
-**Wrong:**
+If "Understand how it works":
 
-```text
-What approach should we take?
-```
+- **Header**: "Aspect"
+- **Question**: "What specific aspect is unclear?"
+- **Options**: Let user type
 
-**Right:**
+**STOP. Wait for answer.**
 
-```text
-Which best describes your goal?
-- Add new functionality to existing feature
-- Fix a bug in current behavior
-- Refactor without changing behavior
-- Improve performance of existing code
-```
+### Question 3 - After Q2 is answered
 
-### Evidence Over Assumptions
+Use AskUserQuestion:
 
-During exploration, document findings with file:line references. Every
-claim about the codebase should be verifiable.
+- **Header**: "Scope"
+- **Question**: "How big do you expect this change to be?"
+- **Options**:
+  - "Small" (description: "One file, isolated change")
+  - "Medium" (description: "Multiple related files")
+  - "Large" (description: "Architectural, touches many areas")
+  - "Unknown" (description: "Need to explore to find out")
 
-## Research Process
+**STOP. Wait for answer.**
 
-### Phase 1: Interrogation (REQUIRED)
+### Question 4 - After Q3 is answered
 
-Before any codebase exploration, conduct systematic questioning.
+Use AskUserQuestion with multiSelect: true:
 
-#### Step 1: Understand the Goal
+- **Header**: "Constraints"
+- **Question**: "Are there constraints I should know about?"
+- **multiSelect**: true
+- **Options**:
+  - "Performance" (description: "Speed/efficiency requirements")
+  - "Compatibility" (description: "Must work with existing systems")
+  - "Security" (description: "Security considerations apply")
+  - "Timeline" (description: "Time pressure exists")
 
-Ask ONE question to understand what the user wants to achieve:
+**STOP. Wait for answer.**
 
-```text
-What outcome are you hoping for?
-```
+### Question 5 - After Q4 is answered
 
-Or offer options:
+Use AskUserQuestion:
 
-```text
-Which best describes what you're trying to do?
-- Build something new
-- Change existing behavior
-- Fix something broken
-- Understand how something works
-```
+- **Header**: "Context"
+- **Question**: "Have you already identified relevant code or tried anything?"
+- **Options**:
+  - "Yes, I know where to look" (description: "I'll share specific files")
+  - "I have some ideas" (description: "I have hunches to share")
+  - "No, starting fresh" (description: "No prior investigation")
 
-#### Step 2: Clarify the Problem
+If they answer "Yes" or "I have some ideas", ask them to share before
+proceeding.
 
-Based on the goal, ask ONE follow-up question:
+**STOP. Wait for answer.**
 
-- If building new: "What should this feature do?"
-- If changing: "What should be different from current behavior?"
-- If fixing: "What's happening that shouldn't be?"
-- If understanding: "What specific aspect is unclear?"
+### Question 6 - After Q5 is answered
 
-#### Step 3: Identify Scope
-
-Ask about boundaries:
-
-```text
-How big is this change?
-- Small: One file, isolated change
-- Medium: Multiple files, contained area
-- Large: Architectural, wide-reaching impact
-```
-
-#### Step 4: Surface Constraints
-
-Ask about limitations:
-
-```text
-Are there constraints I should know about?
-- Performance requirements
-- Compatibility needs
-- Security considerations
-- Timeline pressure
-- Other (please specify)
-```
-
-#### Step 5: Check for Prior Work
-
-Ask about existing context:
-
-```text
-Have you already tried anything or identified relevant code?
-```
-
-#### Step 6: Confirm Understanding
-
-Before exploring, summarize understanding and confirm:
+Summarize what you learned, then use AskUserQuestion:
 
 ```text
 Let me confirm I understand:
-- Goal: [summarize]
-- Scope: [summarize]
-- Constraints: [summarize]
 
-Is this accurate, or should I adjust my understanding?
+- Goal: [from Q1]
+- Specifics: [from Q2]
+- Scope: [from Q3]
+- Constraints: [from Q4]
+- Prior context: [from Q5]
 ```
 
-Only proceed to exploration after confirmation.
+- **Header**: "Confirm"
+- **Question**: "Is this understanding accurate?"
+- **Options**:
+  - "Yes, proceed" (description: "Begin codebase exploration")
+  - "Let me clarify" (description: "I need to correct something")
 
-### Phase 2: Exploration (After Interrogation)
+If "Let me clarify", ask what needs adjustment before proceeding.
 
-Once the problem is understood, explore the codebase systematically.
+**STOP. Do not explore code until user confirms "Yes, proceed".**
 
-#### Map the Territory
+## Phase 2: Exploration (ONLY after Phase 1 complete)
 
-- Identify relevant directories and file organization
-- Note naming conventions and patterns
-- Find entry points (main files, routers, handlers)
-- Document the dependency graph for affected areas
+You may ONLY reach this phase after:
 
-#### Trace Data Flow
+1. All 6 questions have been asked
+2. User has confirmed understanding with "Yes, proceed"
 
-- Identify inputs (APIs, user actions, events)
-- Track transformations and processing steps
-- Note where state is stored and modified
-- Document outputs and side effects
+If you have not done both, GO BACK TO PHASE 1.
 
-#### Find Existing Patterns
+### Now explore the codebase
 
-- Search for analogous features already built
-- Note patterns used (factories, repositories, services)
-- Identify reusable utilities and helpers
-- Document conventions for testing, error handling, logging
+Use TodoWrite to track exploration based on interrogation answers.
 
-#### Identify Technical Constraints
+**Map relevant territory:**
 
-- External dependencies and their versions
-- Performance bottlenecks
-- Security considerations
-- Backward compatibility needs
+- Identify directories related to their stated goal
+- Find entry points and key files
+- Note patterns and conventions
 
-### Phase 3: Documentation
+**Trace relevant data flow:**
 
-Produce a research document at `docs/plans/research/<topic>.md`:
+- Follow data through areas relevant to their goal
+- Identify inputs, transformations, outputs
+- Document state changes and side effects
+
+**Find existing patterns:**
+
+- Search for analogous implementations
+- Note reusable utilities and helpers
+- Document conventions for testing and error handling
+
+**Identify technical constraints:**
+
+- External dependencies
+- Performance considerations
+- Security implications
+
+### Validate findings with user
+
+After exploring, use AskUserQuestion:
+
+- **Header**: "Validate"
+- **Question**: "I found [brief summary]. Does this align with expectations?"
+- **Options**:
+  - "Yes, looks right" (description: "Proceed to documentation")
+  - "Look elsewhere" (description: "I'll redirect you")
+  - "Need more detail" (description: "Dig deeper in current area")
+
+## Phase 3: Document Findings
+
+Create research document at: `docs/plans/research/<topic>.md`
 
 ```markdown
 # Research: <Topic>
 
 ## Problem Statement
 
-[One paragraph describing what needs to be understood, based on interrogation]
+[Based on interrogation - what the user wants to accomplish]
 
 ## User Requirements
 
-- Goal: [from interrogation]
-- Scope: [from interrogation]
-- Constraints: [from interrogation]
-
-## Key Questions
-
-- [Question 1]
-- [Question 2]
+- **Goal**: [from Q1]
+- **Specifics**: [from Q2]
+- **Scope**: [from Q3]
+- **Constraints**: [from Q4]
+- **Prior context**: [from Q5]
 
 ## Findings
 
 ### Relevant Files
 
-| File                | Purpose    | Key Lines |
-| ------------------- | ---------- | --------- |
-| src/auth/handler.ts | Auth logic | 42-87     |
+| File            | Purpose     | Key Lines |
+| --------------- | ----------- | --------- |
+| path/to/file.ts | Description | 42-87     |
 
 ### Existing Patterns
 
-[Patterns discovered that should inform implementation]
+[Patterns discovered that inform implementation]
 
 ### Dependencies
 
 [External and internal dependencies]
 
-### Constraints
+### Technical Constraints
 
-[Technical limitations discovered]
+[Limitations discovered during exploration]
 
 ## Open Questions
 
@@ -242,8 +245,19 @@ Produce a research document at `docs/plans/research/<topic>.md`:
 
 ## Recommendations
 
-[Initial thoughts on approach, informed by research]
+[Initial thoughts on approach]
 ```
+
+## Phase 4: Transition to Planning
+
+Use AskUserQuestion:
+
+- **Header**: "Next step"
+- **Question**: "Research complete. What would you like to do?"
+- **Options**:
+  - "Create implementation plan" (description: "Proceed to /rpikit:plan")
+  - "Continue researching" (description: "Gather more context")
+  - "Done for now" (description: "End research phase")
 
 ## Interrogation Techniques
 
@@ -311,40 +325,14 @@ Can you give me an example of what you'd expect to happen?
 **Wrong**: "I'll add a new AuthService class"
 **Right**: "The codebase uses repository pattern. Auth is in handler.ts:42-87."
 
-## Transition to Planning
+## Checklist
 
-Research is complete when:
-
-- User requirements are documented (from interrogation)
-- Relevant files are identified with line references
-- Existing patterns are documented
-- Constraints are understood (both user and technical)
-
-After completing research, prompt the user:
-
-> "Research complete. Ready to create an implementation plan based on
-> these findings?"
-
-Use AskUserQuestion to confirm transition to the planning phase.
-
-## Integration with Claude Features
-
-### Use AskUserQuestion Extensively
-
-This is the primary tool for interrogation. Use it for every question
-in Phase 1.
-
-### Use TodoWrite for Progress
-
-Track interrogation questions as todos, marking complete as answered.
-Then track exploration tasks.
-
-### Use Glob and Grep for Exploration
-
-Only after interrogation is complete. Document findings with file:line
-references.
-
-### Use Task Tool for Deep Exploration
-
-For complex codebases, spawn exploration agents to parallelize research.
-But only after interrogation establishes what to look for.
+- [ ] Question 1 asked and answered
+- [ ] Question 2 asked and answered
+- [ ] Question 3 asked and answered
+- [ ] Question 4 asked and answered
+- [ ] Question 5 asked and answered
+- [ ] Question 6 asked and user confirmed
+- [ ] Exploration completed
+- [ ] Findings validated with user
+- [ ] Research document created

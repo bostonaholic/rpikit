@@ -3,12 +3,14 @@ name: plan-methodology
 description: >-
   This skill should be used when the user asks to "create a plan",
   "plan the implementation", "design the approach", "break down the task",
-  "write an implementation plan", or invokes the rpi:plan command. Provides
+  "write an implementation plan", or invokes the rpikit:plan command. Provides
   methodology for creating actionable implementation plans with verification
   criteria.
 ---
 
-# Plan Methodology
+# Planning Phase
+
+Create an implementation plan for: **$ARGUMENTS**
 
 ## Purpose
 
@@ -17,115 +19,121 @@ strategy. A good plan enables disciplined execution by breaking work into
 granular tasks with clear verification criteria. Plans serve as contracts
 between human and AI, ensuring alignment before code is written.
 
-## Core Principles
+## Process
 
-### Granular Tasks
+### 1. Check for Research
 
-Break work into small, verifiable units:
+Look for existing research at: `docs/plans/research/$ARGUMENTS.md`
 
-| Task Size | Description                        | Verification             |
-| --------- | ---------------------------------- | ------------------------ |
-| Small     | Single function or component       | 2-5 minutes to verify    |
-| Medium    | Multiple related changes           | 10-15 minutes to verify  |
-| Large     | Architectural change               | Should be broken down    |
+If research exists:
 
-Prefer small tasks. Large tasks hide complexity and make progress hard
-to track.
+- Read and reference the research findings
+- Build the plan on documented context
+- Link to research in plan document
 
-### Explicit Verification
+If no research exists:
 
-Every task must have clear success criteria:
+- Ask if research should be conducted first
+- For low-stakes tasks, proceed with inline exploration
+- For high-stakes tasks, recommend research first
 
-- **Testable**: Can be verified by running code or tests
-- **Observable**: Changes are visible in output or behavior
-- **Specific**: No ambiguity about what "done" means
+### 2. Define Success Criteria
 
-### Reference Research
-
-Plans build on research findings. Reference the research document and use
-discovered patterns, constraints, and file references.
-
-### Human Approval Required
-
-Plans require explicit human approval before implementation begins. Never
-proceed to implementation without confirmation.
-
-## Planning Process
-
-### 1. Review Research
-
-Before planning, ensure research is complete:
-
-- Read the research document at `docs/plans/research/<topic>.md`
-- Verify key questions are answered
-- Note existing patterns to follow
-- Understand constraints and dependencies
-
-If research is incomplete, return to research phase.
-
-### 2. Define Success
-
-State what "done" looks like:
+Before planning tasks, establish what "done" looks like:
 
 - Functional requirements (what it does)
 - Non-functional requirements (performance, security)
 - Acceptance criteria (how to verify)
 
+Use AskUserQuestion to clarify requirements if needed.
+
 ### 3. Classify Stakes
 
 Determine implementation risk level:
 
-| Stakes | Characteristics                    | Planning Rigor           |
-| ------ | ---------------------------------- | ------------------------ |
-| Low    | Isolated, easy rollback            | Brief plan               |
-| Medium | Multiple files, moderate impact    | Standard plan            |
-| High   | Architectural, hard to rollback    | Detailed plan            |
+| Stakes     | Characteristics                              | Planning Rigor |
+| ---------- | -------------------------------------------- | -------------- |
+| **Low**    | Isolated change, easy rollback, low impact   | Brief plan     |
+| **Medium** | Multiple files, moderate impact, testable    | Standard plan  |
+| **High**   | Architectural, hard to rollback, wide impact | Detailed plan  |
 
-Stakes classification affects implementation enforcement.
+Document the classification and rationale in the plan.
 
 ### 4. Break Down Tasks
 
-Decompose work into ordered steps:
+Decompose work into granular, verifiable steps:
 
-1. **Identify phases**: Group related changes
-2. **Order by dependency**: What must come first?
-3. **Add verification**: How to confirm each step?
-4. **Estimate complexity**: Small/Medium/Large per task
+For each task include:
 
-Each task should include:
+- **Description**: Clear statement of what to do
+- **Files**: Target files with line references when known
+- **Action**: Specific changes to make
+- **Verify**: How to confirm the step is complete
+- **Complexity**: Small / Medium / Large
 
-- Clear description of what to do
-- Target files (with line references when known)
-- Verification criteria
-- Complexity estimate
+Prefer small tasks (2-5 minute verification time).
 
-### 5. Identify Risks
+Group related tasks into phases with checkpoint verifications.
 
-Document what could go wrong:
+#### Good Task Examples
+
+```markdown
+#### Step 1.1: Add validation function
+
+- **Files**: `src/utils/validation.ts`
+- **Action**: Create validateEmail() using regex from validatePhone()
+- **Verify**: Unit test passes for valid/invalid emails
+- **Complexity**: Small
+```
+
+```markdown
+#### Step 2.3: Update API endpoint
+
+- **Files**: `src/routes/users.ts:45-60`
+- **Action**: Add email field to user creation endpoint
+- **Verify**: POST /users with email returns 201
+- **Complexity**: Small
+```
+
+#### Bad Task Examples
+
+```markdown
+#### Step 1: Implement feature
+
+- **Action**: Add the new feature
+- **Complexity**: Large
+```
+
+**Problem**: Too vague, no verification, no file references
+
+```markdown
+#### Step 1: Refactor authentication system
+
+- **Action**: Update all auth code to use new pattern
+- **Complexity**: Large
+```
+
+**Problem**: Too large, should be broken into multiple phases
+
+### 5. Document Risks
+
+Identify what could go wrong:
 
 - Breaking changes to existing functionality
 - Performance implications
 - Security considerations
 - Dependencies that might fail
 
-### 6. Request Approval
+Include rollback strategy for high-stakes changes.
 
-Present the plan and ask for explicit approval using AskUserQuestion:
+### 6. Write Plan Document
 
-> "Plan ready for review. Approve this plan to proceed with implementation?"
+Create plan at: `docs/plans/$ARGUMENTS.md`
 
-Options should include:
-
-- Approve and implement
-- Request changes
-- Return to research
-
-## Plan Structure
-
-Plans are written to `docs/plans/<name>.md`:
+Use this structure:
 
 ```markdown
-# Plan: <Feature/Task Name>
+# Plan: $ARGUMENTS
 
 ## Summary
 
@@ -140,13 +148,11 @@ Plans are written to `docs/plans/<name>.md`:
 
 **Research**: [Link to research document if exists]
 **Affected Areas**: [Components, services, files]
-**Dependencies**: [What this depends on]
 
 ## Success Criteria
 
 - [ ] [Criterion 1]
 - [ ] [Criterion 2]
-- [ ] [Criterion 3]
 
 ## Implementation Steps
 
@@ -172,9 +178,9 @@ Plans are written to `docs/plans/<name>.md`:
 
 ## Risks and Mitigations
 
-| Risk     | Impact   | Mitigation        |
-| -------- | -------- | ----------------- |
-| [Risk 1] | [Impact] | [How to address]  |
+| Risk   | Impact   | Mitigation       |
+| ------ | -------- | ---------------- |
+| [Risk] | [Impact] | [How to address] |
 
 ## Rollback Strategy
 
@@ -185,94 +191,44 @@ Plans are written to `docs/plans/<name>.md`:
 - [ ] Plan approved
 - [ ] Implementation started
 - [ ] Implementation complete
-- [ ] Verified working
 ```
 
-## Task Granularity Guidelines
+### 7. Request Approval
 
-### Good Task Examples
+Present plan summary and request explicit approval:
 
-```markdown
-#### Step 1.1: Add validation function
+"Plan created for '$ARGUMENTS' at docs/plans/$ARGUMENTS.md.
 
-- **Files**: `src/utils/validation.ts`
-- **Action**: Create validateEmail() using regex from validatePhone()
-- **Verify**: Unit test passes for valid/invalid emails
-- **Complexity**: Small
-```
+**Summary**: [brief description]
+**Stakes**: [level]
+**Steps**: [count] steps in [count] phases
 
-```markdown
-#### Step 2.3: Update API endpoint
+Ready to approve and begin implementation?"
 
-- **Files**: `src/routes/users.ts:45-60`
-- **Action**: Add email field to user creation endpoint
-- **Verify**: POST /users with email returns 201
-- **Complexity**: Small
-```
+Use AskUserQuestion with options:
 
-### Bad Task Examples
+- "Approve and implement" - Mark approved, proceed to rpikit:implement
+- "Request changes" - Specify what to modify
+- "Return to research" - Gather more context first
 
-```markdown
-#### Step 1: Implement feature
+If approved, guide user to use `/rpikit:implement $ARGUMENTS` or invoke the
+Skill tool with skill "rpikit:implement-methodology".
 
-- **Action**: Add the new feature
-- **Complexity**: Large
-```
+## Plan Iteration
 
-**Problem**: Too vague, no verification, no file references
+If a plan already exists at `docs/plans/$ARGUMENTS.md`:
 
-```markdown
-#### Step 1: Refactor authentication system
+1. Read the existing plan
+2. Ask user's intent:
+   - "Refine this plan" - Update existing plan
+   - "Start fresh" - Create new plan
+   - "View plan" - Display current plan
 
-- **Action**: Update all auth code to use new pattern
-- **Complexity**: Large
-```
+When refining:
 
-**Problem**: Too large, should be broken into multiple phases
-
-## Iteration and Refinement
-
-Plans can be refined before approval:
-
-### Adding Detail
-
-If a task is too vague, expand it:
-
-- Add specific file:line references
-- Clarify the exact changes
-- Add intermediate verification steps
-
-### Splitting Tasks
-
-If a task is too large:
-
-- Create sub-steps within phases
-- Add checkpoint verifications
-- Consider making it a separate phase
-
-### Adjusting Order
-
-If dependencies change:
-
-- Reorder steps to respect dependencies
-- Add explicit "depends on" notes
-- Verify the critical path
-
-## Transition to Implementation
-
-Planning is complete when:
-
-- All tasks have clear verification criteria
-- Stakes are classified
-- Risks are documented
-- Human has approved the plan
-
-After approval, prompt transition:
-
-> "Plan approved. Ready to begin implementation?"
-
-Use AskUserQuestion to confirm. Implementation will reference this plan
-document.
+- Preserve approved status if already approved
+- Document changes made
+- Re-request approval for significant changes
 
 ## Anti-Patterns to Avoid
 
@@ -301,27 +257,13 @@ document.
 **Wrong**: "We'll figure it out as we go"
 **Right**: Sufficient detail to enable disciplined execution
 
-## Integration with Claude Features
+## Quality Checklist
 
-### Use TodoWrite for Plan Tasks
+Before requesting approval:
 
-Convert plan steps into todos for execution tracking.
-
-### Use AskUserQuestion for Approval
-
-Present plan summary and request explicit approval before implementation.
-
-### Reference Research Documents
-
-Link to and quote from research findings to justify approach.
-
-### Use EnterPlanMode When Appropriate
-
-For complex plans, Claude's built-in plan mode provides additional
-structure.
-
-## Additional Resources
-
-Plan templates and examples will be stored at:
-
-- `${CLAUDE_PLUGIN_ROOT}/docs/plans/` for output location
+- [ ] All tasks have clear verification criteria
+- [ ] Stakes level is documented with rationale
+- [ ] Tasks are granular (prefer small complexity)
+- [ ] Risks are identified with mitigations
+- [ ] Rollback strategy documented for high stakes
+- [ ] Plan document created at docs/plans/

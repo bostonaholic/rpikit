@@ -3,12 +3,14 @@ name: implement-methodology
 description: >-
   This skill should be used when the user asks to "implement the plan",
   "execute the plan", "start implementation", "build the feature",
-  "make the changes", or invokes the rpi:implement command. Provides
+  "make the changes", or invokes the rpikit:implement command. Provides
   methodology for disciplined execution with checkpoint validation and
   progress tracking.
 ---
 
-# Implement Methodology
+# Implementation Phase
+
+Execute the implementation plan for: **$ARGUMENTS**
 
 ## Purpose
 
@@ -16,6 +18,153 @@ Implementation executes an approved plan with discipline and verification.
 The goal is not just working code, but verified, documented progress that
 matches the plan. Implementation follows the plan strictly, verifying each
 step before proceeding.
+
+## Process
+
+### 1. Verify Plan Exists
+
+Look for plan at: `docs/plans/$ARGUMENTS.md`
+
+**If plan exists:**
+
+- Read the plan document
+- Check if plan is marked approved
+- Proceed based on stakes level
+
+**If no plan exists:**
+
+- Check stakes level of the requested work
+- Apply enforcement based on stakes
+
+### 2. Apply Stakes-Based Enforcement
+
+**High Stakes** (architectural, security-sensitive, hard to rollback):
+
+```text
+Cannot proceed without an approved plan.
+
+High-stakes implementations require:
+1. Research phase (rpikit:research)
+2. Approved plan (rpikit:plan)
+
+Use /rpikit:plan $ARGUMENTS to create a plan first.
+```
+
+Stop and do not proceed.
+
+**Medium Stakes** (multiple files, moderate impact):
+
+```text
+Warning: No approved plan found for '$ARGUMENTS'.
+
+Medium-stakes changes benefit from planning.
+```
+
+Use AskUserQuestion with options:
+
+- "Create a plan first" (recommended)
+- "Proceed with caution"
+- "Cancel"
+
+**Low Stakes** (isolated, easy rollback):
+
+```text
+Note: Consider /rpikit:research and /rpikit:plan for better results.
+Proceeding with implementation...
+```
+
+Proceed with inline planning.
+
+### 3. Initialize Progress Tracking
+
+Convert plan steps to TodoWrite todos:
+
+Read each step from the plan and create corresponding todos:
+
+- Use step descriptions as todo content
+- Mark all as pending initially
+- This provides visible progress tracking
+
+### 4. Execute Steps in Order
+
+For each step in the plan:
+
+1. **Mark in_progress** - Update TodoWrite
+2. **Read target files** - Always read before modifying
+3. **Make the change** - Follow plan specification exactly
+4. **Run verification** - Execute the verify criteria
+5. **Confirm success** - Only proceed if verification passes
+6. **Mark completed** - Update TodoWrite immediately
+7. **Update plan** - Mark step complete in plan document
+
+### 5. Checkpoint After Phases
+
+After completing each phase:
+
+Summarize progress:
+
+```text
+Phase [N] complete:
+- Step N.1: [description]
+- Step N.2: [description]
+- Step N.3: [description]
+
+Verifications: All passed
+```
+
+Use AskUserQuestion:
+
+- "Continue to Phase [N+1]"
+- "Review changes so far"
+- "Pause implementation"
+
+### 6. Handle Failures
+
+When verification fails:
+
+1. **Stop** - Do not proceed to next step
+2. **Report** - Explain what failed and why
+3. **Diagnose** - Investigate the cause
+4. **Propose fix** - Suggest correction
+
+If fix requires plan changes:
+
+```text
+Verification failed for Step [X.Y]: [description]
+
+The planned approach doesn't work because: [reason]
+
+Proposed adjustment: [new approach]
+```
+
+Use AskUserQuestion:
+
+- "Approve adjustment and continue"
+- "Return to planning"
+- "Cancel implementation"
+
+### 7. Complete Implementation
+
+When all steps are done:
+
+1. Mark all todos complete
+2. Update plan document status section
+3. Run final verification (full test suite if applicable)
+4. Summarize results
+
+```text
+Implementation complete for '$ARGUMENTS'.
+
+Summary:
+- Steps completed: [N]
+- Phases completed: [M]
+- Files changed: [list]
+- Tests: [pass/fail status]
+
+Plan updated: docs/plans/$ARGUMENTS.md
+
+All success criteria met.
+```
 
 ## Core Principles
 
@@ -46,151 +195,51 @@ Use TodoWrite to show real-time progress:
 - Mark completed only after verification
 - Update plan document with status
 
-### Checkpoint Validation
+## Progress Documentation
 
-After each phase or significant step:
+### TodoWrite Format
 
-- Review what was done
-- Verify it matches the plan
-- Confirm no regressions
-- Get human confirmation before continuing
-
-## Stakes-Based Enforcement
-
-Implementation enforcement depends on stakes classification:
-
-### High Stakes
-
-**Behavior**: Refuse to implement without approved plan
+Maintain real-time visibility:
 
 ```text
-Cannot proceed. High-stakes changes require an approved plan.
-
-Use rpi:plan to create and approve an implementation plan first.
+[completed] Step 1.1: Add validation function
+[completed] Step 1.2: Update API endpoint
+[in_progress] Step 2.1: Add unit tests
+[pending] Step 2.2: Update integration tests
 ```
 
-High-stakes characteristics:
+### Plan Document Updates
 
-- Architectural changes
-- Security-sensitive code
-- Hard to rollback
-- Wide impact across codebase
+Update the plan file as implementation progresses:
 
-### Medium Stakes
+```markdown
+#### Step 1.1: Add validation function
 
-**Behavior**: Strong warning, require confirmation
-
-```text
-Warning: No approved plan found for this implementation.
-
-Medium-stakes changes benefit from planning. Proceed anyway?
-- Create a plan first (recommended)
-- Proceed with caution
-- Cancel
+- **Status**: Complete
+- **Verified**: Unit tests pass
+- **Notes**: Used existing regex pattern from validatePhone()
 ```
 
-Medium-stakes characteristics:
+## Test-Driven Execution
 
-- Multiple file changes
-- Moderate impact
-- Testable but non-trivial
+When plan includes test steps, follow TDD:
 
-### Low Stakes
+1. **Red** - Write failing test first
+2. **Green** - Write minimal code to pass
+3. **Refactor** - Improve without breaking
 
-**Behavior**: Proceed with reminder
+Mark test steps complete only when tests pass.
 
-```text
-Note: Consider using rpi:research and rpi:plan for better results.
-Proceeding with implementation...
-```
+## Deviation Handling
 
-Low-stakes characteristics:
+If implementation reveals the plan needs changes:
 
-- Isolated changes
-- Easy rollback
-- Minimal impact
-- Quick fixes
+1. Stop current step
+2. Document the issue
+3. Propose plan modification
+4. Get approval before continuing
 
-## Implementation Process
-
-### 1. Verify Prerequisites
-
-Before starting implementation:
-
-- [ ] Plan exists at `docs/plans/<name>.md`
-- [ ] Plan is marked approved
-- [ ] Research document is available (if referenced)
-- [ ] Stakes level is understood
-- [ ] Development environment is ready
-
-### 2. Initialize Progress Tracking
-
-Convert plan steps to TodoWrite todos:
-
-```text
-Creating todos from plan...
-- [ ] Step 1.1: Add validation function
-- [ ] Step 1.2: Update API endpoint
-- [ ] Step 2.1: Add tests
-...
-```
-
-### 3. Execute Steps in Order
-
-For each step:
-
-1. **Mark in_progress** in TodoWrite
-2. **Read target files** before modifying
-3. **Make the change** as specified
-4. **Run verification** as defined in plan
-5. **Mark completed** only if verification passes
-6. **Update plan document** with status
-
-### 4. Checkpoint After Phases
-
-After completing a phase:
-
-- Summarize what was done
-- Report verification results
-- Ask for confirmation to continue
-
-```text
-Phase 1 complete:
-- Step 1.1: ✓ Validation function added
-- Step 1.2: ✓ API endpoint updated
-
-All verifications passed. Continue to Phase 2?
-```
-
-### 5. Handle Failures
-
-When verification fails:
-
-1. **Stop** - do not proceed to next step
-2. **Diagnose** - understand why it failed
-3. **Fix** - address the issue
-4. **Re-verify** - run verification again
-5. **Document** - note what happened
-
-If the fix requires plan changes:
-
-```text
-Verification failed for Step 1.2.
-
-The planned approach doesn't work because [reason].
-Proposed adjustment: [new approach]
-
-Approve this change to the plan?
-```
-
-### 6. Complete Implementation
-
-When all steps are done:
-
-- [ ] All todos marked complete
-- [ ] All verifications passed
-- [ ] Plan document updated with completion status
-- [ ] Summary provided to user
+Never deviate silently from the approved plan.
 
 ## Verification Techniques
 
@@ -220,119 +269,6 @@ Ensure no breakage:
 - **Build**: Project builds successfully
 - **Smoke test**: Core functionality works
 
-## Progress Documentation
-
-### TodoWrite Updates
-
-Maintain real-time progress:
-
-```text
-[completed] Step 1.1: Add validation function
-[in_progress] Step 1.2: Update API endpoint
-[pending] Step 2.1: Add tests
-```
-
-### Plan Document Updates
-
-Update the plan file as implementation progresses:
-
-```markdown
-## Implementation Steps
-
-### Phase 1: Core Changes
-
-#### Step 1.1: Add validation function
-
-- **Status**: ✓ Complete
-- **Verified**: Unit tests pass
-- **Notes**: Used existing regex pattern
-
-#### Step 1.2: Update API endpoint
-
-- **Status**: In Progress
-```
-
-## Test-Driven Implementation
-
-When plan includes tests, follow TDD:
-
-### Red-Green-Refactor
-
-1. **Red**: Write failing test first
-2. **Green**: Write minimal code to pass
-3. **Refactor**: Improve without breaking tests
-
-### Test-First Benefits
-
-- Verification criteria are executable
-- Progress is measurable
-- Regressions caught immediately
-- Design emerges from usage
-
-## Error Handling
-
-### Compilation Errors
-
-```text
-Step failed: Compilation error in src/utils/validation.ts
-
-Error: Property 'email' does not exist on type 'User'
-
-Diagnosing...
-```
-
-Fix the error before marking step complete.
-
-### Test Failures
-
-```text
-Step verification failed: 2 tests failing
-
-FAIL src/utils/validation.test.ts
-  ✗ validates email format
-  ✗ rejects invalid email
-
-Investigating failures...
-```
-
-Do not proceed until tests pass.
-
-### Unexpected Behavior
-
-```text
-Step verification unclear: API returns 200 but response body unexpected
-
-Expected: { success: true, user: {...} }
-Actual: { success: true }
-
-Investigating discrepancy...
-```
-
-Verify against plan requirements.
-
-## Transition to Completion
-
-Implementation is complete when:
-
-- All plan steps marked done
-- All verifications passed
-- Plan document updated
-- No pending todos
-
-Final summary:
-
-```text
-Implementation complete.
-
-Summary:
-- 8 steps completed
-- All verifications passed
-- Files changed: 5
-- Tests added: 3
-
-Plan: docs/plans/add-email-validation.md (marked complete)
-```
-
 ## Anti-Patterns to Avoid
 
 ### Skipping Verification
@@ -360,31 +296,20 @@ Plan: docs/plans/add-email-validation.md (marked complete)
 **Wrong**: Rushing high-stakes changes
 **Right**: Respect enforcement based on stakes level
 
-## Integration with Claude Features
+## Quality Checklist
 
-### Use TodoWrite Extensively
+During implementation:
 
-Convert every plan step to a todo. Update status in real-time.
+- [ ] Always read files before modifying
+- [ ] Run verification after each step
+- [ ] Mark todos complete immediately (no batching)
+- [ ] Update plan document with status
+- [ ] Get approval at phase checkpoints
+- [ ] Document any deviations
 
-### Use AskUserQuestion for Checkpoints
+At completion:
 
-After phases, confirm with user before continuing.
-
-### Use Read Before Edit
-
-Always read files before modifying them.
-
-### Use Bash for Verification
-
-Run tests, builds, and checks via Bash tool.
-
-### Reference Plan Document
-
-Keep the plan document open and update it throughout.
-
-## Additional Resources
-
-Implementation progress tracked in:
-
-- `docs/plans/<name>.md` - Plan document with status updates
-- TodoWrite - Real-time progress visibility
+- [ ] All plan steps marked done
+- [ ] All verifications passed
+- [ ] Plan document updated with completion status
+- [ ] Final summary provided
