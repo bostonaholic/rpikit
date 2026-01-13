@@ -32,21 +32,30 @@ implementation and ensures human oversight at critical decision points.
 Each phase produces artifacts in `/` and requires human approval
 before transitioning to the next phase.
 
-### When to Use Brainstorming
+### Brainstorming vs. Research
 
-**Brainstorming** (optional) is for creative/design work when requirements are
-unclear:
+Both commands start by asking clarifying questions before acting. The key
+difference is their purpose:
 
-- "Add user authentication" → What kind? OAuth? JWT? Sessions?
-- "Improve performance" → Which areas? What trade-offs are acceptable?
+| Brainstorming | Research |
+|---------------|----------|
+| *What* should we build? | *How* does it work? |
+| Explores design approaches | Explores existing code |
+| Vague idea → clear design | Clear topic → codebase understanding |
 
-**Research** is for investigative work when requirements are clear:
+**Use Brainstorming when:**
 
+- Requirements are vague: "Add user auth" → What kind? OAuth? JWT? Sessions?
+- Multiple approaches exist: "Improve performance" → Which areas? What trade-offs?
+- Design decisions needed before you can research
+
+**Use Research when:**
+
+- You know what to build but need to understand the codebase
 - "Where is authentication implemented?" → Finds files, traces flow
 - "How does the existing caching work?" → Documents patterns
 
-Skip brainstorming and start with research when you know what to build but
-need to understand the codebase first.
+**Common flow:** Brainstorm first (if unclear) → Research → Plan → Implement
 
 ## Output Structure
 
