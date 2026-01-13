@@ -1,5 +1,5 @@
 ---
-name: implement-methodology
+name: implementing-plans
 description: >-
   This skill should be used when the user asks to "implement the plan",
   "execute the plan", "start implementation", "build the feature",
@@ -46,10 +46,10 @@ Look for plan at: `docs/plans/YYYY-MM-DD-$ARGUMENTS-plan.md`
 Cannot proceed without an approved plan.
 
 High-stakes implementations require:
-1. Research phase (rpikit:research-methodology skill)
-2. Approved plan (rpikit:plan-methodology skill)
+1. Research phase (rpikit:researching-codebase skill)
+2. Approved plan (rpikit:writing-plans skill)
 
-Invoke the Skill tool with skill "rpikit:plan-methodology" to create a plan first.
+Invoke the Skill tool with skill "rpikit:writing-plans" to create a plan first.
 ```
 
 Stop and do not proceed.
@@ -71,7 +71,7 @@ Use AskUserQuestion with options:
 **Low Stakes** (isolated, easy rollback):
 
 ```text
-Note: Consider rpikit:research-methodology and rpikit:plan-methodology skills for better results.
+Note: Consider rpikit:researching-codebase and rpikit:writing-plans skills for better results.
 Proceeding with implementation...
 ```
 

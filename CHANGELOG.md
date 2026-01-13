@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Renamed core RPI skills for clarity:
+  - `research-methodology` → `researching-codebase`
+  - `plan-methodology` → `writing-plans`
+  - `implement-methodology` → `implementing-plans`
+- Renamed review commands for consistency:
+  - `/rpikit:code-review` → `/rpikit:review-code`
+  - `/rpikit:security-review` → `/rpikit:review-security`
+
 ### Added
 
 - Implement command now offers worktree isolation before making changes

@@ -1,5 +1,5 @@
 ---
-name: research-methodology
+name: researching-codebase
 description: >-
   This skill should be used when the user asks to "research the codebase",
   "understand how X works", "explore the code", "gather context",

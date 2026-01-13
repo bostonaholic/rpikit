@@ -15,9 +15,9 @@ commands/                # Entry points that delegate to skills
   ├── plan.md            # /rpikit:plan command
   └── implement.md       # /rpikit:implement command
 skills/                  # Detailed methodology instructions
-  ├── research-methodology/SKILL.md
-  ├── plan-methodology/SKILL.md
-  └── implement-methodology/SKILL.md
+  ├── researching-codebase/SKILL.md
+  ├── writing-plans/SKILL.md
+  └── implementing-plans/SKILL.md
 agents/                  # Autonomous agents for specialized tasks
   ├── file-finder.md     # Locates files using systematic search
   └── web-researcher.md  # Conducts web research with citations

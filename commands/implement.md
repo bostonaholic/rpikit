@@ -6,4 +6,4 @@ disable-model-invocation: true
 
 # Implement Command instructions
 
-Invoke the rpikit:implement-methodology skill and follow it exactly as presented to you.
+Invoke the rpikit:implementing-plans skill and follow it exactly as presented to you.

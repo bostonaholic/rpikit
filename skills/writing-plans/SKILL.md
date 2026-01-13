@@ -1,5 +1,5 @@
 ---
-name: plan-methodology
+name: writing-plans
 description: >-
   This skill should be used when the user asks to "create a plan",
   "plan the implementation", "design the approach", "break down the task",
@@ -248,7 +248,7 @@ Use AskUserQuestion with options:
 - "Request changes" - Specify what to modify
 - "Return to research" - Gather more context first
 
-If approved, invoke the Skill tool with skill "rpikit:implement-methodology"
+If approved, invoke the Skill tool with skill "rpikit:implementing-plans"
 to begin implementation.
 
 ## Plan Iteration

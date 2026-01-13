@@ -6,4 +6,4 @@ disable-model-invocation: true
 
 # Research Command instructions
 
-Invoke the rpikit:research-methodology skill and follow it exactly as presented to you.
+Invoke the rpikit:researching-codebase skill and follow it exactly as presented to you.

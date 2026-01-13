@@ -6,4 +6,4 @@ disable-model-invocation: true
 
 # Plan Command instructions
 
-Invoke the rpikit:plan-methodology skill and follow it exactly as presented to you.
+Invoke the rpikit:writing-plans skill and follow it exactly as presented to you.

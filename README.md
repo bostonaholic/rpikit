@@ -18,8 +18,8 @@ implementation and ensures human oversight at critical decision points.
 | `/rpikit:research`        | Understand the codebase and gather context     |
 | `/rpikit:plan`            | Create an actionable implementation plan       |
 | `/rpikit:implement`       | Execute the plan with discipline               |
-| `/rpikit:code-review`     | Review changes for quality and maintainability |
-| `/rpikit:security-review` | Review changes for security vulnerabilities    |
+| `/rpikit:review-code`     | Review changes for quality and maintainability |
+| `/rpikit:review-security` | Review changes for security vulnerabilities    |
 
 ## Workflow
 
@@ -106,13 +106,13 @@ Review and approve the plan, then implement from it:
 Review current changes for quality issues:
 
 ```bash
-/rpikit:code-review
+/rpikit:review-code
 ```
 
 Review for security vulnerabilities:
 
 ```bash
-/rpikit:security-review
+/rpikit:review-security
 ```
 
 ### Stakes-Based Planning
@@ -129,9 +129,9 @@ The plugin includes methodology skills that guide disciplined development:
 
 ### Core RPI Workflow
 
-- **research-methodology** - Thorough codebase research through interrogation
-- **plan-methodology** - Granular, verifiable implementation plans
-- **implement-methodology** - Disciplined execution with checkpoint verification
+- **researching-codebase** - Thorough codebase research through interrogation
+- **writing-plans** - Granular, verifiable implementation plans
+- **implementing-plans** - Disciplined execution with checkpoint verification
 - **reviewing-code** - Quality review using Conventional Comments
 - **security-review** - Security-focused review for vulnerabilities
 
