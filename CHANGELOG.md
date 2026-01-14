@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- New `markdown-validation` skill for validating markdown files using markdownlint
+- PostToolUse hook that automatically validates `.md` files after Write/Edit operations
+- Markdown validation sections added to `writing-plans`, `researching-codebase`, and `brainstorming` skills
+
 ## [0.4.0] - 2026-01-13
 
 ### Changed
