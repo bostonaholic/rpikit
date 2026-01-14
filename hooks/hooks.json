@@ -1,0 +1,15 @@
+[
+  {
+    "event": "PostToolUse",
+    "matcher": {
+      "tools": ["Write", "Edit"]
+    },
+    "hooks": [
+      {
+        "type": "command",
+        "command": "${CLAUDE_PLUGIN_ROOT}/scripts/validate-markdown.sh",
+        "timeout": 60000
+      }
+    ]
+  }
+]

@@ -270,3 +270,12 @@ Brainstorming output (design document) feeds into research or planning.
 - [ ] YAGNI applied ruthlessly
 - [ ] Design documented (if proceeding to plan)
 - [ ] Next phase identified
+
+## Markdown Validation
+
+After writing the design document, validate markdown formatting:
+
+Invoke Skill tool with skill: "rpikit:markdown-validation"
+
+Fix all errors before proceeding to next phase. Design documents with linting
+errors suggest rushed thinking.

@@ -140,6 +140,7 @@ The plugin includes methodology skills that guide disciplined development:
 - **test-driven-development** - RED-GREEN-REFACTOR cycle enforcement
 - **systematic-debugging** - Root cause investigation before fixes
 - **verification-before-completion** - Evidence before claims
+- **markdown-validation** - Validate markdown files with markdownlint
 
 ### Workflow Support
 

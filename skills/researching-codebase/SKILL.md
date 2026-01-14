@@ -232,3 +232,12 @@ Ask what the user wants to do next:
 - **Confirm before exploring** - Validate understanding first
 - **Incremental findings** - Present discoveries in sections, validate each
 - **Be flexible** - Go back and clarify when something doesn't fit
+
+## Markdown Validation
+
+After writing the research document, validate markdown formatting:
+
+Invoke Skill tool with skill: "rpikit:markdown-validation"
+
+Fix all errors before presenting findings. Research documents with linting
+errors undermine credibility.

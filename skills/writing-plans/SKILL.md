@@ -306,3 +306,12 @@ Before requesting approval:
 - [ ] Risks are identified with mitigations
 - [ ] Rollback strategy documented for high stakes
 - [ ] Plan document created at docs/plans/
+
+## Markdown Validation
+
+After writing the plan document, validate markdown formatting:
+
+Invoke Skill tool with skill: "rpikit:markdown-validation"
+
+Fix all errors before requesting approval. Plans with linting errors indicate
+lack of attention to detail.
