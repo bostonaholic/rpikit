@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Enhanced `git-worktrees` skill with technical precision and UX improvements:
+  - Added `git check-ignore` verification commands for safety checks
+  - Added Quick Reference decision table for common situations
+  - Added Integration section documenting skill relationships
+  - Added Example Workflow showing expected session flow
+  - Reformatted Anti-Patterns as scannable "Never Do These" list
+  - Updated default location to recommend `.worktrees/` in project root
+
 ## [0.4.1] - 2026-02-16
 
 ### Added
