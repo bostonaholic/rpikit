@@ -18,6 +18,18 @@ separate directories. This enables parallel work without stashing, context
 switching, or polluting the main workspace. This skill provides structured
 worktree creation with safety verification.
 
+## Integration
+
+### Called by
+
+- `implementing-plans` - Offers worktree isolation before implementation
+- User directly via `/rpikit:git-worktrees`
+
+### Pairs with
+
+- `finishing-work` - Handles worktree cleanup after implementation
+- `writing-plans` - Plans may specify worktree isolation for high-stakes changes
+
 ## When to Use
 
 Use worktrees when:
@@ -62,8 +74,8 @@ If no preference found:
 
 ```text
 "Where should worktrees be created?"
-- .worktrees/ (project-local, hidden)
-- worktrees/ (project-local, visible)
+- .worktrees/ (project-local, recommended, must be in .gitignore)
+- worktrees/ (project-local, visible, must be in .gitignore)
 - External location (e.g., ~/worktrees/project-name/)
 ```
 
@@ -71,15 +83,18 @@ If no preference found:
 
 **Critical for project-local worktrees:**
 
-Before creating a worktree in `.worktrees/` or `worktrees/`:
+Before creating a worktree in `.worktrees/` or `worktrees/`, verify the specific
+directory you're using is ignored:
 
-```text
-MUST verify directory is ignored in git.
+```bash
+# For .worktrees/ (check returns 0 if ignored)
+git check-ignore -q .worktrees
 
-Check .gitignore for:
-- .worktrees/
-- worktrees/
+# For worktrees/ (check returns 0 if ignored)
+git check-ignore -q worktrees
 ```
+
+If the command returns exit code 0, the directory is properly ignored.
 
 **If NOT ignored:**
 
@@ -97,6 +112,16 @@ Check .gitignore for:
 
 **Why this matters:** Accidentally committing worktree contents creates
 massive, confusing commits with duplicate code.
+
+## Quick Reference
+
+| Situation | Action |
+|-----------|--------|
+| `.worktrees/` exists and is ignored | Use it |
+| `worktrees/` exists and is ignored | Use it |
+| Neither exists | Create `.worktrees/`, add to `.gitignore`, commit |
+| Directory exists but not ignored | Add to `.gitignore` first, commit, then proceed |
+| Baseline tests fail | Investigate before proceeding (may need deps/config) |
 
 ## Worktree Creation Process
 
@@ -270,32 +295,16 @@ Implementation complete
 - Scattered across filesystem
 - May forget to clean up
 
-## Anti-Patterns
+## Never Do These
 
-### Skipping Ignore Verification
-
-**Wrong**: Create project-local worktree without checking .gitignore
-**Right**: Always verify gitignore before creating project-local worktrees
-
-### Skipping Setup
-
-**Wrong**: Start working without running npm install / cargo build / etc.
-**Right**: Run appropriate setup for project type
-
-### Not Running Baseline Tests
-
-**Wrong**: Assume worktree is ready without verification
-**Right**: Run tests to establish clean baseline
-
-### Forgetting to Clean Up
-
-**Wrong**: Leave stale worktrees indefinitely
-**Right**: Remove worktrees after work is merged or abandoned
-
-### Creating Too Many Worktrees
-
-**Wrong**: New worktree for every small change
-**Right**: Worktrees for substantial, isolated work
+- **Create project-local worktree without verifying gitignore** - Run `git check-ignore` first
+- **Skip dependency installation** - Always run npm install / cargo build / etc.
+- **Skip baseline tests** - Verify tests pass before starting work
+- **Proceed when baseline tests fail** - Investigate failures before continuing
+- **Use ambiguous worktree location** - Ask user preference, default to `.worktrees/`
+- **Skip reading CLAUDE.md** - Check for project-specific worktree conventions
+- **Leave stale worktrees** - Remove after work is merged or abandoned
+- **Overuse worktrees** - Reserve for substantial, isolated work, not small fixes
 
 ## Cleanup Checklist
 
@@ -305,6 +314,33 @@ Before removing a worktree:
 - [ ] No uncommitted changes (or explicitly discarded)
 - [ ] Branch is deleted (if work was merged)
 - [ ] No running processes in the worktree
+
+## Example Workflow
+
+```text
+User: Create a worktree for implementing the new auth feature
+Assistant: I will create a worktree for the auth feature.
+
+[Checks for existing .worktrees/ directory]
+[Runs: git check-ignore -q .worktrees]
+[Exit code 0 - directory is ignored]
+
+Creating worktree at .worktrees/auth-feature...
+[Runs: git worktree add .worktrees/auth-feature -b auth-feature origin/main]
+
+Installing dependencies...
+[Detects package.json, runs: npm install]
+
+Running baseline tests...
+[Runs: npm test]
+All tests pass.
+
+Worktree created and ready:
+Location: .worktrees/auth-feature
+Branch: auth-feature
+Base: origin/main
+Tests: passing
+```
 
 ## Commands Reference
 
