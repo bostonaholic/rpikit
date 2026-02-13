@@ -37,6 +37,12 @@ guidelines for contributing to the project.
 - Test commands via `/rpikit:command-name`
 - Use `--debug` flag to troubleshoot loading issues
 
+## Understanding the Architecture
+
+Before making changes, read the [Architecture](docs/architecture.md)
+document. It explains how commands, skills, agents, and hooks connect and
+the design principles behind the project.
+
 ## Making Changes
 
 ### For Non-Trivial Changes

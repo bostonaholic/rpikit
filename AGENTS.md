@@ -1,5 +1,8 @@
 # Agent Instructions
 
+Read [docs/architecture.md](docs/architecture.md) to understand how commands,
+skills, agents, and hooks connect.
+
 This project uses **bd** (beads) for issue tracking. Run `bd onboard` to get started.
 
 ## Quick Reference

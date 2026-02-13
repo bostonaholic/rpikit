@@ -8,6 +8,9 @@ rpikit is a Claude Code plugin implementing the **Research-Plan-Implement (RPI)*
 
 ## Architecture
 
+See [docs/architecture.md](docs/architecture.md) for the full component model,
+delegation map, and design principles.
+
 ```text
 .claude-plugin/          # Plugin manifest (plugin.json, marketplace.json)
 commands/                # Entry points that delegate to skills

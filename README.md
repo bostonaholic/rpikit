@@ -153,6 +153,11 @@ The plugin includes methodology skills that guide disciplined development:
 - **git-worktrees** - Isolated workspaces for parallel work
 - **parallel-agents** - Concurrent dispatch for independent tasks
 
+## Architecture
+
+For a detailed overview of how commands, skills, agents, and hooks connect,
+see [Architecture](docs/architecture.md).
+
 ## Inspired By
 
 - [No Vibes Allowed](https://www.youtube.com/watch?v=rmvDxxNubIg) - Dex
