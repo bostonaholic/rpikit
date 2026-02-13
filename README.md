@@ -10,6 +10,20 @@ disciplined software engineering.
 This plugin enforces a structured workflow that prevents premature
 implementation and ensures human oversight at critical decision points.
 
+## Installation
+
+### Step 1: Add the marketplace
+
+```bash
+/plugin marketplace add bostonaholic/rpikit
+```
+
+### Step 2: Install the plugin
+
+```bash
+/plugin install rpikit
+```
+
 ## Commands
 
 | Command                   | Purpose                                        |
@@ -63,20 +77,6 @@ difference is their purpose:
 docs/plans/
 ├── YYYY-MM-DD-<topic>-research.md   # Research findings with file:line references
 └── YYYY-MM-DD-<topic>-plan.md       # Implementation plan with tasks and criteria
-```
-
-## Installation
-
-### Step 1: Add the marketplace
-
-```bash
-/plugin marketplace add bostonaholic/rpikit
-```
-
-### Step 2: Install the plugin
-
-```bash
-/plugin install rpikit
 ```
 
 ## Usage Examples
