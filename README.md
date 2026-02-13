@@ -155,6 +155,9 @@ The plugin includes methodology skills that guide disciplined development:
 
 ## Inspired By
 
+- [No Vibes Allowed](https://www.youtube.com/watch?v=rmvDxxNubIg) - Dex
+  Horthy's talk on context engineering and the RPI workflow for solving hard
+  problems in complex codebases
 - [superpowers](https://github.com/obra/superpowers) - Composable skills
 - [BMAD Method](https://github.com/bmad-code-org/BMAD-METHOD) - Scale-adaptive
   planning
