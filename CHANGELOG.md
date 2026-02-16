@@ -7,11 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-02-16
+
 ### Added
 
 - New `markdown-validation` skill for validating markdown files using markdownlint
 - PostToolUse hook that automatically validates `.md` files after Write/Edit operations
 - Markdown validation sections added to `writing-plans`, `researching-codebase`, and `brainstorming` skills
+
+### Fixed
+
+- Plan and implementation artifact filenames no longer produce double-dash names (e.g., `2026-02-16--plan.md`) when commands are invoked without arguments. Filename patterns now use AI-derived `<topic>` slugs, consistent with research and brainstorming skills.
 
 ## [0.4.0] - 2026-01-13
 
