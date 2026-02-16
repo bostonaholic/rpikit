@@ -23,9 +23,9 @@ between human and AI, ensuring alignment before code is written.
 
 ### 1. Check for Research
 
-Look for existing research at: `docs/plans/YYYY-MM-DD-$ARGUMENTS-research.md`
+Look for existing research at: `docs/plans/YYYY-MM-DD-<topic>-research.md`
 
-(Search for files matching `*-$ARGUMENTS-research.md` pattern)
+(Search for files matching `*-<topic>-research.md` pattern)
 
 If research exists:
 
@@ -163,7 +163,7 @@ Include rollback strategy for high-stakes changes.
 
 ### 6. Write Plan Document
 
-Create plan at: `docs/plans/YYYY-MM-DD-$ARGUMENTS-plan.md`
+Create plan at: `docs/plans/YYYY-MM-DD-<topic>-plan.md`
 
 (Use today's date in YYYY-MM-DD format)
 
@@ -234,7 +234,7 @@ Use this structure:
 
 Present plan summary and request explicit approval:
 
-"Plan created for '$ARGUMENTS' at docs/plans/YYYY-MM-DD-$ARGUMENTS-plan.md.
+"Plan created for '$ARGUMENTS' at docs/plans/YYYY-MM-DD-<topic>-plan.md.
 
 **Summary**: [brief description]
 **Stakes**: [level]
@@ -253,9 +253,9 @@ to begin implementation.
 
 ## Plan Iteration
 
-If a plan already exists at `docs/plans/YYYY-MM-DD-$ARGUMENTS-plan.md`:
+If a plan already exists at `docs/plans/YYYY-MM-DD-<topic>-plan.md`:
 
-(Search for files matching `*-$ARGUMENTS-plan.md` pattern)
+(Search for files matching `*-<topic>-plan.md` pattern)
 
 1. Read the existing plan
 2. Ask user's intent:
