@@ -1,4 +1,4 @@
-x# Plan: Git Worktrees Skill Improvements (2026-01-13)
+# Plan: Git Worktrees Skill Improvements (2026-01-13)
 
 ## Summary
 
