@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-02-17
+
 ### Changed
 
 - Enhanced `git-worktrees` skill with technical precision and UX improvements:
@@ -16,6 +18,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Added Example Workflow showing expected session flow
   - Reformatted Anti-Patterns as scannable "Never Do These" list
   - Updated default location to recommend `.worktrees/` in project root
+
+### Fixed
+
+- Plugin `hooks.json` now uses correct schema format expected by Claude Code (object with `hooks` wrapper and matcher strings instead of root-level array)
+- Removed stray character from plan document heading
 
 ## [0.4.1] - 2026-02-16
 
