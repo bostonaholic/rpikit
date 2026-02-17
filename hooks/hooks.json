@@ -1,15 +1,17 @@
-[
-  {
-    "event": "PostToolUse",
-    "matcher": {
-      "tools": ["Write", "Edit"]
-    },
-    "hooks": [
+{
+  "description": "Validates markdown files after Write or Edit operations",
+  "hooks": {
+    "PostToolUse": [
       {
-        "type": "command",
-        "command": "${CLAUDE_PLUGIN_ROOT}/scripts/validate-markdown.sh",
-        "timeout": 60000
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/validate-markdown.sh",
+            "timeout": 60000
+          }
+        ]
       }
     ]
   }
-]
+}
