@@ -9,8 +9,8 @@ performers. Hooks enforce quality automatically.
 
 | Type     | Location            | Count | Role                         |
 | -------- | ------------------- | ----- | ---------------------------- |
-| Commands | `commands/*.md`     | 6     | User-facing entry points     |
-| Skills   | `skills/*/SKILL.md` | 14    | Methodology instructions     |
+| Commands | `commands/*.md`     | 7     | User-facing entry points     |
+| Skills   | `skills/*/SKILL.md` | 15    | Methodology instructions     |
 | Agents   | `agents/*.md`       | 7     | Autonomous task performers   |
 | Hooks    | `hooks/hooks.json`  | 1     | Automated quality enforcement|
 
@@ -27,6 +27,7 @@ delegates to a skill and does nothing else.
 | `/rpikit:implement`    | implementing-plans   | Execute approved plans             |
 | `/rpikit:review-code`  | reviewing-code       | Code quality and design review     |
 | `/rpikit:review-security` | security-review   | Security vulnerability review      |
+| `/rpikit:decision`     | documenting-decisions | Record architectural decisions as ADRs |
 
 ## Skills
 
@@ -45,9 +46,10 @@ each activity and which agents to use.
 
 | Skill           | Purpose                                |
 | --------------- | -------------------------------------- |
-| brainstorming   | Collaborative design exploration       |
-| reviewing-code  | Code review with Conventional Comments |
-| security-review | Security-focused vulnerability analysis|
+| brainstorming           | Collaborative design exploration       |
+| documenting-decisions   | Record decisions as ADRs               |
+| reviewing-code          | Code review with Conventional Comments |
+| security-review         | Security-focused vulnerability analysis|
 
 ### Development Discipline
 
@@ -99,7 +101,7 @@ Skills (methodology)
   |
   +---> Agents (autonomous task performers)
   |
-  +---> Output artifacts (docs/plans/*.md)
+  +---> Output artifacts (docs/plans/*.md, docs/decisions/*.md)
 ```
 
 ### Core RPI Flow
@@ -125,6 +127,16 @@ Skills (methodology)
                          |-> code-reviewer (quality gate)
                          |-> security-reviewer (security gate)
                          |-> writes: implementation code
+```
+
+### Decision Flow
+
+Decisions can be recorded after planning or design work:
+
+```text
+/rpikit:decision  -->  documenting-decisions skill
+                         |-> reads: docs/plans/*-design.md (or user input)
+                         |-> writes: docs/decisions/NNNN-*.md
 ```
 
 ### Review Flow
@@ -158,7 +170,7 @@ pull requests.
    multiple skills rather than duplicated.
 4. **Model selection by task type** - haiku for mechanical tasks, sonnet for
    judgment tasks.
-5. **Output to docs/plans/** - Research and plans are written as dated
-   markdown files in the user's project.
+5. **Output to docs/** - Research and plans written to `docs/plans/`,
+   decisions written to `docs/decisions/` as numbered ADRs.
 6. **Human approval gates** - Users review output between each RPI phase
    before the next phase begins.

@@ -34,6 +34,7 @@ implementation and ensures human oversight at critical decision points.
 | `/rpikit:implement`       | Execute the plan with discipline               |
 | `/rpikit:review-code`     | Review changes for quality and maintainability |
 | `/rpikit:review-security` | Review changes for security vulnerabilities    |
+| `/rpikit:decision`        | Record architectural decisions as ADRs         |
 
 ## Workflow
 
@@ -77,6 +78,9 @@ difference is their purpose:
 docs/plans/
 ├── YYYY-MM-DD-<topic>-research.md   # Research findings with file:line references
 └── YYYY-MM-DD-<topic>-plan.md       # Implementation plan with tasks and criteria
+
+docs/decisions/
+└── NNNN-decision-title.md           # Architecture Decision Records
 ```
 
 ## Usage Examples
@@ -115,6 +119,14 @@ Review for security vulnerabilities:
 /rpikit:review-security
 ```
 
+### Recording Decisions
+
+After planning or design work, record the decision as an ADR:
+
+```bash
+/rpikit:decision docs/plans/2025-01-07-oauth-login-design.md
+```
+
 ### Stakes-Based Planning
 
 The framework adapts to change complexity:
@@ -145,6 +157,7 @@ The plugin includes methodology skills that guide disciplined development:
 ### Workflow Support
 
 - **brainstorming** - Collaborative design before research/planning
+- **documenting-decisions** - Record architectural decisions as ADRs
 - **finishing-work** - Structured completion (merge, PR, cleanup)
 - **receiving-code-review** - Verification-first response to feedback
 
