@@ -41,7 +41,7 @@ implementation and ensures human oversight at critical decision points.
 ```text
 /rpikit:brainstorm ──► /rpikit:research ──► /rpikit:plan ──► /rpikit:implement
          │                    │                  │       │            │
-     (optional)               └──[approval]──────┘       │   [approval]
+     (optional)               └──[approval]──────┘       │       [approval]
                                                          ▼
                                                   /rpikit:decision
                                                      (optional)
