@@ -38,13 +38,13 @@ implementation and ensures human oversight at critical decision points.
 
 ## Workflow
 
-```text
-/rpikit:brainstorm ──► /rpikit:research ──► /rpikit:plan ──► /rpikit:implement
-         │                    │                  │       │            │
-     (optional)               └──[approval]──────┘       │       [approval]
-                                                         ▼
-                                                  /rpikit:decision
-                                                     (optional)
+```mermaid
+flowchart LR
+    brainstorm["/rpikit:brainstorm"] -.->|optional| research["/rpikit:research"]
+    research -->|approval| plan["/rpikit:plan"]
+    plan --> implement["/rpikit:implement"]
+    plan -.->|optional| decision["/rpikit:decision"]
+    implement -->|approval| done((done))
 ```
 
 Each phase produces artifacts in `docs/plans/` and requires human approval
