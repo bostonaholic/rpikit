@@ -102,23 +102,88 @@ Task tool with subagent_type: "web-researcher"
 Prompt: "[specific question about implementation approach, library usage, or best practice]"
 ```
 
+**Plan test cases for each task:**
+
+Every task that changes code must enumerate its test cases upfront. This
+ensures implementation follows TDD discipline — tests are written before
+production code, not as an afterthought.
+
+For each code-changing task, list:
+
+- **Automated tests** (unit, integration): Specific inputs, expected outputs,
+  and edge cases. These become the RED step during implementation.
+- **Manual verification** (UI, CLI, deploy): Steps a human performs to confirm
+  behavior. Use when automated testing is impractical.
+
+Structure task steps so the test is the first sub-step and production code
+follows. This maps directly to the Red-Green-Refactor cycle enforced by the
+`rpikit:test-driven-development` skill during implementation.
+
+> **Boundary**: Plans enumerate *what* to test (cases, inputs, expected
+> outputs). The TDD skill covers *how* to execute (Red-Green-Refactor cycle,
+> test structure, assertion patterns).
+
+Include edge cases and boundary conditions:
+
+- Empty/null inputs
+- Boundary values (0, max, off-by-one)
+- Error paths (invalid input, network failure, permission denied)
+- Concurrency or ordering concerns when relevant
+
 #### Good Task Examples
 
 ```markdown
-#### Step 1.1: Add validation function
+#### Step 1.1: Test email validation (RED)
+
+- **Files**: `src/utils/__tests__/validation.test.ts`
+- **Action**: Write failing tests for validateEmail()
+- **Test cases**:
+  - `"user@example.com"` → valid
+  - `"user@sub.example.com"` → valid
+  - `""` → invalid (empty string)
+  - `"no-at-sign"` → invalid (missing @)
+  - `"user@"` → invalid (missing domain)
+- **Verify**: Tests exist and fail (no implementation yet)
+- **Complexity**: Small
+
+#### Step 1.2: Implement email validation (GREEN)
 
 - **Files**: `src/utils/validation.ts`
-- **Action**: Create validateEmail() using regex from validatePhone()
-- **Verify**: Unit test passes for valid/invalid emails
+- **Action**: Create validateEmail() using regex pattern from validatePhone()
+- **Verify**: All tests from Step 1.1 pass
 - **Complexity**: Small
 ```
 
 ```markdown
-#### Step 2.3: Update API endpoint
+#### Step 2.1: Test user creation endpoint (RED)
+
+- **Files**: `src/routes/__tests__/users.test.ts`
+- **Action**: Write failing integration tests for email in user creation
+- **Test cases**:
+  - POST /users with valid email → 201, email in response body
+  - POST /users with invalid email → 400, error message
+  - POST /users without email → 400 (if required) or 201 (if optional)
+- **Verify**: Tests exist and fail
+- **Complexity**: Small
+
+#### Step 2.2: Update API endpoint (GREEN)
 
 - **Files**: `src/routes/users.ts:45-60`
-- **Action**: Add email field to user creation endpoint
-- **Verify**: POST /users with email returns 201
+- **Action**: Add email field to user creation endpoint with validation
+- **Verify**: All tests from Step 2.1 pass
+- **Complexity**: Small
+```
+
+```markdown
+#### Step 3.1: Verify dashboard renders new widget
+
+- **Files**: N/A (manual verification)
+- **Action**: Manual verification of dashboard widget
+- **Manual test cases**:
+  - Load dashboard → widget appears in correct position
+  - Resize browser to mobile width → widget reflows correctly
+  - Click widget action button → expected modal opens
+- **Verify**: All manual checks pass in browser
 - **Complexity**: Small
 ```
 
@@ -141,6 +206,19 @@ Prompt: "[specific question about implementation approach, library usage, or bes
 ```
 
 **Problem**: Too large, should be broken into multiple phases
+
+```markdown
+#### Step 1: Add validation function
+
+- **Files**: `src/utils/validation.ts`
+- **Action**: Create validateEmail() with unit tests
+- **Verify**: Tests pass
+- **Complexity**: Small
+```
+
+**Problem**: No test cases enumerated, test and implementation combined into
+one step. Without explicit test cases, the implementer writes tests after the
+code — losing TDD discipline
 
 ### 5. Document Risks
 
@@ -212,6 +290,20 @@ Use this structure:
 ### Phase 2: [Phase Name]
 
 [Continue pattern...]
+
+## Test Strategy
+
+### Automated Tests
+
+| Test Case                    | Type        | Input       | Expected Output |
+| ---------------------------- | ----------- | ----------- | --------------- |
+| [Descriptive test name]      | Unit        | [Input]     | [Output]        |
+| [Descriptive test name]      | Integration | [Input]     | [Output]        |
+
+### Manual Verification
+
+- [ ] [Manual check description and steps]
+- [ ] [Manual check description and steps]
 
 ## Risks and Mitigations
 
@@ -301,6 +393,8 @@ When refining:
 Before requesting approval:
 
 - [ ] All tasks have clear verification criteria
+- [ ] Test cases enumerated for each code change (automated and manual)
+- [ ] Test steps precede implementation steps (RED before GREEN)
 - [ ] Stakes level is documented with rationale
 - [ ] Tasks are granular (prefer small complexity)
 - [ ] Risks are identified with mitigations

@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-02-27
+
+### Changed
+
+- Enhanced `writing-plans` skill with TDD test planning guidance:
+  - New "Plan test cases" subsection requiring test case enumeration for every code-changing task
+  - Task examples updated to show RED/GREEN step pairs with specific inputs and expected outputs
+  - New bad example showing test-and-implementation combined anti-pattern
+  - Quality checklist now requires test cases and test-first step ordering
+  - Plan document template includes "Test Strategy" section with automated and manual test tables
+
 ## [0.5.0] - 2026-02-23
 
 ### Added
