@@ -28,6 +28,10 @@ agents/                  # Autonomous agents for specialized tasks
 
 **Workflow:** `/rpikit:research` → (approval) → `/rpikit:plan` → (approval) → `/rpikit:implement`
 
+## Changelog Rules
+
+CHANGELOG.md tracks **plugin user-facing changes only** — features, skills, agents, commands, and behaviors that ship to users who install rpikit. Never log local development tooling, CI config, or repo-internal conveniences (e.g., local slash commands, dev scripts) as changelog entries.
+
 ## Documentation Requirements
 
 **CRITICAL: Always update README.md.** The README is the primary user-facing documentation and MUST stay synchronized with the codebase. After ANY change that affects user-visible behavior, update README.md in the same commit. This includes:
