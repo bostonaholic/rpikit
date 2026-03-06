@@ -80,7 +80,7 @@ Always name patterns explicitly.
 **Red Flags:**
 
 - Testing private methods instead of behavior
-- Heavy mocking of own components (indicates mixed concerns)
+- Mocking what can be used for real (never mock what you can use for real)
 - Tests slower than necessary
 - Missing edge case coverage
 

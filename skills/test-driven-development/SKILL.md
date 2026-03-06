@@ -32,7 +32,7 @@ drives the implementation, not the other way around.
 Write ONE minimal test that demonstrates the required behavior:
 
 1. Test the public interface, not internals
-2. Use real code, not mocks (unless crossing boundaries)
+2. Never mock what you can use for real
 3. Name the test to describe the behavior
 4. Run the test - it MUST fail
 
@@ -154,7 +154,7 @@ If a plan step doesn't mention tests, add them anyway. TDD is not optional.
 
 - Test private methods directly
 - Require specific execution order
-- Mock everything (indicates bad design)
+- Mock what you can use for real (indicates bad design)
 - Pass without verifying anything meaningful
 - Break when refactoring internals
 
@@ -189,7 +189,7 @@ Test these explicitly:
 ### Over-Mocking
 
 **Wrong**: Mock every dependency to "isolate" the unit
-**Right**: Mock only at boundaries (external services, databases)
+**Right**: Never mock what you can use for real
 
 ### Testing Implementation Details
 
