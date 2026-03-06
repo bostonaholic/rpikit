@@ -50,11 +50,28 @@ Re-run markdownlint
 
 ### 1. Run Validation
 
-After writing or editing a markdown file, run:
+After writing or editing a markdown file, check for a project-level markdownlint
+configuration file. Look for any of these in the project root (in priority order):
+
+- `.markdownlint-cli2.jsonc`
+- `.markdownlint-cli2.yaml`
+- `.markdownlint-cli2.cjs`
+- `.markdownlint-cli2.mjs`
+- `.markdownlint.jsonc`
+- `.markdownlint.json`
+- `.markdownlint.yaml`
+- `.markdownlint.yml`
+- `.markdownlint.cjs`
+- `.markdownlint.mjs`
+
+If a config file exists, markdownlint will use it automatically. Run:
 
 ```bash
 markdownlint <file-path>
 ```
+
+The project's configuration takes precedence — respect whatever rules and
+exceptions the project has chosen.
 
 ### 2. Interpret Results
 
