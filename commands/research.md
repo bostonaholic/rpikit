@@ -6,4 +6,4 @@ disable-model-invocation: true
 
 # Research Command instructions
 
-Invoke the rpikit:researching-codebase skill and follow it exactly as presented to you.
+You MUST call the Skill tool with skill: "rpikit:researching-codebase" to load the full methodology. The skill description in your context is only a summary — the complete instructions (phases, questioning techniques, file output format) are in the skill body. Do NOT proceed based on the description alone.

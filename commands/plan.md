@@ -6,4 +6,4 @@ disable-model-invocation: true
 
 # Plan Command instructions
 
-Invoke the rpikit:writing-plans skill and follow it exactly as presented to you.
+You MUST call the Skill tool with skill: "rpikit:writing-plans" to load the full methodology. The skill description in your context is only a summary — the complete instructions (plan structure, verification criteria, approval gates) are in the skill body. Do NOT proceed based on the description alone.
