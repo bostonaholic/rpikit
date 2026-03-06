@@ -90,62 +90,59 @@ judgment (research, review, debugging).
 
 ## How Components Connect
 
-```text
-User
-  |
-  v
-Commands (thin wrappers)
-  |
-  v
-Skills (methodology)
-  |
-  +---> Agents (autonomous task performers)
-  |
-  +---> Output artifacts (docs/plans/*.md, docs/decisions/*.md)
+```mermaid
+graph TD
+    User --> Commands["Commands (thin wrappers)"]
+    Commands --> Skills["Skills (methodology)"]
+    Skills --> Agents["Agents (autonomous task performers)"]
+    Skills --> Output["Output artifacts (docs/plans/*.md, docs/decisions/*.md)"]
 ```
 
 ### Core RPI Flow
 
-```text
-/rpikit:research  -->  researching-codebase skill
-                         |-> file-finder (locate files)
-                         |-> web-researcher (external context)
-                         |-> writes: docs/plans/YYYY-MM-DD-*-research.md
-                         v
-                    [user approval gate]
-                         v
-/rpikit:plan      -->  writing-plans skill
-                         |-> file-finder (locate files)
-                         |-> web-researcher (external dependencies)
-                         |-> writes: docs/plans/YYYY-MM-DD-*-plan.md
-                         v
-                    [user approval gate]
-                         v
-/rpikit:implement -->  implementing-plans skill
-                         |-> file-finder (locate target files)
-                         |-> web-researcher (unfamiliar issues)
-                         |-> code-reviewer (quality gate)
-                         |-> security-reviewer (security gate)
-                         |-> writes: implementation code
+```mermaid
+graph TD
+    R["/rpikit:research"] --> RS["researching-codebase skill"]
+    RS --> RF["file-finder (locate files)"]
+    RS --> RW["web-researcher (external context)"]
+    RS --> RO["docs/plans/YYYY-MM-DD-*-research.md"]
+    RO --> G1{{"user approval gate"}}
+
+    G1 --> P["/rpikit:plan"]
+    P --> PS["writing-plans skill"]
+    PS --> PF["file-finder (locate files)"]
+    PS --> PW["web-researcher (external dependencies)"]
+    PS --> PO["docs/plans/YYYY-MM-DD-*-plan.md"]
+    PO --> G2{{"user approval gate"}}
+
+    G2 --> I["/rpikit:implement"]
+    I --> IS["implementing-plans skill"]
+    IS --> IF["file-finder (locate target files)"]
+    IS --> IW["web-researcher (unfamiliar issues)"]
+    IS --> IC["code-reviewer (quality gate)"]
+    IS --> ISR["security-reviewer (security gate)"]
+    IS --> IO["implementation code"]
 ```
 
 ### Decision Flow
 
 Decisions can be recorded after planning or design work:
 
-```text
-/rpikit:decision  -->  documenting-decisions skill
-                         |-> reads: docs/plans/*-design.md (or user input)
-                         |-> writes: docs/decisions/NNNN-*.md
+```mermaid
+graph LR
+    D["/rpikit:decision"] --> DS["documenting-decisions skill"]
+    DS --> DR["reads: docs/plans/*-design.md (or user input)"]
+    DS --> DW["writes: docs/decisions/NNNN-*.md"]
 ```
 
 ### Review Flow
 
 Reviews can be used at any point, independent of the RPI phases:
 
-```text
-/rpikit:review-code     -->  reviewing-code skill --> code-reviewer agent
-/rpikit:review-security -->  security-review skill --> security-reviewer agent
+```mermaid
+graph LR
+    RC["/rpikit:review-code"] --> RCS["reviewing-code skill"] --> CRA["code-reviewer agent"]
+    RSec["/rpikit:review-security"] --> RSS["security-review skill"] --> SRA["security-reviewer agent"]
 ```
 
 ## Infrastructure
