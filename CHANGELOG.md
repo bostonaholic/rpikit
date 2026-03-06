@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated mocking guidance in `test-driven-development` and `reviewing-code` skills to adopt "never mock what you can use for real" philosophy, replacing boundary-based mocking advice with a preference for real implementations over mocks
+
 ## [0.5.1] - 2026-02-27
 
 ### Changed
