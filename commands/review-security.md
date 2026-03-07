@@ -6,4 +6,4 @@ disable-model-invocation: true
 
 # Security Review Command instructions
 
-Invoke the rpikit:security-review skill and follow it exactly as presented to you.
+You MUST call the Skill tool with skill: "rpikit:security-review" to load the full methodology. The skill description in your context is only a summary — the complete instructions (threat analysis, vulnerability patterns, security checklist) are in the skill body. Do NOT proceed based on the description alone.

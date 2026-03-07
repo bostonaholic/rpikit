@@ -55,11 +55,11 @@ for cmd_file in $COMMAND_FILES; do
         fail "$cmd_name: does not reference any rpikit skill"
     fi
 
-    # Check for "Invoke" or "invoke" instruction (delegation pattern)
-    if grep -qi "invoke" "$cmd_file"; then
-        pass "$cmd_name: has invocation instruction"
+    # Check for Skill tool delegation (must explicitly call Skill tool)
+    if grep -qi "Skill tool" "$cmd_file"; then
+        pass "$cmd_name: delegates via Skill tool"
     else
-        fail "$cmd_name: missing invocation instruction"
+        fail "$cmd_name: missing Skill tool delegation"
     fi
 
     # Commands should be thin wrappers (not too long)

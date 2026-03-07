@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Sets up the development environment for this project
+set -euo pipefail
+
+echo "Configuring git hooks..."
+git config core.hooksPath .githooks
+echo "Done. Git hooks are now active from .githooks/"
