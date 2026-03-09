@@ -115,23 +115,22 @@ questions. Typically 2-3 questions covering:
 ### Step 2: Spawn Research Teammates
 
 Spawn teammates for each research question. Each teammate gets its own
-context window and tmux pane.
+context window and tmux pane. Teammates use existing skills to ensure
+consistent methodology.
 
 **Codebase researcher:**
 
 ```text
 Spawn a teammate called "codebase-researcher" with the prompt:
-"Find and analyze files related to [feature area]. Goal: [what will
-be implemented].
+"Research [feature area] for the goal: [what will be implemented].
 
-Explore the codebase and document:
-- Core files with their purpose and key lines
-- Supporting files and utilities
-- Test files and patterns
-- Suggested reading order
+1. Invoke the Skill tool with skill: 'rpikit:researching-codebase'
+   and args: '[feature area]'
+2. Follow the skill's full methodology (interrogation, exploration,
+   documentation)
+3. Write your findings to docs/plans/YYYY-MM-DD-<topic>-codebase.md
 
-Write your findings to docs/plans/YYYY-MM-DD-<topic>-codebase.md
-when complete."
+After writing, shut down."
 ```
 
 **Web researcher (when external context needed):**
@@ -165,29 +164,20 @@ Guidelines:
 ### Step 3: Synthesize Research
 
 After research teammates complete, spawn a synthesis teammate that
-combines all findings into one document.
+consolidates all findings using the synthesis skill.
 
 ```text
 Spawn a teammate called "synthesizer" with the prompt:
-"Read all research findings:
-- docs/plans/YYYY-MM-DD-<topic>-codebase.md
-- docs/plans/YYYY-MM-DD-<topic>-external.md
-- [any additional research files]
+"Synthesize all research findings for '<topic>'.
 
-Write a consolidated research document to:
-docs/plans/YYYY-MM-DD-<topic>-research.md
-
-Follow this format:
-- Problem statement
-- Requirements
-- Findings (organized by theme, not by source)
-- External research (with source citations)
-- Technical constraints
-- Open questions
-- Recommendations
-
-The document must be self-contained — a reader with no prior context
-should understand the full picture from this document alone.
+1. Invoke the Skill tool with skill: 'rpikit:synthesizing-research'
+   and args: '<topic>'
+2. Follow the skill's full methodology to consolidate:
+   - docs/plans/YYYY-MM-DD-<topic>-codebase.md
+   - docs/plans/YYYY-MM-DD-<topic>-external.md
+   - [any additional research files]
+3. Write the consolidated document to:
+   docs/plans/YYYY-MM-DD-<topic>-research.md
 
 After writing, shut down."
 ```
