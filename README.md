@@ -99,13 +99,13 @@ Start with research to understand the codebase before building:
 Review the research output in `docs/plans/`, then create a plan from it:
 
 ```bash
-/rpikit:plan @/docs/plans/2025-01-07-oauth-login-research.md
+/rpikit:plan @docs/plans/2025-01-07-oauth-login-research.md
 ```
 
 Review and approve the plan, then implement from it:
 
 ```bash
-/rpikit:implement @/docs/plans/2025-01-07-oauth-login-plan.md
+/rpikit:implement @docs/plans/2025-01-07-oauth-login-plan.md
 ```
 
 ### Ad-hoc Code Review
@@ -127,7 +127,7 @@ Review for security vulnerabilities:
 After planning or design work, record the decision as an ADR:
 
 ```bash
-/rpikit:decision docs/plans/2025-01-07-oauth-login-design.md
+/rpikit:decision @docs/plans/2025-01-07-oauth-login-design.md
 ```
 
 ### Stakes-Based Planning
