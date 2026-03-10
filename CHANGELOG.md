@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-03-10
+
 ### Added
 
 - `/rpikit:rpi` command for end-to-end research, plan, and implement pipeline in a single session using parallel subagents
