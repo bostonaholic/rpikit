@@ -14,11 +14,14 @@ delegation map, and design principles.
 ```text
 .claude-plugin/          # Plugin manifest (plugin.json, marketplace.json)
 commands/                # Entry points that delegate to skills
+  ├── rpi.md             # /rpikit:rpi command (full pipeline)
   ├── research.md        # /rpikit:research command
   ├── plan.md            # /rpikit:plan command
   └── implement.md       # /rpikit:implement command
 skills/                  # Detailed methodology instructions
+  ├── research-to-implementation/SKILL.md
   ├── researching-codebase/SKILL.md
+  ├── synthesizing-research/SKILL.md
   ├── writing-plans/SKILL.md
   └── implementing-plans/SKILL.md
 agents/                  # Autonomous agents for specialized tasks
@@ -26,7 +29,8 @@ agents/                  # Autonomous agents for specialized tasks
   └── web-researcher.md  # Conducts web research with citations
 ```
 
-**Workflow:** `/rpikit:research` → (approval) → `/rpikit:plan` → (approval) → `/rpikit:implement`
+**Workflow:** `/rpikit:rpi` runs the full pipeline, or use individual commands:
+`/rpikit:research` → (approval) → `/rpikit:plan` → (approval) → `/rpikit:implement`
 
 ## Changelog Rules
 

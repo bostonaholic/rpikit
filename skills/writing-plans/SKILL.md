@@ -92,6 +92,27 @@ Prefer small tasks (2-5 minute verification time).
 
 Group related tasks into phases with checkpoint verifications.
 
+**Identify parallel step groups (when applicable):**
+
+When a plan contains steps that are genuinely independent, mark them as
+a parallel group so the implementer can execute them concurrently. Steps
+are independent when they:
+
+- Create new files that don't import from each other
+- Modify separate modules with no shared interfaces
+- Add tests for different, unrelated functionality
+
+Steps are NOT independent when:
+
+- Step B imports or calls code created in Step A
+- Both steps modify the same file
+- Step B's tests exercise code from Step A
+
+Only mark groups as parallel when independence is clear. When in doubt,
+keep steps sequential — incorrect parallelization causes merge conflicts
+and integration failures. Plans with fewer than 4 steps rarely benefit
+from parallelization.
+
 **Research implementation approaches (when needed):**
 
 If the plan involves unfamiliar libraries, APIs, or patterns, use the
@@ -287,7 +308,11 @@ Use this structure:
 - **Verify**: [How to confirm done]
 - **Complexity**: Small
 
-### Phase 2: [Phase Name]
+### Phase 2: [Phase Name] *(parallel with Phase 3)*
+
+[When phases or steps are independent, mark them with
+*(parallel with Phase N)* so the implementer can execute
+them concurrently. Omit this annotation for sequential phases.]
 
 [Continue pattern...]
 
@@ -326,7 +351,7 @@ Use this structure:
 
 Present plan summary and request explicit approval:
 
-"Plan created for '$ARGUMENTS' at docs/plans/YYYY-MM-DD-<topic>-plan.md.
+"Plan created for '$ARGUMENTS' at `docs/plans/YYYY-MM-DD-<topic>-plan.md`.
 
 **Summary**: [brief description]
 **Stakes**: [level]

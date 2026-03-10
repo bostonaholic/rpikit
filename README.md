@@ -28,6 +28,7 @@ implementation and ensures human oversight at critical decision points.
 
 | Command                   | Purpose                                        |
 | ------------------------- | ---------------------------------------------- |
+| `/rpikit:rpi`             | End-to-end research, plan, and implement pipeline |
 | `/rpikit:brainstorm`      | Explore ideas when requirements are unclear    |
 | `/rpikit:research`        | Understand the codebase and gather context     |
 | `/rpikit:plan`            | Create an actionable implementation plan       |
@@ -40,12 +41,21 @@ implementation and ensures human oversight at critical decision points.
 
 ```mermaid
 flowchart LR
+    rpi["/rpikit:rpi"] -->|automated| research2[Research]
+    research2 -->|approval| plan2[Plan]
+    plan2 -->|approval| implement2[Implement]
+    implement2 --> done2((done))
+
     brainstorm["/rpikit:brainstorm"] -.->|optional| research["/rpikit:research"]
     research -->|approval| plan["/rpikit:plan"]
     plan --> implement["/rpikit:implement"]
     plan -.->|optional| decision["/rpikit:decision"]
     implement -->|approval| done((done))
 ```
+
+The `/rpikit:rpi` command runs the full pipeline in a single session using
+parallel subagents, with approval gates between phases. The individual
+commands below can also be run separately for more control.
 
 Each phase produces artifacts in `docs/plans/` and requires human approval
 before transitioning to the next phase.
@@ -88,9 +98,20 @@ docs/decisions/
 
 ## Usage Examples
 
-### Basic Workflow
+### Full Pipeline (Recommended)
 
-Start with research to understand the codebase before building:
+Run the entire research-plan-implement workflow in a single session:
+
+```bash
+/rpikit:rpi Add OAuth login with Google and GitHub providers
+```
+
+This spawns parallel research subagents, synthesizes findings, creates a plan,
+and implements it — with approval gates between each phase.
+
+### Step-by-Step Workflow
+
+For more control, run each phase separately:
 
 ```bash
 /rpikit:research I want to add OAuth login - what auth patterns exist?
@@ -144,7 +165,9 @@ The plugin includes methodology skills that guide disciplined development:
 
 ### Core RPI Workflow
 
+- **research-to-implementation** - End-to-end pipeline orchestrating all RPI phases with parallel subagents
 - **researching-codebase** - Thorough codebase research through interrogation
+- **synthesizing-research** - Consolidate parallel research findings into a unified report
 - **writing-plans** - Granular, verifiable implementation plans
 - **implementing-plans** - Disciplined execution with checkpoint verification
 - **reviewing-code** - Quality review using Conventional Comments
