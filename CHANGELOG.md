@@ -7,14 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Fixed
+### Added
 
-- `/rpikit:research`, `/rpikit:plan`, and `/rpikit:implement` commands now reliably load full skill methodology instead of letting the agent skip the Skill tool call and improvise from the short description alone
+- `/rpikit:rpi` command for end-to-end research, plan, and implement pipeline in a single session using agent teams
+- `research-to-implementation` skill that orchestrates parallel research teammates, synthesis, planning, and implementation with approval gates between phases
+- `synthesizing-research` skill for consolidating parallel research findings into a single unified report
 
 ### Changed
 
+- `writing-plans` skill now supports marking independent steps/phases as parallel groups for concurrent execution
 - Updated mocking guidance in `test-driven-development` and `reviewing-code` skills to adopt "never mock what you can use for real" philosophy, replacing boundary-based mocking advice with a preference for real implementations over mocks
 - `markdown-validation` skill now documents project-level markdownlint configuration files and respects the host project's rules when validating
+
+### Fixed
+
+- `/rpikit:research`, `/rpikit:plan`, and `/rpikit:implement` commands now reliably load full skill methodology instead of letting the agent skip the Skill tool call and improvise from the short description alone
 
 ## [0.5.1] - 2026-02-27
 

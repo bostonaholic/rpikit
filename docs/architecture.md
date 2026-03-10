@@ -9,8 +9,8 @@ performers. Hooks enforce quality automatically.
 
 | Type     | Location            | Count | Role                         |
 | -------- | ------------------- | ----- | ---------------------------- |
-| Commands | `commands/*.md`     | 7     | User-facing entry points     |
-| Skills   | `skills/*/SKILL.md` | 15    | Methodology instructions     |
+| Commands | `commands/*.md`     | 8     | User-facing entry points     |
+| Skills   | `skills/*/SKILL.md` | 17    | Methodology instructions     |
 | Agents   | `agents/*.md`       | 7     | Autonomous task performers   |
 | Hooks    | `hooks/hooks.json`  | 1     | Automated quality enforcement|
 
@@ -19,15 +19,16 @@ performers. Hooks enforce quality automatically.
 Commands are thin markdown wrappers with YAML frontmatter. Each immediately
 delegates to a skill and does nothing else.
 
-| Command                | Delegates To         | Purpose                            |
-| ---------------------- | -------------------- | ---------------------------------- |
-| `/rpikit:brainstorm`   | brainstorming        | Explore ideas before research      |
-| `/rpikit:research`     | researching-codebase | Deep codebase exploration          |
-| `/rpikit:plan`         | writing-plans        | Create implementation plans        |
-| `/rpikit:implement`    | implementing-plans   | Execute approved plans             |
-| `/rpikit:review-code`  | reviewing-code       | Code quality and design review     |
-| `/rpikit:review-security` | security-review   | Security vulnerability review      |
-| `/rpikit:decision`     | documenting-decisions | Record architectural decisions as ADRs |
+| Command                | Delegates To              | Purpose                            |
+| ---------------------- | ------------------------- | ---------------------------------- |
+| `/rpikit:rpi`          | research-to-implementation | End-to-end RPI pipeline            |
+| `/rpikit:brainstorm`   | brainstorming             | Explore ideas before research      |
+| `/rpikit:research`     | researching-codebase      | Deep codebase exploration          |
+| `/rpikit:plan`         | writing-plans             | Create implementation plans        |
+| `/rpikit:implement`    | implementing-plans        | Execute approved plans             |
+| `/rpikit:review-code`  | reviewing-code            | Code quality and design review     |
+| `/rpikit:review-security` | security-review        | Security vulnerability review      |
+| `/rpikit:decision`     | documenting-decisions     | Record architectural decisions as ADRs |
 
 ## Skills
 
@@ -36,11 +37,13 @@ each activity and which agents to use.
 
 ### Core RPI Workflow
 
-| Skill                | Phase     | Agents Used                                               |
-| -------------------- | --------- | --------------------------------------------------------- |
-| researching-codebase | Research  | file-finder, web-researcher                               |
-| writing-plans        | Plan      | file-finder, web-researcher                               |
-| implementing-plans   | Implement | file-finder, web-researcher, code-reviewer, security-reviewer |
+| Skill                       | Phase     | Agents Used                                               |
+| --------------------------- | --------- | --------------------------------------------------------- |
+| research-to-implementation  | All       | Orchestrates teammates for each phase                     |
+| researching-codebase        | Research  | file-finder, web-researcher                               |
+| synthesizing-research       | Research  | (none — reads and consolidates research files)            |
+| writing-plans               | Plan      | file-finder, web-researcher                               |
+| implementing-plans          | Implement | file-finder, web-researcher, code-reviewer, security-reviewer |
 
 ### Design and Review
 
@@ -98,7 +101,28 @@ graph TD
     Skills --> Output["Output artifacts (docs/plans/*.md, docs/decisions/*.md)"]
 ```
 
-### Core RPI Flow
+### RPI Pipeline Flow
+
+The `/rpikit:rpi` command orchestrates the full workflow in a single session
+using agent teams. The team lead spawns teammates for each phase.
+
+```mermaid
+graph TD
+    RPI["/rpikit:rpi"] --> RTIS["research-to-implementation skill"]
+    RTIS --> T1["teammate: codebase-researcher"]
+    RTIS --> T2["teammate: web-researcher"]
+    T1 --> SYN["teammate: synthesizer"]
+    T2 --> SYN
+    SYN --> RD["docs/plans/YYYY-MM-DD-*-research.md"]
+    RD --> G1{{"user approval gate"}}
+    G1 --> T3["teammate: planner"]
+    T3 --> PD["docs/plans/YYYY-MM-DD-*-plan.md"]
+    PD --> G2{{"user approval gate"}}
+    G2 --> T4["teammate: implementer"]
+    T4 --> CODE["implementation code"]
+```
+
+### Core RPI Flow (Individual Commands)
 
 ```mermaid
 graph TD
