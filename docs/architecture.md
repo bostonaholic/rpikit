@@ -39,7 +39,7 @@ each activity and which agents to use.
 
 | Skill                       | Phase     | Agents Used                                               |
 | --------------------------- | --------- | --------------------------------------------------------- |
-| research-to-implementation  | All       | Orchestrates teammates for each phase                     |
+| research-to-implementation  | All       | Orchestrates subagents for each phase                     |
 | researching-codebase        | Research  | file-finder, web-researcher                               |
 | synthesizing-research       | Research  | (none — reads and consolidates research files)            |
 | writing-plans               | Plan      | file-finder, web-researcher                               |
@@ -104,21 +104,21 @@ graph TD
 ### RPI Pipeline Flow
 
 The `/rpikit:rpi` command orchestrates the full workflow in a single session
-using agent teams. The team lead spawns teammates for each phase.
+using subagents. The orchestrator spawns subagents for each phase.
 
 ```mermaid
 graph TD
     RPI["/rpikit:rpi"] --> RTIS["research-to-implementation skill"]
-    RTIS --> T1["teammate: codebase-researcher"]
-    RTIS --> T2["teammate: web-researcher"]
-    T1 --> SYN["teammate: synthesizer"]
+    RTIS --> T1["subagent: codebase-researcher"]
+    RTIS --> T2["subagent: web-researcher"]
+    T1 --> SYN["subagent: synthesizer"]
     T2 --> SYN
     SYN --> RD["docs/plans/YYYY-MM-DD-*-research.md"]
     RD --> G1{{"user approval gate"}}
-    G1 --> T3["teammate: planner"]
+    G1 --> T3["subagent: planner"]
     T3 --> PD["docs/plans/YYYY-MM-DD-*-plan.md"]
     PD --> G2{{"user approval gate"}}
-    G2 --> T4["teammate: implementer"]
+    G2 --> T4["subagent: implementer"]
     T4 --> CODE["implementation code"]
 ```
 

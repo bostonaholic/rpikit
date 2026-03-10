@@ -1,89 +1,55 @@
 ---
 name: research-to-implementation
-description: End-to-end pipeline that orchestrates the full RPI workflow in a single session using agent teams. Spawns parallel research teammates, synthesizes findings into a plan, and executes implementation — each teammate gets its own context window. Use when implementing a feature or change that requires research, planning, and execution rather than running each phase manually across separate sessions.
+description: End-to-end pipeline that orchestrates the full RPI workflow in a single session using parallel subagents. Spawns research subagents, synthesizes findings into a plan, and executes implementation — each subagent gets its own context window. Use when implementing a feature or change that requires research, planning, and execution rather than running each phase manually across separate sessions.
 ---
 
 # Research-to-Implementation Pipeline
 
 Orchestrate the full Research → Plan → Implement workflow in a single
-session using an agent team. Each phase runs as a separate teammate with
-its own context window, coordinated by the team lead that handles
+session using subagents. Each phase runs as a separate subagent with
+its own context window, coordinated by the orchestrator that handles
 approval gates and phase transitions.
 
 ## Purpose
 
 Running RPI phases across separate sessions loses context and requires
 manual bridging. This skill collapses the three phases into one
-orchestrated pipeline using agent teams. Each teammate gets maximum
-context for its work, with file artifacts on disk as the communication
-channel between phases.
+orchestrated pipeline using subagents via the Agent tool. Each subagent
+gets maximum context for its work, with file artifacts on disk as the
+communication channel between phases.
 
 ## Architecture
 
-The team lead (you) stays thin. It creates an agent team, spawns
-teammates for each phase, reads their output artifacts, presents
-summaries to the user, and handles approval gates. The lead does NOT
-do research, planning, or implementation itself.
+The orchestrator (you) stays thin. It spawns subagents for each phase
+via the Agent tool, reads their output artifacts, presents summaries
+to the user, and handles approval gates. The orchestrator does NOT do
+research, planning, or implementation itself.
 
 ```text
-TEAM LEAD (main context — stays thin)
+ORCHESTRATOR (main context — stays thin)
   │
-  ├── Phase 1: Spawn research teammates (parallel)
-  │     ├── Teammate: codebase exploration
-  │     ├── Teammate: web research
-  │     └── Teammate: synthesis → writes research file
+  ├── Phase 1: Spawn research subagents (parallel)
+  │     ├── Subagent: codebase exploration
+  │     ├── Subagent: web research
+  │     └── Subagent: synthesis → writes research file
   │     └── Output: docs/plans/YYYY-MM-DD-<topic>-research.md
   │
   ├── [APPROVAL GATE: User confirms research findings]
   │
-  ├── Phase 2: Spawn planning teammate
-  │     └── Teammate: reads research file, writes plan file
+  ├── Phase 2: Spawn planning subagent
+  │     └── Subagent: reads research file, writes plan file
   │     └── Output: docs/plans/YYYY-MM-DD-<topic>-plan.md
   │
   ├── [APPROVAL GATE: User approves plan]
   │
-  └── Phase 3: Spawn implementation teammate
-        └── Teammate: reads plan file, executes steps
+  └── Phase 3: Spawn implementation subagent
+        └── Subagent: reads plan file, executes steps
         └── Output: code changes, test results
 ```
 
-**Key principle**: Teammates communicate through files, not conversation
-context. Each teammate reads the artifacts from prior phases and writes
+**Key principle**: Subagents communicate through files, not conversation
+context. Each subagent reads the artifacts from prior phases and writes
 its own artifacts for the next phase.
-
-## Prerequisites
-
-Agent teams require:
-
-- `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` set to `1` in settings
-- `teammateMode` set to `"tmux"` for split-pane visibility (recommended)
-- tmux installed and available in PATH
-
-## Setting Up the Team
-
-### Step 1: Create the Agent Team
-
-Create a team named after the feature being implemented:
-
-```text
-Create an agent team called "rpi-<topic>" to research, plan, and
-implement <feature description>. Use tmux split panes so each
-teammate is visible.
-```
-
-### Step 2: Define the Task List
-
-Create tasks for each phase in the shared task list. Mark dependencies
-so phases execute in order:
-
-```text
-Tasks:
-1. [Research] Explore codebase for <feature area>
-2. [Research] Investigate <external API/library/pattern>
-3. [Synthesize] Combine research into document (depends on 1, 2)
-4. [Plan] Create implementation plan (depends on 3)
-5. [Implement] Execute approved plan (depends on 4)
-```
 
 ## When to Use
 
@@ -101,74 +67,75 @@ Do NOT use when:
 - This is a simple bug fix (use `rpikit:systematic-debugging`)
 - Only research is needed without implementation
 
-## Phase 1: Research (Parallel Teammates)
+## Phase 1: Research (Parallel Subagents)
 
 ### Step 1: Define Research Questions
 
-Before spawning teammates, break the feature into independent research
+Before spawning subagents, break the feature into independent research
 questions. Typically 2-3 questions covering:
 
 - **Codebase context**: How does the relevant code work today?
 - **External context**: What APIs, libraries, or patterns are involved?
 - **Security/performance**: Are there concerns to investigate?
 
-### Step 2: Spawn Research Teammates
+### Step 2: Spawn Research Subagents
 
-Spawn teammates for each research question. Each teammate gets its own
-context window and tmux pane. Teammates use existing skills to ensure
-consistent methodology.
+Spawn subagents for each research question using the Agent tool. Each
+subagent gets its own context window. Use existing skills to ensure
+consistent methodology. Launch independent subagents in parallel by
+including multiple Agent tool calls in a single message.
 
 **Codebase researcher:**
 
 ```text
-Spawn a teammate called "codebase-researcher" with the prompt:
-"Research [feature area] for the goal: [what will be implemented].
+Spawn a subagent with the Agent tool:
+  name: "codebase-researcher"
+  prompt: "Research [feature area] for the goal: [what will be implemented].
 
 1. Invoke the Skill tool with skill: 'rpikit:researching-codebase'
    and args: '[feature area]'
 2. Follow the skill's full methodology (interrogation, exploration,
    documentation)
-3. Write your findings to docs/plans/YYYY-MM-DD-<topic>-codebase.md
-
-After writing, shut down."
+3. Write your findings to docs/plans/YYYY-MM-DD-<topic>-codebase.md"
 ```
 
 **Web researcher (when external context needed):**
 
 ```text
-Spawn a teammate called "web-researcher" with the prompt:
-"Research [specific question about API, library, pattern, or best
+Spawn a subagent with the Agent tool:
+  name: "web-researcher"
+  prompt: "Research [specific question about API, library, pattern, or best
 practice].
 
 Provide findings with source citations and confidence assessment.
-Write your findings to docs/plans/YYYY-MM-DD-<topic>-external.md
-when complete."
+Write your findings to docs/plans/YYYY-MM-DD-<topic>-external.md"
 ```
 
-**Additional teammates (when needed):**
+**Additional subagents (when needed):**
 
 ```text
-Spawn a teammate called "security-researcher" with the prompt:
-"Investigate security and performance implications of [feature].
-Write findings to docs/plans/YYYY-MM-DD-<topic>-security.md
-when complete."
+Spawn a subagent with the Agent tool:
+  name: "security-researcher"
+  prompt: "Investigate security and performance implications of [feature].
+Write findings to docs/plans/YYYY-MM-DD-<topic>-security.md"
 ```
 
 Guidelines:
 
 - Verify questions are truly independent before parallelizing
-- Each teammate gets a focused scope with clear deliverable
-- Keep to 2-4 teammates for manageability
-- Each teammate writes its findings to a separate file
+- Each subagent gets a focused scope with clear deliverable
+- Keep to 2-4 subagents for manageability
+- Each subagent writes its findings to a separate file
 
 ### Step 3: Synthesize Research
 
-After research teammates complete, spawn a synthesis teammate that
+After research subagents complete, spawn a synthesis subagent that
 consolidates all findings using the synthesis skill.
 
 ```text
-Spawn a teammate called "synthesizer" with the prompt:
-"Synthesize all research findings for '<topic>'.
+Spawn a subagent with the Agent tool:
+  name: "synthesizer"
+  prompt: "Synthesize all research findings for '<topic>'.
 
 1. Invoke the Skill tool with skill: 'rpikit:synthesizing-research'
    and args: '<topic>'
@@ -177,18 +144,16 @@ Spawn a teammate called "synthesizer" with the prompt:
    - docs/plans/YYYY-MM-DD-<topic>-external.md
    - [any additional research files]
 3. Write the consolidated document to:
-   docs/plans/YYYY-MM-DD-<topic>-research.md
-
-After writing, shut down."
+   docs/plans/YYYY-MM-DD-<topic>-research.md"
 ```
 
 ### Step 4: Present Summary and Gate
 
 Read the research document and present a brief summary to the user.
-Include the teammate results table:
+Include the subagent results table:
 
-| Teammate | Task | Status | Key Findings |
-| -------- | ---- | ------ | ------------ |
+| Agent | Task | Status | Key Findings |
+| ----- | ---- | ------ | ------------ |
 
 ```text
 Research complete for '<topic>'.
@@ -204,18 +169,19 @@ Research document: docs/plans/YYYY-MM-DD-<topic>-research.md
 Use AskUserQuestion:
 
 - "Create plan" — proceed to Phase 2
-- "More research needed" — spawn additional teammates
-- "Stop here" — clean up team, end with research document
+- "More research needed" — spawn additional subagents
+- "Stop here" — end with research document
 
-## Phase 2: Plan (Dedicated Teammate)
+## Phase 2: Plan (Dedicated Subagent)
 
-Spawn a planning teammate that reads the research document and creates
-the implementation plan. The teammate gets a fresh context window with
+Spawn a planning subagent that reads the research document and creates
+the implementation plan. The subagent gets a fresh context window with
 only the research file as input.
 
 ```text
-Spawn a teammate called "planner" with the prompt:
-"You are creating an implementation plan.
+Spawn a subagent with the Agent tool:
+  name: "planner"
+  prompt: "You are creating an implementation plan.
 
 1. Read the research document at
    docs/plans/YYYY-MM-DD-<topic>-research.md
@@ -226,17 +192,12 @@ Spawn a teammate called "planner" with the prompt:
 
 The plan must reference the research document and be self-contained.
 Do NOT ask the user questions — use the research document as your
-source of truth for requirements and constraints.
-
-After writing, shut down."
+source of truth for requirements and constraints."
 ```
-
-Require plan approval for this teammate so the lead can review before
-implementation proceeds.
 
 ### Present Plan and Gate
 
-When the planning teammate completes, read the plan document and present
+When the planning subagent completes, read the plan document and present
 a summary to the user:
 
 ```text
@@ -253,20 +214,21 @@ Use AskUserQuestion:
 
 - "Approve and implement" — proceed to Phase 3
 - "Request changes" — describe what to modify, spawn new planner
-- "Stop here" — clean up team, end with plan document
+- "Stop here" — end with plan document
 
 **Do not skip this approval gate.** The user must explicitly approve
 the plan before implementation begins.
 
-## Phase 3: Implement (Dedicated Teammate)
+## Phase 3: Implement (Dedicated Subagent)
 
-After plan approval, spawn an implementation teammate that reads the
-plan and executes it. The teammate gets a fresh context window with
+After plan approval, spawn an implementation subagent that reads the
+plan and executes it. The subagent gets a fresh context window with
 only the plan file as input.
 
 ```text
-Spawn a teammate called "implementer" with the prompt:
-"You are implementing an approved plan.
+Spawn a subagent with the Agent tool:
+  name: "implementer"
+  prompt: "You are implementing an approved plan.
 
 1. Read the plan at docs/plans/YYYY-MM-DD-<topic>-plan.md
 2. Invoke the Skill tool with skill: 'rpikit:implementing-plans' and
@@ -279,15 +241,13 @@ Spawn a teammate called "implementer" with the prompt:
 4. Update the plan document status as you complete steps
 
 The plan has been approved by the user. Execute it as written. If you
-encounter issues that require plan changes, document them and message
-the lead — do NOT deviate silently.
-
-After completing all steps, shut down."
+encounter issues that require plan changes, document them and return
+the issue — do NOT deviate silently."
 ```
 
 ### Report Results
 
-When the implementation teammate completes, present results:
+When the implementation subagent completes, present results:
 
 ```text
 Implementation complete for '<topic>'.
@@ -298,19 +258,8 @@ Tests: [pass/fail]
 Reviews: [code review status, security review status]
 ```
 
-If the teammate reported deviations or blockers, present them and ask
+If the subagent reported deviations or blockers, present them and ask
 the user how to proceed.
-
-### Clean Up the Team
-
-After implementation is complete and results are reported:
-
-```text
-Clean up the rpi-<topic> team.
-```
-
-This removes the shared team resources. Ensure all teammates have
-shut down first.
 
 ## Customizing the Pipeline
 
@@ -326,7 +275,7 @@ If partial context already exists:
 
 Match research depth to complexity:
 
-| Complexity | Research Teammates | Expected Duration |
+| Complexity | Research Subagents | Expected Duration |
 | ---------- | ------------------ | ----------------- |
 | Simple     | 1 (codebase)       | Quick             |
 | Moderate   | 2 (code + web)     | Medium            |
@@ -342,53 +291,39 @@ Skill tool with skill: "rpikit:brainstorming"
 
 Then resume the pipeline at Phase 1 with clarified requirements.
 
-### Falling Back to Subagents
+## Orchestrator Rules
 
-If agent teams are not available (feature flag disabled, tmux not
-installed), fall back to subagents using the Agent tool:
+The orchestrator MUST stay thin:
 
-- Replace "Spawn a teammate" with `Agent tool` invocations
-- Each agent still gets its own context window
-- File artifacts still serve as the communication channel
-- The orchestrator pattern remains the same
-
-## Team Lead Rules
-
-The team lead MUST stay thin:
-
-- **Do**: Create team, spawn teammates, read artifacts, present
-  summaries, gate approvals, clean up team
+- **Do**: Spawn subagents, read artifacts, present summaries, gate
+  approvals
 - **Do NOT**: Research code, write plans, implement changes, or read
   source files beyond the phase artifacts
 
-This ensures the lead's context remains small, leaving maximum
-context for each teammate.
+This ensures the orchestrator's context remains small, leaving maximum
+context for each subagent.
 
 ## Anti-Patterns
 
 | Do Not | Instead |
 | ------ | ------- |
-| Do research/planning/implementation as lead | Delegate each phase to a teammate |
+| Do research/planning/implementation as orchestrator | Delegate each phase to a subagent |
 | Pass findings through conversation context | Write to files, read from files |
-| Spawn 5+ research teammates | Keep to 2-4 focused teammates |
+| Spawn 5+ research subagents | Keep to 2-4 focused subagents |
 | Skip approval gates between phases | Always get explicit user approval |
 | Combine dependent research questions | Only parallelize independent questions |
-| Let the team run unattended too long | Monitor progress, redirect as needed |
-| Forget to clean up the team | Always clean up after completion |
 
 ## Quality Checklist
 
 Before each phase transition:
 
-- [ ] All teammates for current phase completed and shut down
+- [ ] All subagents for current phase completed
 - [ ] Phase artifact written to `docs/plans/`
-- [ ] Teammate results summary table presented
+- [ ] Subagent results summary table presented
 - [ ] User approved before proceeding to next phase
-- [ ] Lead context remains thin (no research/planning content)
+- [ ] Orchestrator context remains thin (no research/planning content)
 
 At pipeline completion:
 
-- [ ] All teammates shut down
-- [ ] Team cleaned up
 - [ ] All artifacts saved to `docs/plans/`
 - [ ] Final results presented to user

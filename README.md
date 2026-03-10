@@ -54,8 +54,8 @@ flowchart LR
 ```
 
 The `/rpikit:rpi` command runs the full pipeline in a single session using
-agent teams, with approval gates between phases. The individual commands
-below can also be run separately for more control.
+parallel subagents, with approval gates between phases. The individual
+commands below can also be run separately for more control.
 
 Each phase produces artifacts in `docs/plans/` and requires human approval
 before transitioning to the next phase.
@@ -106,7 +106,7 @@ Run the entire research-plan-implement workflow in a single session:
 /rpikit:rpi Add OAuth login with Google and GitHub providers
 ```
 
-This spawns parallel research teammates, synthesizes findings, creates a plan,
+This spawns parallel research subagents, synthesizes findings, creates a plan,
 and implements it — with approval gates between each phase.
 
 ### Step-by-Step Workflow
@@ -165,7 +165,7 @@ The plugin includes methodology skills that guide disciplined development:
 
 ### Core RPI Workflow
 
-- **research-to-implementation** - End-to-end pipeline orchestrating all RPI phases with agent teams
+- **research-to-implementation** - End-to-end pipeline orchestrating all RPI phases with parallel subagents
 - **researching-codebase** - Thorough codebase research through interrogation
 - **synthesizing-research** - Consolidate parallel research findings into a unified report
 - **writing-plans** - Granular, verifiable implementation plans
