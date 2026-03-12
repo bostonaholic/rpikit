@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `researching-codebase` skill now uses the LSP tool (`goToDefinition`, `findReferences`, `documentSymbol`, `incomingCalls`/`outgoingCalls`) for deeper structural understanding after file discovery, with graceful fallback when no language server is configured
+- `researching-codebase` and `writing-plans` skills now recommend `WebFetch` for single-page lookups (e.g., checking a library's API docs) instead of spawning a full `web-researcher` agent
+- `research-plan-implement` pipeline now runs the implementation subagent in an isolated worktree (`isolation: "worktree"`), preventing unfinished work from affecting the main branch
+- Model selection rationale table added to `research-plan-implement` skill — `haiku` for file-finder, `sonnet` for research/synthesis, `opus` for planning/implementation
+
+### Changed
+
+- `implementing-plans` skill now uses `TaskCreate`/`TaskUpdate`/`TaskList` for progress tracking instead of `TodoWrite`, providing structured task dependencies, active-form spinners, and better UI integration
+- `researching-codebase` skill now uses `TaskCreate`/`TaskUpdate` for exploration tracking instead of `TodoWrite`
+- `implementing-plans` skill now uses native `EnterWorktree`/`ExitWorktree` tools for worktree isolation instead of delegating to the `git-worktrees` skill
+- All agent spawns in `research-plan-implement` now include explicit `model` parameters
+
 ### Removed
 
 - Removed all 8 command wrapper files from `commands/` — skills auto-register as slash commands directly from `skills/*/SKILL.md`, making the command wrappers redundant
