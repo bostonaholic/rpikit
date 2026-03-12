@@ -218,11 +218,11 @@ and 2 are stable.
 
 ## Next Steps
 
-- [ ] Implement Layer 1b (implementation → TaskCreate/TaskUpdate/TaskList)
-- [ ] Implement Layer 1c (implementation → EnterWorktree/ExitWorktree)
+- [x] Implement Layer 1b (implementation → TaskCreate/TaskUpdate/TaskList)
+- [x] Implement Layer 1c (implementation → EnterWorktree/ExitWorktree)
 - [ ] Test Layer 1 end-to-end
-- [ ] Implement Layer 2a (research → LSP)
-- [ ] Implement Layer 2b (agent isolation for implementation only)
-- [ ] Implement Layer 2c (explicit model selection)
-- [ ] Implement Layer 2d (direct WebFetch)
+- [x] Implement Layer 2a (research → LSP)
+- [x] Implement Layer 2b (agent isolation for implementation only)
+- [x] Implement Layer 2c (explicit model selection)
+- [x] Implement Layer 2d (direct WebFetch)
 - [ ] Evaluate Layer 3 (teams, previews) based on Layer 1-2 experience
