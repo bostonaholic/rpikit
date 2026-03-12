@@ -83,7 +83,9 @@ The file-finder will return a structured report with:
 
 ### Explore the Discovered Files
 
-Use TodoWrite to track exploration based on the file-finder report.
+Use TaskCreate to track exploration based on the file-finder report. Create
+one task per file category (core, supporting, test, config) and update via
+TaskUpdate as you examine each.
 
 **Examine core files first:**
 

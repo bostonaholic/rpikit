@@ -131,19 +131,23 @@ After worktree is created:
 
 ### 4. Initialize Progress Tracking
 
-Convert plan steps to TodoWrite todos:
+Create tasks from plan steps using TaskCreate:
 
-Read each step from the plan and create corresponding todos:
+Read each step from the plan and create a corresponding task:
 
-- Use step descriptions as todo content
-- Mark all as pending initially
-- This provides visible progress tracking
+- Use step descriptions as the task subject (imperative form)
+- Include the step's action and verify criteria in the task description
+- Set `activeForm` to a present-continuous description (e.g., "Implementing
+  auth middleware")
+- All tasks start as pending
+- Use `addBlockedBy` via TaskUpdate when plan steps have sequential
+  requirements (e.g., Step 1.2 depends on Step 1.1)
 
 ### 5. Execute Steps in Order
 
 For each step in the plan:
 
-1. **Mark in_progress** - Update TodoWrite
+1. **Mark in_progress** - Update task via TaskUpdate
 2. **Locate target files** - If file path is unclear or missing, use file-finder:
 
    ```text
@@ -155,7 +159,7 @@ For each step in the plan:
 4. **Make the change** - Follow plan specification exactly
 5. **Run verification** - Execute the verify criteria
 6. **Confirm success** - Only proceed if verification passes
-7. **Mark completed** - Update TodoWrite immediately
+7. **Mark completed** - Update task via TaskUpdate immediately
 8. **Update plan** - Mark step complete in plan document
 
 ### 6. Checkpoint After Phases
@@ -215,7 +219,7 @@ Use AskUserQuestion:
 
 When all steps are done:
 
-1. Mark all todos complete
+1. Mark all tasks completed via TaskUpdate
 2. Update plan document status section
 3. Run final verification (full test suite if applicable)
 4. Run code review:
@@ -282,24 +286,26 @@ Never claim completion without evidence:
 
 ### Track Progress Visibly
 
-Use TodoWrite to show real-time progress:
+Use TaskCreate / TaskUpdate / TaskList for real-time progress:
 
-- Create todos from plan steps
-- Mark in_progress when starting
-- Mark completed only after verification
+- Create tasks from plan steps via TaskCreate
+- Mark in_progress via TaskUpdate when starting
+- Mark completed via TaskUpdate only after verification
+- Use TaskList to review overall progress
 - Update plan document with status
 
 ## Progress Documentation
 
-### TodoWrite Format
+### Task-Based Tracking
 
-Maintain real-time visibility:
+Maintain real-time visibility using structured tasks:
 
 ```text
-[completed] Step 1.1: Add validation function
-[completed] Step 1.2: Update API endpoint
-[in_progress] Step 2.1: Add unit tests
-[pending] Step 2.2: Update integration tests
+TaskCreate: subject="Add validation function", status=pending
+TaskCreate: subject="Update API endpoint", status=pending
+TaskUpdate: taskId=1, status=in_progress
+TaskUpdate: taskId=1, status=completed
+TaskList → shows current state of all tasks
 ```
 
 ### Plan Document Updates
@@ -403,7 +409,7 @@ During implementation:
 
 - [ ] Always read files before modifying
 - [ ] Run verification after each step
-- [ ] Mark todos complete immediately (no batching)
+- [ ] Mark tasks completed immediately (no batching)
 - [ ] Update plan document with status
 - [ ] Get approval at phase checkpoints
 - [ ] Document any deviations
