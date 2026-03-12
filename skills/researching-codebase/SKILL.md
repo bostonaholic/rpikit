@@ -111,10 +111,30 @@ TaskUpdate as you examine each.
 - Performance considerations
 - Security implications
 
+### Deepen Understanding with LSP
+
+After identifying relevant files, use the LSP tool for deeper structural
+understanding:
+
+- `goToDefinition` — trace how functions and types connect across files
+- `findReferences` — understand where symbols are used throughout the codebase
+- `documentSymbol` — get a structured overview of a file's exports and
+  structure
+- `incomingCalls` / `outgoingCalls` — map call hierarchies to understand
+  data flow
+
+> If LSP is unavailable (no configured language server), skip this step
+> and rely on Grep-based content search.
+
 ### Research External Context (When Needed)
 
-If codebase exploration reveals external factors that need investigation, use
-the **web-researcher** agent:
+For single-page lookups (e.g., checking a library's API docs or a specific
+GitHub issue), use WebFetch directly instead of spawning a web-researcher
+agent. Reserve the web-researcher for multi-source research requiring
+synthesis.
+
+If codebase exploration reveals external factors that need broader
+investigation, use the **web-researcher** agent:
 
 ```text
 Task tool with subagent_type: "web-researcher"

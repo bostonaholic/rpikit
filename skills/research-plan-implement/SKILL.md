@@ -90,6 +90,7 @@ including multiple Agent tool calls in a single message.
 ```text
 Spawn a subagent with the Agent tool:
   name: "codebase-researcher"
+  model: "sonnet"
   prompt: "Research [feature area] for the goal: [what will be implemented].
 
 1. Invoke the Skill tool with skill: 'rpikit:researching-codebase'
@@ -104,6 +105,7 @@ Spawn a subagent with the Agent tool:
 ```text
 Spawn a subagent with the Agent tool:
   name: "web-researcher"
+  model: "sonnet"
   prompt: "Research [specific question about API, library, pattern, or best
 practice].
 
@@ -116,9 +118,14 @@ Write your findings to docs/plans/YYYY-MM-DD-<topic>-external.md"
 ```text
 Spawn a subagent with the Agent tool:
   name: "security-researcher"
+  model: "sonnet"
   prompt: "Investigate security and performance implications of [feature].
 Write findings to docs/plans/YYYY-MM-DD-<topic>-security.md"
 ```
+
+> **Note**: Research agents must NOT use `isolation: "worktree"` — they
+> write shared artifacts to `docs/plans/` that other agents and the main
+> session need to read.
 
 Guidelines:
 
@@ -135,6 +142,7 @@ consolidates all findings using the synthesis skill.
 ```text
 Spawn a subagent with the Agent tool:
   name: "synthesizer"
+  model: "sonnet"
   prompt: "Synthesize all research findings for '<topic>'.
 
 1. Invoke the Skill tool with skill: 'rpikit:synthesizing-research'
@@ -181,6 +189,7 @@ only the research file as input.
 ```text
 Spawn a subagent with the Agent tool:
   name: "planner"
+  model: "opus"
   prompt: "You are creating an implementation plan.
 
 1. Read the research document at
@@ -228,6 +237,8 @@ only the plan file as input.
 ```text
 Spawn a subagent with the Agent tool:
   name: "implementer"
+  model: "opus"
+  isolation: "worktree"
   prompt: "You are implementing an approved plan.
 
 1. Read the plan at docs/plans/YYYY-MM-DD-<topic>-plan.md
@@ -239,6 +250,8 @@ Spawn a subagent with the Agent tool:
    - Track progress
    - Run code review and security review at completion
 4. Update the plan document status as you complete steps
+5. CRITICAL: git commit ALL changes before completing — uncommitted
+   work in an isolated worktree is silently destroyed on cleanup
 
 The plan has been approved by the user. Execute it as written. If you
 encounter issues that require plan changes, document them and return
@@ -302,6 +315,16 @@ The orchestrator MUST stay thin:
 
 This ensures the orchestrator's context remains small, leaving maximum
 context for each subagent.
+
+## Model Selection
+
+Use explicit `model` parameters when spawning subagents:
+
+| Model    | Use For                                | Rationale             |
+| -------- | -------------------------------------- | --------------------- |
+| `haiku`  | file-finder, quick lookups             | Fast, cost-effective  |
+| `sonnet` | research agents, synthesis, code review | Balanced capability  |
+| `opus`   | planning, implementation, architecture | Deep reasoning needed |
 
 ## Anti-Patterns
 

@@ -115,6 +115,10 @@ from parallelization.
 
 **Research implementation approaches (when needed):**
 
+For quick lookups (checking a library's API, reading a specific doc page),
+use WebFetch directly. Reserve the web-researcher agent for multi-source
+investigation.
+
 If the plan involves unfamiliar libraries, APIs, or patterns, use the
 **web-researcher** agent to inform task design:
 
