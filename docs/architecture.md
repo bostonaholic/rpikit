@@ -21,7 +21,7 @@ delegates to a skill and does nothing else.
 
 | Command                | Delegates To              | Purpose                            |
 | ---------------------- | ------------------------- | ---------------------------------- |
-| `/rpikit:rpi`          | research-to-implementation | End-to-end RPI pipeline            |
+| `/rpikit:rpi`          | research-plan-implement | End-to-end RPI pipeline            |
 | `/rpikit:brainstorm`   | brainstorming             | Explore ideas before research      |
 | `/rpikit:research`     | researching-codebase      | Deep codebase exploration          |
 | `/rpikit:plan`         | writing-plans             | Create implementation plans        |
@@ -39,7 +39,7 @@ each activity and which agents to use.
 
 | Skill                       | Phase     | Agents Used                                               |
 | --------------------------- | --------- | --------------------------------------------------------- |
-| research-to-implementation  | All       | Orchestrates subagents for each phase                     |
+| research-plan-implement  | All       | Orchestrates subagents for each phase                     |
 | researching-codebase        | Research  | file-finder, web-researcher                               |
 | synthesizing-research       | Research  | (none — reads and consolidates research files)            |
 | writing-plans               | Plan      | file-finder, web-researcher                               |
@@ -108,7 +108,7 @@ using subagents. The orchestrator spawns subagents for each phase.
 
 ```mermaid
 graph TD
-    RPI["/rpikit:rpi"] --> RTIS["research-to-implementation skill"]
+    RPI["/rpikit:rpi"] --> RTIS["research-plan-implement skill"]
     RTIS --> T1["subagent: codebase-researcher"]
     RTIS --> T2["subagent: web-researcher"]
     T1 --> SYN["subagent: synthesizer"]

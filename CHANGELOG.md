@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `/rpikit:rpi` command for end-to-end research, plan, and implement pipeline in a single session using parallel subagents
-- `research-to-implementation` skill that orchestrates parallel research subagents, synthesis, planning, and implementation with approval gates between phases
+- `research-plan-implement` skill that orchestrates parallel research subagents, synthesis, planning, and implementation with approval gates between phases
 - `synthesizing-research` skill for consolidating parallel research findings into a single unified report
 
 ### Changed

@@ -165,7 +165,7 @@ The plugin includes methodology skills that guide disciplined development:
 
 ### Core RPI Workflow
 
-- **research-to-implementation** - End-to-end pipeline orchestrating all RPI phases with parallel subagents
+- **research-plan-implement** - End-to-end pipeline orchestrating all RPI phases with parallel subagents
 - **researching-codebase** - Thorough codebase research through interrogation
 - **synthesizing-research** - Consolidate parallel research findings into a unified report
 - **writing-plans** - Granular, verifiable implementation plans
