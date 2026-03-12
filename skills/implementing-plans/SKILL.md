@@ -81,7 +81,7 @@ Proceed with inline planning.
 
 Before making changes, offer to create an isolated worktree.
 
-**First, check if already in an additional worktree:**
+**First, check if already in a worktree:**
 
 ```bash
 # Check if .git is a file (indicates additional worktree, not main repo)
@@ -90,8 +90,10 @@ test -f .git
 
 Run this command via the Bash tool:
 
-- Exit code 0 (success): `.git` is a file → this is an additional worktree → skip the prompt and proceed to progress tracking
-- Exit code 1 (failure): `.git` is a directory → this is the main repository → continue with the worktree offer below
+- Exit code 0 (success): `.git` is a file → already in a worktree → skip
+  the prompt and proceed to progress tracking
+- Exit code 1 (failure): `.git` is a directory → main repository →
+  continue with the worktree offer below
 
 **If not in a worktree, offer based on stakes level:**
 
@@ -99,7 +101,8 @@ Run this command via the Bash tool:
 
 Use AskUserQuestion with options:
 
-- "Use worktree (Recommended)" - Create isolated workspace for safer changes
+- "Use worktree (Recommended)" - Create isolated workspace for safer
+  changes
 - "Continue in current directory" - Proceed without isolation
 
 **Medium Stakes:**
@@ -114,7 +117,7 @@ Use AskUserQuestion with options:
 Brief mention only:
 
 ```text
-Tip: For isolation, you can use the git-worktrees skill.
+Tip: For isolation, use EnterWorktree.
 Proceeding in current directory...
 ```
 
@@ -122,12 +125,18 @@ Skip the prompt and continue.
 
 **If user chooses worktree:**
 
-Invoke Skill tool with skill: "rpikit:git-worktrees"
+Use EnterWorktree to create the isolated workspace. Implementation
+continues in the new worktree directory.
 
-After worktree is created:
+When implementation is complete, use ExitWorktree with action: "keep" to
+preserve the branch and return to the main working directory.
 
-1. Implementation continues in the new worktree directory
-2. The finishing-work skill handles cleanup when done
+> **Caution**: EnterWorktree has known active bugs — `bypassPermissions`
+> may be ineffective
+> ([#29110](https://github.com/anthropics/claude-code/issues/29110)) and
+> background agents may not have `pwd` set correctly
+> ([#27749](https://github.com/anthropics/claude-code/issues/27749)).
+> Always verify the working directory after entering a worktree.
 
 ### 4. Initialize Progress Tracking
 
