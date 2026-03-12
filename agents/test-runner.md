@@ -1,6 +1,6 @@
 ---
 name: test-runner
-description: >-
+description: >
   Execute tests for a PR in isolated git worktree with comprehensive diagnostics
 model: haiku
 color: green

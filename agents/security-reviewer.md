@@ -1,6 +1,6 @@
 ---
 name: security-reviewer
-description: >-
+description: >
   Use this agent to perform security review of implementation changes before
   completion. Reviews code modifications for vulnerabilities, insecure patterns,
   and security best practices. Called automatically at the end of implementation

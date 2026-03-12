@@ -1,6 +1,6 @@
 ---
 name: test-driven-development
-description: >-
+description: >
   Rigorous TDD methodology enforcing RED-GREEN-REFACTOR discipline. Use when
   implementing features or fixing bugs during the implement phase. Tests must
   be written before production code - no exceptions.

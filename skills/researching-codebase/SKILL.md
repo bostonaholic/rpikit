@@ -1,6 +1,6 @@
 ---
 name: researching-codebase
-description: >-
+description: >
   This skill should be used when the user asks to "research the codebase",
   "understand how X works", "explore the code", "gather context",
   "investigate the implementation", "analyze the architecture", or invokes

@@ -1,6 +1,6 @@
 ---
 name: synthesizing-research
-description: >-
+description: >
   Consolidate multiple research documents into a single unified report.
   Use when parallel research agents have produced separate findings files
   and you need one self-contained document. Trigger phrases: "synthesize

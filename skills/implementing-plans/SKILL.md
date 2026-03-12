@@ -1,6 +1,6 @@
 ---
 name: implementing-plans
-description: >-
+description: >
   This skill should be used when the user asks to "implement the plan",
   "execute the plan", "start implementation", "build the feature",
   "make the changes", or invokes the rpikit:implement command. Provides

@@ -1,6 +1,6 @@
 ---
 name: parallel-agents
-description: >-
+description: >
   Concurrent agent dispatch for independent problems. Use when facing multiple
   independent tasks that can be worked on simultaneously. Reduces total time
   by parallelizing work that has no shared state.

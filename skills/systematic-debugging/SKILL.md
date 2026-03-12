@@ -1,6 +1,6 @@
 ---
 name: systematic-debugging
-description: >-
+description: >
   Root cause investigation methodology for bugs and failures. Use when
   encountering test failures, unexpected behavior, or errors during research
   or implement phases. Find the cause before attempting fixes.
