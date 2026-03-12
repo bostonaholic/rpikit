@@ -241,6 +241,10 @@ Spawn a subagent with the Agent tool:
   isolation: "worktree"
   prompt: "You are implementing an approved plan.
 
+NOTE: You are running in an isolated worktree (isolation: worktree).
+The implementing-plans skill will detect this via 'test -f .git' and
+skip the worktree offer — this is expected behavior.
+
 1. Read the plan at docs/plans/YYYY-MM-DD-<topic>-plan.md
 2. Invoke the Skill tool with skill: 'rpikit:implementing-plans' and
    args: '<topic>'

@@ -131,6 +131,10 @@ continues in the new worktree directory.
 When implementation is complete, use ExitWorktree with action: "keep" to
 preserve the branch and return to the main working directory.
 
+If implementation is aborted (user cancels at a checkpoint or
+verification fails beyond recovery), use ExitWorktree with
+action: "discard" to clean up the worktree without preserving changes.
+
 > **Caution**: EnterWorktree has known active bugs — `bypassPermissions`
 > may be ineffective
 > ([#29110](https://github.com/anthropics/claude-code/issues/29110)) and
