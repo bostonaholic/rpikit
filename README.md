@@ -39,13 +39,23 @@ implementation and ensures human oversight at critical decision points.
 
 ## Workflow
 
+### Full Pipeline
+
 ```mermaid
 flowchart LR
-    rpi["/rpikit:rpi"] -->|automated| research2[Research]
-    research2 -->|approval| plan2[Plan]
-    plan2 -->|approval| implement2[Implement]
-    implement2 --> done2((done))
+    rpi["/rpikit:rpi"] -->|automated| research[Research]
+    research -->|approval| plan[Plan]
+    plan -->|approval| implement[Implement]
+    implement --> done((done))
+```
 
+The `/rpikit:rpi` command runs the full pipeline in a single session using
+parallel subagents, with approval gates between phases.
+
+### Individual Commands
+
+```mermaid
+flowchart LR
     brainstorm["/rpikit:brainstorm"] -.->|optional| research["/rpikit:research"]
     research -->|approval| plan["/rpikit:plan"]
     plan --> implement["/rpikit:implement"]
@@ -53,12 +63,9 @@ flowchart LR
     implement -->|approval| done((done))
 ```
 
-The `/rpikit:rpi` command runs the full pipeline in a single session using
-parallel subagents, with approval gates between phases. The individual
-commands below can also be run separately for more control.
-
-Each phase produces artifacts in `docs/plans/` and requires human approval
-before transitioning to the next phase.
+For more control, run each phase as a separate command. Each phase produces
+artifacts in `docs/plans/` and requires human approval before transitioning
+to the next phase.
 
 ### Brainstorming vs. Research
 
