@@ -33,16 +33,9 @@ CHANGELOG.md tracks **plugin user-facing changes only** — features, skills, ag
 
 ## Documentation Requirements
 
-**CRITICAL: Always update README.md.** The README is the primary user-facing documentation and MUST stay synchronized with the codebase. After ANY change that affects user-visible behavior, update README.md in the same commit. This includes:
+**README.md is updated only during release prep — never between releases.** The README is the primary user-facing documentation and must match what marketplace users have installed. After changes that affect user-visible behavior, update CHANGELOG.md's `[Unreleased]` section instead. At release time, batch-update the README to reflect all accumulated changes.
 
-- Commands (adding, removing, renaming)
-- Workflow or phase structure
-- Output artifact locations or formats
-- Installation instructions
-
-Do NOT document implementation details (specific agents, internal patterns) in README - these change frequently and create maintenance burden.
-
-Never leave README.md out of sync. An outdated README misleads users and undermines trust in the project.
+Do NOT document implementation details (specific agents, internal patterns) in README — these change frequently and create maintenance burden.
 
 ## Key Patterns
 
@@ -77,12 +70,13 @@ claude --plugin-dir /path/to/rpikit --debug
 
 When releasing a new version:
 
-1. Update version in `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
-2. Move CHANGELOG.md unreleased section to new version with date
-3. Commit with message `chore(release): X.Y.Z`
-4. Create git tag: `git tag -a vX.Y.Z -m "Release X.Y.Z"`
-5. Push with tags: `git push origin main --tags`
-6. Create GitHub release: `gh release create vX.Y.Z --title "vX.Y.Z" --notes "..."`
+1. Update README.md to reflect all changes listed in CHANGELOG.md `[Unreleased]`
+2. Update version in `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
+3. Move CHANGELOG.md unreleased section to new version with date
+4. Commit with message `chore(release): X.Y.Z`
+5. Create git tag: `git tag -a vX.Y.Z -m "Release X.Y.Z"`
+6. Push with tags: `git push origin main --tags`
+7. Create GitHub release: `gh release create vX.Y.Z --title "vX.Y.Z" --notes "..."`
 
 GitHub releases: <https://github.com/bostonaholic/rpikit/releases>
 
