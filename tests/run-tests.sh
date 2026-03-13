@@ -74,7 +74,6 @@ echo "Project root: $PROJECT_ROOT"
 # Run all test suites
 run_suite "agents"
 run_suite "skills"
-run_suite "commands"
 run_suite "frontmatter"
 run_suite "plugin"
 

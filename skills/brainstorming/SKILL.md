@@ -208,8 +208,8 @@ After brainstorming, guide to appropriate next step:
 "Design documented at docs/plans/YYYY-MM-DD-<topic>-design.md
 
 Ready to proceed?"
-- "Start research" → /rpikit:research
-- "Create implementation plan" → /rpikit:plan
+- "Start research" → /rpikit:researching-codebase
+- "Create implementation plan" → /rpikit:writing-plans
 - "Continue brainstorming" → More exploration
 ```
 

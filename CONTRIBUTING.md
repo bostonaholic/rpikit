@@ -107,8 +107,7 @@ All tests must pass before merging.
 Follow existing patterns:
 
 ```text
-commands/           # Entry points (thin wrappers)
-skills/             # Methodology documentation
+skills/             # Methodology documentation (auto-register as slash commands)
 agents/             # Autonomous task executors
 ```
 

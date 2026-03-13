@@ -13,12 +13,7 @@ delegation map, and design principles.
 
 ```text
 .claude-plugin/          # Plugin manifest (plugin.json, marketplace.json)
-commands/                # Entry points that delegate to skills
-  ├── rpi.md             # /rpikit:rpi command (full pipeline)
-  ├── research.md        # /rpikit:research command
-  ├── plan.md            # /rpikit:plan command
-  └── implement.md       # /rpikit:implement command
-skills/                  # Detailed methodology instructions
+skills/                  # Methodology instructions (auto-register as slash commands)
   ├── research-plan-implement/SKILL.md
   ├── researching-codebase/SKILL.md
   ├── synthesizing-research/SKILL.md
@@ -29,8 +24,8 @@ agents/                  # Autonomous agents for specialized tasks
   └── web-researcher.md  # Conducts web research with citations
 ```
 
-**Workflow:** `/rpikit:rpi` runs the full pipeline, or use individual commands:
-`/rpikit:research` → (approval) → `/rpikit:plan` → (approval) → `/rpikit:implement`
+**Workflow:** `/rpikit:research-plan-implement` runs the full pipeline, or use individual skills:
+`/rpikit:researching-codebase` → (approval) → `/rpikit:writing-plans` → (approval) → `/rpikit:implementing-plans`
 
 ## Changelog Rules
 
@@ -51,8 +46,7 @@ Never leave README.md out of sync. An outdated README misleads users and undermi
 
 ## Key Patterns
 
-- **Commands are thin wrappers** - They delegate to skills via `Skill tool invoke: skill-name`
-- **Skills contain methodology** - Detailed instructions in `skills/<name>/SKILL.md`
+- **Skills are the entry points** - Auto-registered from `skills/<name>/SKILL.md` as slash commands
 - **Agents are reusable** - file-finder and web-researcher used across all phases
 - **Output artifacts** - Research and plans written to `docs/plans/` in user's project
 
@@ -76,7 +70,7 @@ claude --plugin-dir /path/to/rpikit --debug
 
 1. Make changes to plugin files
 2. Restart Claude Code with `--plugin-dir` to reload
-3. Test commands via `/rpikit:command-name`
+3. Test skills via `/rpikit:skill-name`
 4. Use `--debug` flag to troubleshoot loading issues
 
 ## Releasing
@@ -93,12 +87,6 @@ When releasing a new version:
 GitHub releases: <https://github.com/bostonaholic/rpikit/releases>
 
 ## Component Conventions
-
-**Commands** (in `commands/`):
-
-- Use markdown frontmatter for metadata
-- Should be minimal - delegate to skills immediately
-- Arguments passed via `$ARGUMENTS` variable
 
 **Skills** (in `skills/<name>/SKILL.md`):
 

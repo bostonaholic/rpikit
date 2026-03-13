@@ -1,34 +1,18 @@
 # Architecture
 
-rpikit is a Claude Code plugin built on a layered component model. Commands
-are user-facing entry points that delegate to skills. Skills contain
-methodology instructions and orchestrate agents. Agents are autonomous task
-performers. Hooks enforce quality automatically.
+rpikit is a Claude Code plugin built on a layered component model. Skills are
+user-facing entry points that auto-register as slash commands from
+`skills/*/SKILL.md`. Skills contain methodology instructions and orchestrate
+agents. Agents are autonomous task performers. Hooks enforce quality
+automatically.
 
 ## Component Types
 
-| Type     | Location            | Count | Role                         |
-| -------- | ------------------- | ----- | ---------------------------- |
-| Commands | `commands/*.md`     | 8     | User-facing entry points     |
-| Skills   | `skills/*/SKILL.md` | 17    | Methodology instructions     |
-| Agents   | `agents/*.md`       | 7     | Autonomous task performers   |
-| Hooks    | `hooks/hooks.json`  | 1     | Automated quality enforcement|
-
-## Commands
-
-Commands are thin markdown wrappers with YAML frontmatter. Each immediately
-delegates to a skill and does nothing else.
-
-| Command                | Delegates To              | Purpose                            |
-| ---------------------- | ------------------------- | ---------------------------------- |
-| `/rpikit:rpi`          | research-plan-implement | End-to-end RPI pipeline            |
-| `/rpikit:brainstorm`   | brainstorming             | Explore ideas before research      |
-| `/rpikit:research`     | researching-codebase      | Deep codebase exploration          |
-| `/rpikit:plan`         | writing-plans             | Create implementation plans        |
-| `/rpikit:implement`    | implementing-plans        | Execute approved plans             |
-| `/rpikit:review-code`  | reviewing-code            | Code quality and design review     |
-| `/rpikit:review-security` | security-review        | Security vulnerability review      |
-| `/rpikit:decision`     | documenting-decisions     | Record architectural decisions as ADRs |
+| Type   | Location            | Count | Role                          |
+| ------ | ------------------- | ----- | ----------------------------- |
+| Skills | `skills/*/SKILL.md` | 17    | Methodology and entry points  |
+| Agents | `agents/*.md`       | 7     | Autonomous task performers    |
+| Hooks  | `hooks/hooks.json`  | 1     | Automated quality enforcement |
 
 ## Skills
 
@@ -95,20 +79,19 @@ judgment (research, review, debugging).
 
 ```mermaid
 graph TD
-    User --> Commands["Commands (thin wrappers)"]
-    Commands --> Skills["Skills (methodology)"]
+    User --> Skills["Skills (methodology + entry points)"]
     Skills --> Agents["Agents (autonomous task performers)"]
     Skills --> Output["Output artifacts (docs/plans/*.md, docs/decisions/*.md)"]
 ```
 
 ### RPI Pipeline Flow
 
-The `/rpikit:rpi` command orchestrates the full workflow in a single session
-using subagents. The orchestrator spawns subagents for each phase.
+The `/rpikit:research-plan-implement` skill orchestrates the full workflow in a
+single session using subagents. The orchestrator spawns subagents for each phase.
 
 ```mermaid
 graph TD
-    RPI["/rpikit:rpi"] --> RTIS["research-plan-implement skill"]
+    RPI["/rpikit:research-plan-implement"] --> RTIS["research-plan-implement skill"]
     RTIS --> T1["subagent: codebase-researcher"]
     RTIS --> T2["subagent: web-researcher"]
     T1 --> SYN["subagent: synthesizer"]
@@ -122,24 +105,24 @@ graph TD
     T4 --> CODE["implementation code"]
 ```
 
-### Core RPI Flow (Individual Commands)
+### Core RPI Flow (Individual Skills)
 
 ```mermaid
 graph TD
-    R["/rpikit:research"] --> RS["researching-codebase skill"]
+    R["/rpikit:researching-codebase"] --> RS["researching-codebase skill"]
     RS --> RF["file-finder (locate files)"]
     RS --> RW["web-researcher (external context)"]
     RS --> RO["docs/plans/YYYY-MM-DD-*-research.md"]
     RO --> G1{{"user approval gate"}}
 
-    G1 --> P["/rpikit:plan"]
+    G1 --> P["/rpikit:writing-plans"]
     P --> PS["writing-plans skill"]
     PS --> PF["file-finder (locate files)"]
     PS --> PW["web-researcher (external dependencies)"]
     PS --> PO["docs/plans/YYYY-MM-DD-*-plan.md"]
     PO --> G2{{"user approval gate"}}
 
-    G2 --> I["/rpikit:implement"]
+    G2 --> I["/rpikit:implementing-plans"]
     I --> IS["implementing-plans skill"]
     IS --> IF["file-finder (locate target files)"]
     IS --> IW["web-researcher (unfamiliar issues)"]
@@ -154,7 +137,7 @@ Decisions can be recorded after planning or design work:
 
 ```mermaid
 graph LR
-    D["/rpikit:decision"] --> DS["documenting-decisions skill"]
+    D["/rpikit:documenting-decisions"] --> DS["documenting-decisions skill"]
     DS --> DR["reads: docs/plans/*-design.md (or user input)"]
     DS --> DW["writes: docs/decisions/NNNN-*.md"]
 ```
@@ -165,8 +148,8 @@ Reviews can be used at any point, independent of the RPI phases:
 
 ```mermaid
 graph LR
-    RC["/rpikit:review-code"] --> RCS["reviewing-code skill"] --> CRA["code-reviewer agent"]
-    RSec["/rpikit:review-security"] --> RSS["security-review skill"] --> SRA["security-reviewer agent"]
+    RC["/rpikit:reviewing-code"] --> RCS["reviewing-code skill"] --> CRA["code-reviewer agent"]
+    RSec["/rpikit:security-review"] --> RSS["security-review skill"] --> SRA["security-reviewer agent"]
 ```
 
 ## Infrastructure
@@ -183,10 +166,10 @@ pull requests.
 
 ## Design Principles
 
-1. **Commands are always thin** - Frontmatter plus one line delegating to a
-   skill. No methodology logic in commands.
+1. **Skills are entry points** - Skills auto-register as slash commands from
+   `skills/*/SKILL.md`. No separate command wrappers needed.
 2. **Skills own methodology** - All decision logic and instructions live in
-   skills, not commands or agents.
+   skills, not agents.
 3. **Agents are reusable** - file-finder and web-researcher are used across
    multiple skills rather than duplicated.
 4. **Model selection by task type** - haiku for mechanical tasks, sonnet for

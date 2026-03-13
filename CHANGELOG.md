@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- Removed all 8 command wrapper files from `commands/` — skills auto-register as slash commands directly from `skills/*/SKILL.md`, making the command wrappers redundant
+  - Slash command names now match skill directory names (e.g., `/rpikit:researching-codebase` instead of `/rpikit:research`)
+  - Eliminates duplicate slash command entries and name mismatch confusion
+
 ## [0.6.1] - 2026-03-12
 
 ### Changed
