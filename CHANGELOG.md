@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.1] - 2026-03-12
+
 ### Fixed
 
 - Multi-line description frontmatter now renders correctly for all agents and skills (replaced unsupported `>-` YAML block scalar with `>`)
