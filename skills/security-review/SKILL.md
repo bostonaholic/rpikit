@@ -1,6 +1,6 @@
 ---
 name: security-review
-description: >-
+description: >
   Security review methodology for evaluating implementation changes. Use when
   reviewing code changes for vulnerabilities, insecure patterns, and security
   best practices. Focuses on changes made during implementation rather than

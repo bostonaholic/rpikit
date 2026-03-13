@@ -1,6 +1,6 @@
 ---
 name: documenting-decisions
-description: >-
+description: >
   Record architectural decisions as ADRs from design documents. Use after
   brainstorming or planning to capture what was decided, why, and what
   alternatives were considered. Produces sequentially numbered ADR files

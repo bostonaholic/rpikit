@@ -1,6 +1,6 @@
 ---
 name: verification-before-completion
-description: >-
+description: >
   Evidence-before-claims discipline for implementation completion. Use before
   claiming any work is complete, fixed, or passing. Run verification commands
   and confirm output before making success claims.

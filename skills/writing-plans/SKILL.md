@@ -1,6 +1,6 @@
 ---
 name: writing-plans
-description: >-
+description: >
   This skill should be used when the user asks to "create a plan",
   "plan the implementation", "design the approach", "break down the task",
   "write an implementation plan", or invokes the rpikit:plan command. Provides

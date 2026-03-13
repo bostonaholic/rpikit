@@ -1,6 +1,6 @@
 ---
 name: verifier
-description: >-
+description: >
   Run comprehensive verification checks (tests, lint, typecheck, build) before
   completion claims. Enforces evidence-before-claims discipline.
 model: haiku

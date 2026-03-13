@@ -1,6 +1,6 @@
 ---
 name: code-reviewer
-description: >-
+description: >
   Use this agent to perform code review of implementation changes before
   security review. Reviews code for quality, design, correctness, and
   maintainability using Conventional Comments. Produces soft-gating verdict -

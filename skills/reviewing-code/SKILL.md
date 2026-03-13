@@ -1,6 +1,6 @@
 ---
 name: reviewing-code
-description: >-
+description: >
   Code review methodology for evaluating implementation changes. Use when
   reviewing code changes for quality, design, correctness, and maintainability.
   Focuses on changes made during implementation using Conventional Comments

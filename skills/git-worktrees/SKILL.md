@@ -1,6 +1,6 @@
 ---
 name: git-worktrees
-description: >-
+description: >
   Isolated workspace creation for parallel development work. Use when starting
   feature work that needs isolation from the current workspace. Creates git
   worktrees with proper setup and safety verification.

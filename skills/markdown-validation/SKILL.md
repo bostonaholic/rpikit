@@ -1,6 +1,6 @@
 ---
 name: markdown-validation
-description: >-
+description: >
   Validates markdown files using markdownlint after writing or editing. Invoke
   this skill after creating or modifying any markdown file to ensure consistent
   formatting and zero linting violations.

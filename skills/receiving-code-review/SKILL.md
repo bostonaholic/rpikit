@@ -1,6 +1,6 @@
 ---
 name: receiving-code-review
-description: >-
+description: >
   Verification-first approach to code review feedback. Use when receiving
   review comments during the implement phase. Evaluate suggestions rigorously
   before implementing - no performative agreement.
