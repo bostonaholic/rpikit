@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.6.1] - 2026-03-12
 
+### Changed
+
+- Renamed `research-to-implementation` skill to `research-plan-implement` for consistency with the RPI framework naming
+
 ### Fixed
 
 - Multi-line description frontmatter now renders correctly for all agents and skills (replaced unsupported `>-` YAML block scalar with `>`)
@@ -18,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `/rpikit:rpi` command for end-to-end research, plan, and implement pipeline in a single session using parallel subagents
-- `research-plan-implement` skill that orchestrates parallel research subagents, synthesis, planning, and implementation with approval gates between phases
+- `research-to-implementation` skill that orchestrates parallel research subagents, synthesis, planning, and implementation with approval gates between phases
 - `synthesizing-research` skill for consolidating parallel research findings into a single unified report
 
 ### Changed
