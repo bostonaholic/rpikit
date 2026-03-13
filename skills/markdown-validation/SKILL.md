@@ -111,6 +111,41 @@ Only after markdownlint returns no errors:
 Markdown validation passed for <file-path>.
 ```
 
+## YAML Frontmatter Rules for SKILL.md Files
+
+These rules apply specifically when writing or editing `SKILL.md` files for
+Claude Code plugins. Markdownlint does not check YAML frontmatter style, so
+enforce these manually.
+
+### Folded Block Scalars
+
+Use `>` (folded) for multiline strings. Never use `>-` (folded with strip
+chomping).
+
+**Wrong** (`>-` strips the trailing newline):
+
+```yaml
+---
+description: >-
+  This strips the trailing
+  newline from the folded string.
+---
+```
+
+**Right** (`>` preserves the trailing newline):
+
+```yaml
+---
+description: >
+  This folds newlines into spaces
+  and preserves the trailing newline.
+---
+```
+
+The `>-` chomping indicator silently strips the final newline, which can cause
+subtle parsing issues in Claude Code's skill registration. Always use plain `>`
+for folded block scalars in `SKILL.md` frontmatter.
+
 ## Red Flags
 
 These thoughts mean STOP - you are rationalizing:
