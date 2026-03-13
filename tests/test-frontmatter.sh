@@ -25,7 +25,6 @@ else
     file_count=0
 
     for file in "$PROJECT_ROOT"/agents/*.md \
-                "$PROJECT_ROOT"/commands/*.md \
                 "$PROJECT_ROOT"/skills/*/SKILL.md; do
         [[ -f "$file" ]] || continue
 

@@ -24,18 +24,18 @@ implementation and ensures human oversight at critical decision points.
 /plugin install rpikit
 ```
 
-## Commands
+## Quick Start
 
-| Command                   | Purpose                                        |
-| ------------------------- | ---------------------------------------------- |
-| `/rpikit:rpi`             | End-to-end research, plan, and implement pipeline |
-| `/rpikit:brainstorm`      | Explore ideas when requirements are unclear    |
-| `/rpikit:research`        | Understand the codebase and gather context     |
-| `/rpikit:plan`            | Create an actionable implementation plan       |
-| `/rpikit:implement`       | Execute the plan with discipline               |
-| `/rpikit:review-code`     | Review changes for quality and maintainability |
-| `/rpikit:review-security` | Review changes for security vulnerabilities    |
-| `/rpikit:decision`        | Record architectural decisions as ADRs         |
+| Slash Command                       | Purpose                                        |
+| ----------------------------------- | ---------------------------------------------- |
+| `/rpikit:research-plan-implement`   | End-to-end research, plan, and implement pipeline |
+| `/rpikit:brainstorming`             | Explore ideas when requirements are unclear    |
+| `/rpikit:researching-codebase`      | Understand the codebase and gather context     |
+| `/rpikit:writing-plans`             | Create an actionable implementation plan       |
+| `/rpikit:implementing-plans`        | Execute the plan with discipline               |
+| `/rpikit:reviewing-code`            | Review changes for quality and maintainability |
+| `/rpikit:security-review`           | Review changes for security vulnerabilities    |
+| `/rpikit:documenting-decisions`     | Record architectural decisions as ADRs         |
 
 ## Workflow
 
@@ -43,27 +43,27 @@ implementation and ensures human oversight at critical decision points.
 
 ```mermaid
 flowchart LR
-    rpi["/rpikit:rpi"] -->|automated| research[Research]
+    rpi["/rpikit:research-plan-implement"] -->|automated| research[Research]
     research -->|approval| plan[Plan]
     plan -->|approval| implement[Implement]
     implement --> done((done))
 ```
 
-The `/rpikit:rpi` command runs the full pipeline in a single session using
-parallel subagents, with approval gates between phases.
+The `/rpikit:research-plan-implement` skill runs the full pipeline in a single
+session using parallel subagents, with approval gates between phases.
 
-### Individual Commands
+### Individual Skills
 
 ```mermaid
 flowchart LR
-    brainstorm["/rpikit:brainstorm"] -.->|optional| research["/rpikit:research"]
-    research -->|approval| plan["/rpikit:plan"]
-    plan --> implement["/rpikit:implement"]
-    plan -.->|optional| decision["/rpikit:decision"]
+    brainstorm["/rpikit:brainstorming"] -.->|optional| research["/rpikit:researching-codebase"]
+    research -->|approval| plan["/rpikit:writing-plans"]
+    plan --> implement["/rpikit:implementing-plans"]
+    plan -.->|optional| decision["/rpikit:documenting-decisions"]
     implement -->|approval| done((done))
 ```
 
-For more control, run each phase as a separate command. Each phase produces
+For more control, run each phase as a separate skill. Each phase produces
 artifacts in `docs/plans/` and requires human approval before transitioning
 to the next phase.
 
@@ -110,7 +110,7 @@ docs/decisions/
 Run the entire research-plan-implement workflow in a single session:
 
 ```bash
-/rpikit:rpi Add OAuth login with Google and GitHub providers
+/rpikit:research-plan-implement Add OAuth login with Google and GitHub providers
 ```
 
 This spawns parallel research subagents, synthesizes findings, creates a plan,
@@ -121,19 +121,19 @@ and implements it — with approval gates between each phase.
 For more control, run each phase separately:
 
 ```bash
-/rpikit:research I want to add OAuth login - what auth patterns exist?
+/rpikit:researching-codebase I want to add OAuth login - what auth patterns exist?
 ```
 
 Review the research output in `docs/plans/`, then create a plan from it:
 
 ```bash
-/rpikit:plan @docs/plans/2025-01-07-oauth-login-research.md
+/rpikit:writing-plans @docs/plans/2025-01-07-oauth-login-research.md
 ```
 
 Review and approve the plan, then implement from it:
 
 ```bash
-/rpikit:implement @docs/plans/2025-01-07-oauth-login-plan.md
+/rpikit:implementing-plans @docs/plans/2025-01-07-oauth-login-plan.md
 ```
 
 ### Ad-hoc Code Review
@@ -141,13 +141,13 @@ Review and approve the plan, then implement from it:
 Review current changes for quality issues:
 
 ```bash
-/rpikit:review-code
+/rpikit:reviewing-code
 ```
 
 Review for security vulnerabilities:
 
 ```bash
-/rpikit:review-security
+/rpikit:security-review
 ```
 
 ### Recording Decisions
@@ -155,7 +155,7 @@ Review for security vulnerabilities:
 After planning or design work, record the decision as an ADR:
 
 ```bash
-/rpikit:decision @docs/plans/2025-01-07-oauth-login-design.md
+/rpikit:documenting-decisions @docs/plans/2025-01-07-oauth-login-design.md
 ```
 
 ### Stakes-Based Planning
@@ -201,8 +201,8 @@ The plugin includes methodology skills that guide disciplined development:
 
 ## Architecture
 
-For a detailed overview of how commands, skills, agents, and hooks connect,
-see [Architecture](docs/architecture.md).
+For a detailed overview of how skills, agents, and hooks connect, see
+[Architecture](docs/architecture.md).
 
 ## Inspired By
 

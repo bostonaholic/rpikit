@@ -222,7 +222,7 @@ in its Context section.
 This skill fits into the workflow after planning or design work:
 
 ```text
-/rpikit:brainstorm ──► /rpikit:plan ──► /rpikit:decision ──► docs/decisions/NNNN-*.md
+/rpikit:brainstorming ──► /rpikit:writing-plans ──► /rpikit:documenting-decisions ──► docs/decisions/NNNN-*.md
 ```
 
 Design documents (`*-design.md`) and planning documents (`*-plan.md`) are the
