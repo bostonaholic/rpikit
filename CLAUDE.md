@@ -19,7 +19,7 @@ commands/                # Entry points that delegate to skills
   ├── plan.md            # /rpikit:plan command
   └── implement.md       # /rpikit:implement command
 skills/                  # Detailed methodology instructions
-  ├── research-to-implementation/SKILL.md
+  ├── research-plan-implement/SKILL.md
   ├── researching-codebase/SKILL.md
   ├── synthesizing-research/SKILL.md
   ├── writing-plans/SKILL.md
