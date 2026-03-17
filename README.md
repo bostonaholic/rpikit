@@ -51,6 +51,7 @@ flowchart LR
 
 The `/rpikit:research-plan-implement` skill runs the full pipeline in a single
 session using parallel subagents, with approval gates between phases.
+Implementation runs in an isolated worktree to protect the main branch.
 
 ### Individual Skills
 

@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-03-17
+
 ### Added
 
 - `researching-codebase` skill now uses the LSP tool (`goToDefinition`, `findReferences`, `documentSymbol`, `incomingCalls`/`outgoingCalls`) for deeper structural understanding after file discovery, with graceful fallback when no language server is configured
