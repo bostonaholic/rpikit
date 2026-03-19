@@ -136,13 +136,7 @@ Convert the title to kebab-case for the filename:
 - Replace spaces with hyphens
 - Remove special characters
 
-### 7. Validate Markdown
-
-Invoke Skill tool with skill: "rpikit:markdown-validation"
-
-Fix all errors before proceeding.
-
-### 8. Confirm Completion
+### 7. Confirm Completion
 
 ```text
 ADR created: docs/decisions/NNNN-kebab-case-title.md

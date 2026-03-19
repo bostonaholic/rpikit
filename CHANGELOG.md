@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- Removed `markdown-validation` skill, PostToolUse hook, validation script, and markdownlint config — markdown linting was too obtrusive during normal workflow
+
 ## [0.7.0] - 2026-03-17
 
 ### Added

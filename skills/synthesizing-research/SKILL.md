@@ -111,8 +111,7 @@ assessments]
 
 After writing the document:
 
-1. Invoke Skill tool with skill: `rpikit:markdown-validation`
-2. Present a summary of key findings to the user
+1. Present a summary of key findings to the user
 3. Note any contradictions or gaps found during synthesis
 
 ## Quality Criteria

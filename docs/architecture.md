@@ -54,7 +54,6 @@ each activity and which agents to use.
 | receiving-code-review | Verification-first response to feedback  |
 | git-worktrees         | Isolated workspaces for parallel work    |
 | parallel-agents       | Concurrent dispatch for independent tasks|
-| markdown-validation   | Markdownlint enforcement with auto-fix   |
 
 ## Agents
 
@@ -153,13 +152,6 @@ graph LR
 ```
 
 ## Infrastructure
-
-**Hooks**: `hooks/hooks.json` defines a PostToolUse hook that runs
-`scripts/validate-markdown.sh` after every Write or Edit operation on
-markdown files, enforcing formatting quality automatically.
-
-**Linting**: `.markdownlint.json` defines the markdown linting rules used by
-both the hook and the markdown-validation skill.
 
 **CI**: `.github/workflows/ci.yml` provides automated validation on push and
 pull requests.
