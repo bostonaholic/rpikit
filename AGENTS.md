@@ -47,10 +47,14 @@ agents/                  # Autonomous agents for specialized tasks
 
 ## Git Workflow
 
-- **No pull requests.** Merge commits directly to main locally.
+- **No pull requests.** Commits go directly to main locally.
+- **No merge commits.** Always use squash or rebase to keep history linear.
+  When integrating a worktree branch, decide: squash if the branch has
+  messy/WIP commits, rebase if each commit is clean and meaningful.
 - Branches may be created when using worktrees for isolation during development,
-  but the end result is a local merge to main — not a PR.
-- This facilitates agentic workflows that validate their own changes without requiring full code reviews.
+  but the end result is a squash or rebase onto main — never a merge commit.
+- This facilitates agentic workflows that validate their own changes without
+  requiring full code reviews.
 
 ## Changelog Rules
 
