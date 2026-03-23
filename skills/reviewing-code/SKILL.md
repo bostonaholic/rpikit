@@ -5,6 +5,7 @@ description: >
   reviewing code changes for quality, design, correctness, and maintainability.
   Focuses on changes made during implementation using Conventional Comments
   for clear, actionable feedback.
+argument-hint: scope or focus of the code review
 ---
 
 # Code Review Methodology
