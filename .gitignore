@@ -8,6 +8,9 @@
 .DS_Store
 Thumbs.db
 
+# Claude Code
+.claude/worktrees/
+
 # Editor files
 .vscode/
 .idea/
