@@ -19,14 +19,16 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Resolve npm global prefix
+        id: npm-prefix
+        run: echo "path=$(npm prefix -g)" >> "$GITHUB_OUTPUT"
+
       - name: Cache Claude CLI
         id: cache-claude
         uses: actions/cache@v4
         with:
-          path: |
-            /usr/local/lib/node_modules/@anthropic-ai
-            /usr/local/bin/claude
-          key: claude-cli-${{ runner.os }}-${{ hashFiles('.claude-code-version') }}
+          path: ${{ steps.npm-prefix.outputs.path }}
+          key: claude-cli-${{ runner.os }}-node${{ runner.arch }}-${{ hashFiles('.claude-code-version') }}
 
       - name: Install Claude Code CLI
         if: steps.cache-claude.outputs.cache-hit != 'true'
