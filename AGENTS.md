@@ -48,7 +48,8 @@ agents/                  # Autonomous agents for specialized tasks
 ## Git Workflow
 
 - **No pull requests.** Merge commits directly to main locally.
-- Branches may be created when using worktrees for isolation during development, but the end result is a local merge to main — not a PR.
+- Branches may be created when using worktrees for isolation during development,
+  but the end result is a local merge to main — not a PR.
 - This facilitates agentic workflows that validate their own changes without requiring full code reviews.
 
 ## Changelog Rules
