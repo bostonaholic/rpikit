@@ -12,29 +12,41 @@ project.
    cd rpikit
    ```
 
-2. Launch Claude Code with the plugin loaded:
+2. Install dependencies (activates Husky git hooks automatically):
 
    ```bash
-   claude --plugin-dir /path/to/rpikit
+   npm install
    ```
 
-3. Validate the plugin structure (from the plugin directory):
+3. Launch Claude Code with the plugin loaded:
+
+   ```bash
+   bin/start
+   # or: claude --plugin-dir /path/to/rpikit
+   ```
+
+4. Validate the plugin structure (from the plugin directory):
 
    ```bash
    claude plugin validate .
    ```
 
-4. Debug plugin loading issues:
+5. Debug plugin loading issues:
 
    ```bash
    claude --plugin-dir /path/to/rpikit --debug
    ```
 
+**Git hooks (via Husky):**
+
+- **Pre-commit**: markdownlint, shellcheck (fast checks)
+- **Pre-push**: full test suite, plugin validation (full gate)
+
 **Development workflow:**
 
 - Make changes to plugin files
 - Restart Claude Code with `--plugin-dir` to reload changes
-- Test commands via `/rpikit:command-name`
+- Test skills via `/rpikit:skill-name`
 - Use `--debug` flag to troubleshoot loading issues
 
 ## Understanding the Architecture
@@ -65,7 +77,8 @@ This is a critical requirement per CLAUDE.md.
 
 ### Testing
 
-Run the test suite before submitting changes:
+The pre-push hook runs the test suite automatically, but you can run it
+manually:
 
 ```bash
 ./tests/run-tests.sh
@@ -73,11 +86,11 @@ Run the test suite before submitting changes:
 
 All tests must pass before merging.
 
-## Pull Request Guidelines
+## Contribution Guidelines
 
-1. **Clear description** - Explain what the change does and why
+1. **Clear commit messages** - Explain what the change does and why
 2. **Reference related issues** - Link to any related GitHub issues
-3. **Keep changes focused** - One logical change per PR
+3. **Keep changes focused** - One logical change per commit
 4. **Update CHANGELOG.md** - Add your changes under `[Unreleased]`
 5. **Ensure CI passes** - All GitHub Actions checks must pass
 

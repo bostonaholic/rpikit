@@ -6,11 +6,10 @@ agents. Agents are autonomous task performers. Hooks enforce quality automatical
 
 ## Component Types
 
-| Type   | Location            | Count | Role                          |
-| ------ | ------------------- | ----- | ----------------------------- |
-| Skills | `skills/*/SKILL.md` | 17    | Methodology and entry points  |
-| Agents | `agents/*.md`       | 7     | Autonomous task performers    |
-| Hooks  | `hooks/hooks.json`  | 1     | Automated quality enforcement |
+| Type   | Location            | Count | Role                         |
+| ------ | ------------------- | ----- | ---------------------------- |
+| Skills | `skills/*/SKILL.md` | 17    | Methodology and entry points |
+| Agents | `agents/*.md`       | 7     | Autonomous task performers   |
 
 ## Skills
 
@@ -150,6 +149,11 @@ graph LR
 ## Infrastructure
 
 **CI**: `.github/workflows/ci.yml` provides automated validation on push and pull requests.
+
+**Git hooks** (via Husky, activated by `npm install`):
+
+- **Pre-commit**: markdownlint, shellcheck (fast checks)
+- **Pre-push**: full test suite, plugin validation (full gate)
 
 ## Design Principles
 

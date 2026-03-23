@@ -78,8 +78,12 @@ create maintenance burden.
 ## Plugin Development Commands
 
 ```bash
+# Install dependencies and activate git hooks (required after clone)
+npm install
+
 # Test plugin locally (launches Claude Code with the plugin loaded)
-claude --plugin-dir /path/to/rpikit
+bin/start
+# or: claude --plugin-dir /path/to/rpikit
 
 # Validate plugin structure (run from plugin directory)
 claude plugin validate .
@@ -91,12 +95,18 @@ claude --plugin-dir /path/to/rpikit --debug
 /skills
 ```
 
+**Git hooks (via Husky, activated by `npm install`):**
+
+- **Pre-commit**: markdownlint, shellcheck (fast checks)
+- **Pre-push**: full test suite, plugin validation (full gate)
+
 **Development workflow:**
 
-1. Make changes to plugin files
-2. Restart Claude Code with `--plugin-dir` to reload
-3. Test skills via `/rpikit:skill-name`
-4. Use `--debug` flag to troubleshoot loading issues
+1. Run `npm install` after cloning (one-time, activates hooks)
+2. Make changes to plugin files
+3. Restart Claude Code with `bin/start` to reload
+4. Test skills via `/rpikit:skill-name`
+5. Use `--debug` flag to troubleshoot loading issues
 
 ## Releasing
 
