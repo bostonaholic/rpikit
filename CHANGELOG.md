@@ -9,9 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Rewrote skill descriptions to be concise and behavior-focused, removing verbose trigger-phrase lists from `research-plan-implement`, `implementing-plans`, `researching-codebase`, `writing-plans`, and `synthesizing-research`
-- Added `argument-hint` frontmatter to 7 skills that accept arguments, providing placeholder text in the UI
-- Added `effort: high` to `research-plan-implement` skill to signal its resource-intensive nature
+- Rewrote skill descriptions to concise, behavior-focused
+  style for 5 skills that used verbose trigger-phrase lists
+- Added `argument-hint` frontmatter to 7 skills that accept
+  arguments, providing placeholder text in the autocomplete UI
+- Added `effort: high` to `research-plan-implement` skill for
+  extended thinking during multi-phase orchestration
 
 ## [0.8.0] - 2026-03-19
 
