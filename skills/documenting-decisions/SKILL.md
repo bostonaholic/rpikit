@@ -5,6 +5,7 @@ description: >
   brainstorming or planning to capture what was decided, why, and what
   alternatives were considered. Produces sequentially numbered ADR files
   in docs/decisions/.
+argument-hint: decision or design document to record
 ---
 
 # Documenting Decisions

@@ -5,6 +5,7 @@ description: >
   reviewing code changes for vulnerabilities, insecure patterns, and security
   best practices. Focuses on changes made during implementation rather than
   full codebase audits.
+argument-hint: scope or focus of the security review
 ---
 
 # Security Review Methodology

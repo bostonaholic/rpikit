@@ -1,10 +1,7 @@
 ---
 name: research-plan-implement
-description: >
-  End-to-end pipeline that orchestrates the full RPI workflow in a single session using parallel subagents. Spawns
-  research subagents, synthesizes findings into a plan, and executes implementation — each subagent gets its own
-  context window. Use when implementing a feature or change that requires research, planning, and execution rather
-  than running each phase manually across separate sessions.
+description: End-to-end Research-Plan-Implement pipeline using parallel subagents. Each phase (research, plan, implement) runs in its own context window with file artifacts as the communication channel between phases.
+effort: high
 ---
 
 # Research-Plan-Implement Pipeline

@@ -1,11 +1,7 @@
 ---
 name: researching-codebase
-description: >
-  This skill should be used when the user asks to "research the codebase",
-  "understand how X works", "explore the code", "gather context",
-  "investigate the implementation", "analyze the architecture", or invokes
-  the rpikit:research command. Provides methodology for thorough interrogation
-  and codebase exploration before planning or implementation.
+description: Thorough codebase exploration that builds understanding through collaborative dialogue. Investigates architecture, patterns, and implementation details before planning or making changes.
+argument-hint: topic or question to research
 ---
 
 # Research Methodology

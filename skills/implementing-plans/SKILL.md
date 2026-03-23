@@ -1,11 +1,7 @@
 ---
 name: implementing-plans
-description: >
-  This skill should be used when the user asks to "implement the plan",
-  "execute the plan", "start implementation", "build the feature",
-  "make the changes", or invokes the rpikit:implement command. Provides
-  methodology for disciplined execution with checkpoint validation and
-  progress tracking.
+description: Disciplined plan execution with checkpoint validation, progress tracking, and verification at each step. Follows an approved plan strictly, running verification criteria before proceeding.
+argument-hint: feature or change to implement
 ---
 
 # Implementation Phase

@@ -4,7 +4,7 @@ description: >
   Investigate errors systematically to find root cause before attempting fixes.
   Gathers evidence, analyzes patterns, and forms testable hypotheses.
 model: sonnet
-color: orange
+color: yellow
 ---
 
 # Debugger Agent
