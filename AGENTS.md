@@ -7,43 +7,19 @@ This file provides guidance to AI coding assistants when working with code in th
 rpikit is a Claude Code plugin implementing the **Research-Plan-Implement (RPI)** framework. It enforces disciplined
 software engineering through structured workflows with human approval gates between phases.
 
-## Architecture
+## Architecture & Components
 
-See [docs/architecture.md](docs/architecture.md) for the full component model,
-delegation map, and design principles.
-
-```text
-.claude-plugin/          # Plugin manifest (plugin.json, marketplace.json)
-skills/                  # Methodology instructions (auto-register as slash commands)
-  ├── research-plan-implement/SKILL.md   # Full RPI pipeline orchestrator
-  ├── researching-codebase/SKILL.md      # Codebase exploration and understanding
-  ├── synthesizing-research/SKILL.md     # Consolidate parallel research findings
-  ├── writing-plans/SKILL.md             # Transform research into implementation plans
-  ├── implementing-plans/SKILL.md        # Disciplined plan execution
-  ├── brainstorming/SKILL.md             # Collaborative design before research
-  ├── finishing-work/SKILL.md            # Completion workflow (merge, PR, cleanup)
-  ├── git-worktrees/SKILL.md             # Isolated workspace creation
-  ├── parallel-agents/SKILL.md           # Concurrent agent dispatch
-  ├── receiving-code-review/SKILL.md     # Evaluate review feedback rigorously
-  ├── reviewing-code/SKILL.md            # Code quality review methodology
-  ├── security-review/SKILL.md           # Security vulnerability review
-  ├── systematic-debugging/SKILL.md      # Root cause investigation
-  ├── test-driven-development/SKILL.md   # RED-GREEN-REFACTOR discipline
-  ├── verification-before-completion/SKILL.md  # Evidence-before-claims enforcement
-  └── documenting-decisions/SKILL.md     # Record decisions as ADRs
-agents/                  # Autonomous agents for specialized tasks
-  ├── file-finder.md       # Locates files using systematic search
-  ├── web-researcher.md    # Conducts web research with citations
-  ├── code-reviewer.md     # Reviews implementation changes for quality
-  ├── security-reviewer.md # Reviews changes for vulnerabilities
-  ├── debugger.md          # Investigates errors to find root cause
-  ├── test-runner.md       # Executes tests in isolated worktree
-  └── verifier.md          # Runs verification checks before completion
-```
+See [docs/architecture.md](docs/architecture.md) for the full component model, skill/agent tables, delegation map,
+and design principles.
 
 **Workflow:** `/rpikit:research-plan-implement` runs the full pipeline, or use individual skills:
 `/rpikit:researching-codebase` → (approval) → `/rpikit:writing-plans` → (approval) →
 `/rpikit:implementing-plans`
+
+## Development
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup commands, git hooks, development workflow, component conventions,
+and releasing.
 
 ## Git Workflow
 
@@ -71,74 +47,6 @@ accumulated changes.
 
 Do NOT document implementation details (specific agents, internal patterns) in README — these change frequently and
 create maintenance burden.
-
-## Key Patterns
-
-- **Skills are the entry points** - Auto-registered from `skills/<name>/SKILL.md` as slash commands
-- **Agents are reusable** - specialized agents used across phases (file-finder, web-researcher, code-reviewer,
-  security-reviewer, debugger, test-runner, verifier)
-- **Output artifacts** - Research and plans written to `docs/plans/` in user's project
-
-## Plugin Development Commands
-
-```bash
-# Install dependencies and activate git hooks (required after clone)
-npm install
-
-# Test plugin locally (launches Claude Code with the plugin loaded)
-bin/start
-# or: claude --plugin-dir /path/to/rpikit
-
-# Validate plugin structure (run from plugin directory)
-claude plugin validate .
-
-# Debug plugin loading issues
-claude --plugin-dir /path/to/rpikit --debug
-
-# View installed skills (from within Claude Code session)
-/skills
-```
-
-**Git hooks (via Husky, activated by `npm install`):**
-
-- **Pre-commit**: markdownlint, shellcheck (fast checks)
-- **Pre-push**: full test suite, plugin validation (full gate)
-
-**Development workflow:**
-
-1. Run `npm install` after cloning (one-time, activates hooks)
-2. Make changes to plugin files
-3. Restart Claude Code with `bin/start` to reload
-4. Test skills via `/rpikit:skill-name`
-5. Use `--debug` flag to troubleshoot loading issues
-
-## Releasing
-
-When releasing a new version:
-
-1. Update README.md to reflect all changes listed in CHANGELOG.md `[Unreleased]`
-2. Update version in `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
-3. Move CHANGELOG.md unreleased section to new version with date
-4. Commit with message `chore(release): X.Y.Z`
-5. Create git tag: `git tag -a vX.Y.Z -m "Release X.Y.Z"`
-6. Push with tags: `git push origin main --tags`
-7. Create GitHub release: `gh release create vX.Y.Z --title "vX.Y.Z" --notes "..."`
-
-GitHub releases: <https://github.com/bostonaholic/rpikit/releases>
-
-## Component Conventions
-
-**Skills** (in `skills/<name>/SKILL.md`):
-
-- Self-contained methodology documentation
-- Use agents (file-finder, web-researcher) for exploration
-- Include verification criteria and anti-patterns
-
-**Agents** (in `agents/`):
-
-- Frontmatter defines: name, description, model (haiku/sonnet), color
-- Include structured output format specifications
-- Document search strategies and failure handling
 
 ## Stakes Classification
 
