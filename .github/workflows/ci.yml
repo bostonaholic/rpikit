@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: Run Tests
+    name: Test and Validate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -19,18 +19,41 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Install Claude Code CLI
-        run: npm install -g @anthropic-ai/claude-code
+      - name: Cache Claude CLI
+        id: cache-claude
+        uses: actions/cache@v4
+        with:
+          path: |
+            /usr/local/lib/node_modules/@anthropic-ai
+            /usr/local/bin/claude
+          key: claude-cli-${{ runner.os }}-${{ hashFiles('.claude-code-version') }}
 
-      - name: Install yq (for YAML validation)
+      - name: Install Claude Code CLI
+        if: steps.cache-claude.outputs.cache-hit != 'true'
+        run: npm install -g @anthropic-ai/claude-code@$(cat .claude-code-version)
+
+      - name: Cache yq
+        id: cache-yq
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/bin/yq
+          key: yq-${{ runner.os }}-${{ runner.arch }}-4.52.4
+
+      - name: Install yq
+        if: steps.cache-yq.outputs.cache-hit != 'true'
         run: |
-          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo curl -sSL \
+            https://github.com/mikefarah/yq/releases/download/v4.52.4/yq_linux_amd64 \
+            -o /usr/local/bin/yq
           sudo chmod +x /usr/local/bin/yq
 
       - name: Run test suite
         run: |
           chmod +x tests/run-tests.sh
           ./tests/run-tests.sh
+
+      - name: Validate plugin
+        run: claude plugin validate .
 
   lint-markdown:
     name: Lint Markdown
@@ -46,24 +69,6 @@ jobs:
             **/*.md
             !.beads/**/*.md
 
-  validate-plugin:
-    name: Validate Plugin
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-
-      - name: Install Claude Code CLI
-        run: npm install -g @anthropic-ai/claude-code
-
-      - name: Validate plugin
-        run: claude plugin validate .
-
   shellcheck:
     name: Shellcheck
     runs-on: ubuntu-latest
@@ -71,9 +76,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run shellcheck
-        uses: ludeeus/action-shellcheck@master
+      - name: Cache shellcheck
+        id: cache-shellcheck
+        uses: actions/cache@v4
         with:
-          scandir: './tests'
-          additional_files: 'bin/start'
+          path: /usr/local/bin/shellcheck
+          key: shellcheck-${{ runner.os }}-${{ runner.arch }}-0.11.0
 
+      - name: Install shellcheck
+        if: steps.cache-shellcheck.outputs.cache-hit != 'true'
+        run: |
+          curl -sSL \
+            https://github.com/koalaman/shellcheck/releases/download/v0.11.0/shellcheck-v0.11.0.linux.x86_64.tar.xz \
+            | sudo tar -xJ --strip-components=1 -C /usr/local/bin shellcheck-v0.11.0/shellcheck
+          sudo chmod +x /usr/local/bin/shellcheck
+
+      - name: Run shellcheck
+        run: shellcheck tests/*.sh bin/start
