@@ -123,6 +123,20 @@ skills/             # Methodology documentation (auto-register as slash commands
 agents/             # Autonomous task executors
 ```
 
+## Releasing
+
+When releasing a new version:
+
+1. Update README.md to reflect all changes listed in CHANGELOG.md `[Unreleased]`
+2. Update version in `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
+3. Move CHANGELOG.md unreleased section to new version with date
+4. Commit with message `chore(release): X.Y.Z`
+5. Create git tag: `git tag -a vX.Y.Z -m "Release X.Y.Z"`
+6. Push with tags: `git push origin main --tags`
+7. Create GitHub release: `gh release create vX.Y.Z --title "vX.Y.Z" --notes "..."`
+
+GitHub releases: <https://github.com/bostonaholic/rpikit/releases>
+
 ## Questions?
 
 Open an issue for questions or discussions about contributing.
