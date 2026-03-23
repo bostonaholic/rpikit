@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '24'
 
@@ -25,7 +25,7 @@ jobs:
 
       - name: Cache Claude CLI
         id: cache-claude
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ steps.npm-prefix.outputs.path }}
           key: claude-cli-${{ runner.os }}-node${{ runner.arch }}-${{ hashFiles('.claude-code-version') }}
@@ -36,7 +36,7 @@ jobs:
 
       - name: Cache yq
         id: cache-yq
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /usr/local/bin/yq
           key: yq-${{ runner.os }}-${{ runner.arch }}-4.52.4
@@ -62,10 +62,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Lint markdown files
-        uses: DavidAnson/markdownlint-cli2-action@v19
+        uses: DavidAnson/markdownlint-cli2-action@v22
         with:
           globs: |
             **/*.md
@@ -76,11 +76,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Cache shellcheck
         id: cache-shellcheck
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /usr/local/bin/shellcheck
           key: shellcheck-${{ runner.os }}-${{ runner.arch }}-0.11.0
