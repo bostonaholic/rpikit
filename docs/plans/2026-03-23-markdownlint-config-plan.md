@@ -47,6 +47,7 @@ and just needs its config updated.
 
 - **Files**: `.markdownlint.json` (new file)
 - **Action**: Create the markdownlint configuration file at repository root with the following content:
+
   ```json
   {
     "default": true,
@@ -60,6 +61,7 @@ and just needs its config updated.
     "MD041": false
   }
   ```
+
   Rule rationale (from research):
   - `MD013` with 120-char limit, code blocks and tables excluded per user decision
   - `MD024` siblings_only: allows duplicate headings in different sections (common in changelogs)
@@ -72,11 +74,13 @@ and just needs its config updated.
 
 - **Files**: `.github/workflows/ci.yml`
 - **Action**: Confirm the markdownlint globs do NOT exclude `docs/plans/`. The current globs should be:
+
   ```yaml
   globs: |
     **/*.md
     !.beads/**/*.md
   ```
+
   No changes needed if `docs/plans/` is not already excluded. If it is excluded, remove the exclusion.
 - **Verify**: YAML is valid; `docs/plans/` files are included in linting
 - **Complexity**: Small
@@ -148,7 +152,7 @@ These files have no consistent wrapping and contain lines far exceeding 120 char
 - **Current state**: 18 lines exceed 120 chars; max line 260 chars. Bullet-point entries are unwrapped single lines.
 - **Action**: Rewrap long bullet-point entries to 120 characters. Preserve the Keep a Changelog format: headings,
   version sections, and list structure must remain intact. Each bullet's continuation lines should be indented to align
-  with the text after the `- ` prefix (2-space indent).
+  with the text after the `- ` prefix (2-space indent).<!-- markdownlint-disable-line MD038 -->
 - **Verify**: No lines exceed 120 chars; changelog format and content unchanged; version sections intact
 - **Complexity**: Small
 

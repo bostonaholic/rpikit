@@ -100,11 +100,13 @@ documentation projects:
 - **Many open source projects**: MD013 disabled entirely
 
 The strongest arguments **for** some limit:
+
 - Diff readability: 300-character prose lines make PR diffs noisy; it is hard
   to see what changed within a line
 - Git blame granularity: shorter lines allow line-level blame attribution
 
 The strongest arguments **against** strict enforcement:
+
 - Markdown renderers (GitHub, GitLab, browsers) wrap prose automatically;
   hard line breaks in source have no effect on rendered output
 - All major editors in 2026 support soft-wrap natively, removing the
@@ -224,6 +226,7 @@ Create `.markdownlint.json` with:
   entries will need to be wrapped going forward
 
 This provides:
+
 - Enforcement on the files where it matters: skills, agents, README,
   architecture docs
 - No violations for tables or code blocks (which cannot be wrapped)

@@ -123,38 +123,43 @@ Long lines fall into distinct categories:
 
 **Tables (cannot be wrapped — markdownlint MD013 exempts by default):**
 
-```
+```text
 | `/rpikit:research-plan-implement`   | End-to-end research, plan, and implement pipeline |
 ```
+
 Width: 91 chars. Tables in `README.md`, `docs/architecture.md`, and skill
 files routinely exceed 80 characters and cannot be hard-wrapped.
 
 **Mermaid diagram nodes (inside fenced code blocks — MD013 exempts):**
 
-```
+```text
     brainstorm["/rpikit:brainstorming"] -.->|optional| research["/rpikit:researching-codebase"]
 ```
+
 Width: 95 chars. These appear in `README.md` and `docs/architecture.md` inside
 ` ```mermaid ` blocks.
 
 **CHANGELOG bullet points (prose, not wrapped):**
 
-```
+```text
 - `researching-codebase` skill now uses the LSP tool (`goToDefinition`,
   `findReferences`, `documentSymbol`, `incomingCalls`/`outgoingCalls`) for
   deeper structural understanding...
 ```
+
 The actual file has this as a single 259-character line. CHANGELOG entries are
 consistently unwrapped prose, ranging 100–260 chars per bullet.
 
 **CLAUDE.md and docs/plans prose paragraphs (unwrapped):**
 
 CLAUDE.md contains paragraphs like:
-```
+
+```text
 **README.md is updated only during release prep — never between releases.**
 The README is the primary user-facing documentation and must match what
 marketplace users have installed...
 ```
+
 This is a single 363-character line in the file.
 
 **Skill and agent files:** Most prose in skills is wrapped at approximately
@@ -224,6 +229,7 @@ Aggressive but achievable for maintained files if docs/plans artifacts are
 excluded.
 
 **Key decision points for the plan:**
+
 - Whether `docs/plans/` artifacts should be linted (AI-generated, long lines)
 - Whether CHANGELOG entries should be wrapped (impacts readability in editors)
 - Whether to exclude CLAUDE.md (project config file, not user-facing)
