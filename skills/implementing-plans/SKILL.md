@@ -1,7 +1,7 @@
 ---
 name: implementing-plans
 description: Disciplined plan execution with checkpoint validation, progress tracking, and verification at each step. Follows an approved plan strictly, running verification criteria before proceeding.
-argument-hint: feature or change to implement
+argument-hint: plan file path or feature name
 ---
 
 # Implementation Phase
@@ -16,11 +16,19 @@ before proceeding.
 
 ## Process
 
-### 1. Verify Plan Exists
+### 1. Locate the Plan
+
+**If `$ARGUMENTS` is a file path** (starts with `/` or `docs/` or ends with `.md`):
+
+- Read the file at that path directly
+- Check if plan is marked approved
+- Proceed based on stakes level
+
+**Otherwise, search for plan by topic:**
 
 Look for plan at: `docs/plans/YYYY-MM-DD-<topic>-plan.md`
 
-(Search for files matching `*-<topic>-plan.md` pattern)
+(Search for files matching `*-<topic>-plan.md` pattern using `$ARGUMENTS` as the topic)
 
 **If plan exists:**
 

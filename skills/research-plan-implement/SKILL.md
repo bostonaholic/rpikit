@@ -1,6 +1,7 @@
 ---
 name: research-plan-implement
 description: End-to-end Research-Plan-Implement pipeline using parallel subagents. Each phase (research, plan, implement) runs in its own context window with file artifacts as the communication channel between phases.
+argument-hint: feature or change to build end-to-end
 effort: high
 ---
 
@@ -235,7 +236,7 @@ skip the worktree offer — this is expected behavior.
 
 1. Read the plan at docs/plans/YYYY-MM-DD-<topic>-plan.md
 2. Invoke the Skill tool with skill: 'rpikit:implementing-plans' and
-   args: '<topic>'
+   args: 'docs/plans/YYYY-MM-DD-<topic>-plan.md'
 3. Follow the skill's full methodology:
    - Execute steps in order
    - Run verification after each step

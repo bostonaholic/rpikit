@@ -15,14 +15,30 @@ delegation map, and design principles.
 ```text
 .claude-plugin/          # Plugin manifest (plugin.json, marketplace.json)
 skills/                  # Methodology instructions (auto-register as slash commands)
-  ├── research-plan-implement/SKILL.md
-  ├── researching-codebase/SKILL.md
-  ├── synthesizing-research/SKILL.md
-  ├── writing-plans/SKILL.md
-  └── implementing-plans/SKILL.md
+  ├── research-plan-implement/SKILL.md   # Full RPI pipeline orchestrator
+  ├── researching-codebase/SKILL.md      # Codebase exploration and understanding
+  ├── synthesizing-research/SKILL.md     # Consolidate parallel research findings
+  ├── writing-plans/SKILL.md             # Transform research into implementation plans
+  ├── implementing-plans/SKILL.md        # Disciplined plan execution
+  ├── brainstorming/SKILL.md             # Collaborative design before research
+  ├── finishing-work/SKILL.md            # Completion workflow (merge, PR, cleanup)
+  ├── git-worktrees/SKILL.md             # Isolated workspace creation
+  ├── parallel-agents/SKILL.md           # Concurrent agent dispatch
+  ├── receiving-code-review/SKILL.md     # Evaluate review feedback rigorously
+  ├── reviewing-code/SKILL.md            # Code quality review methodology
+  ├── security-review/SKILL.md           # Security vulnerability review
+  ├── systematic-debugging/SKILL.md      # Root cause investigation
+  ├── test-driven-development/SKILL.md   # RED-GREEN-REFACTOR discipline
+  ├── verification-before-completion/SKILL.md  # Evidence-before-claims enforcement
+  └── documenting-decisions/SKILL.md     # Record decisions as ADRs
 agents/                  # Autonomous agents for specialized tasks
-  ├── file-finder.md     # Locates files using systematic search
-  └── web-researcher.md  # Conducts web research with citations
+  ├── file-finder.md       # Locates files using systematic search
+  ├── web-researcher.md    # Conducts web research with citations
+  ├── code-reviewer.md     # Reviews implementation changes for quality
+  ├── security-reviewer.md # Reviews changes for vulnerabilities
+  ├── debugger.md          # Investigates errors to find root cause
+  ├── test-runner.md       # Executes tests in isolated worktree
+  └── verifier.md          # Runs verification checks before completion
 ```
 
 **Workflow:** `/rpikit:research-plan-implement` runs the full pipeline, or use individual skills:
@@ -48,7 +64,8 @@ create maintenance burden.
 ## Key Patterns
 
 - **Skills are the entry points** - Auto-registered from `skills/<name>/SKILL.md` as slash commands
-- **Agents are reusable** - file-finder and web-researcher used across all phases
+- **Agents are reusable** - specialized agents used across phases (file-finder, web-researcher, code-reviewer,
+  security-reviewer, debugger, test-runner, verifier)
 - **Output artifacts** - Research and plans written to `docs/plans/` in user's project
 
 ## Plugin Development Commands
