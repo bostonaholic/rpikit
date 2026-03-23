@@ -17,50 +17,40 @@ Replace verbose trigger-phrase descriptions with concise behavior-focused text.
 
 - **File**: `skills/research-plan-implement/SKILL.md`
 - **Action**: Replace description with concise text; add `effort: high`
-- **New description**: End-to-end Research-Plan-Implement
-  pipeline using parallel subagents. Each phase runs in its
-  own context window with file artifacts as the communication
-  channel between phases.
+- **New description**: End-to-end Research-Plan-Implement pipeline using parallel subagents. Each phase runs in its
+  own context window with file artifacts as the communication channel between phases.
 - **Verify**: YAML parses correctly, no content below `---` changed
 
 ### Step 1.2: implementing-plans
 
 - **File**: `skills/implementing-plans/SKILL.md`
 - **Action**: Replace description with concise text
-- **New description**: Disciplined plan execution with
-  checkpoint validation, progress tracking, and verification
-  at each step. Follows an approved plan strictly, running
-  verification criteria before proceeding.
+- **New description**: Disciplined plan execution with checkpoint validation, progress tracking, and verification
+  at each step. Follows an approved plan strictly, running verification criteria before proceeding.
 - **Verify**: YAML parses correctly, no content below `---` changed
 
 ### Step 1.3: researching-codebase
 
 - **File**: `skills/researching-codebase/SKILL.md`
 - **Action**: Replace description with concise text
-- **New description**: Thorough codebase exploration that
-  builds understanding through collaborative dialogue.
-  Investigates architecture, patterns, and implementation
-  details before planning or making changes.
+- **New description**: Thorough codebase exploration that builds understanding through collaborative dialogue.
+  Investigates architecture, patterns, and implementation details before planning or making changes.
 - **Verify**: YAML parses correctly, no content below `---` changed
 
 ### Step 1.4: writing-plans
 
 - **File**: `skills/writing-plans/SKILL.md`
 - **Action**: Replace description with concise text
-- **New description**: Transform research findings into
-  actionable implementation plans with granular steps,
-  verification criteria, and stakes-based enforcement.
-  Plans serve as contracts between human and AI.
+- **New description**: Transform research findings into actionable implementation plans with granular steps,
+  verification criteria, and stakes-based enforcement. Plans serve as contracts between human and AI.
 - **Verify**: YAML parses correctly, no content below `---` changed
 
 ### Step 1.5: synthesizing-research
 
 - **File**: `skills/synthesizing-research/SKILL.md`
 - **Action**: Replace description with concise text
-- **New description**: Consolidate multiple parallel research
-  documents into a single unified report. Produces a
-  self-contained document that a reader with no prior context
-  can understand completely.
+- **New description**: Consolidate multiple parallel research documents into a single unified report. Produces a
+  self-contained document that a reader with no prior context can understand completely.
 - **Verify**: YAML parses correctly, no content below `---` changed
 
 ## Phase 2: Add argument-hint to skills that use $ARGUMENTS
