@@ -22,8 +22,9 @@ Thumbs.db
 coverage/
 *.test.log
 
-# Node (if tests use npm)
+# Node
 node_modules/
+package-lock.json
 
 # Local plugin settings
 *.local.md

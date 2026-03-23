@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Pre-commit: fast checks only (< 5 seconds)
+
+set -euo pipefail
+
+echo "Running pre-commit checks..."
+
+# 1. Lint markdown files
+if command -v markdownlint &>/dev/null; then
+    echo "  Checking markdown..."
+    markdownlint '**/*.md' --ignore '.beads/**/*.md' --ignore 'node_modules/**/*.md'
+elif command -v markdownlint-cli2 &>/dev/null; then
+    echo "  Checking markdown..."
+    markdownlint-cli2 '**/*.md' '!.beads/**/*.md' '!node_modules/**/*.md'
+else
+    echo "  SKIP: markdownlint not found (install via npm install -g markdownlint-cli)"
+fi
+
+# 2. Shellcheck
+if command -v shellcheck &>/dev/null; then
+    echo "  Checking shell scripts..."
+    shellcheck tests/*.sh bin/start .husky/pre-commit .husky/pre-push
+else
+    echo "  SKIP: shellcheck not found (install via brew install shellcheck)"
+fi
+
+echo "Pre-commit checks complete."

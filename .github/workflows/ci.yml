@@ -94,4 +94,4 @@ jobs:
           sudo chmod +x /usr/local/bin/shellcheck
 
       - name: Run shellcheck
-        run: shellcheck tests/*.sh bin/start
+        run: shellcheck tests/*.sh bin/start .husky/pre-commit .husky/pre-push
