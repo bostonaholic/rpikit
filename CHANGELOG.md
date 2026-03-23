@@ -11,28 +11,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Removed `markdown-validation` skill, PostToolUse hook, validation script, and markdownlint config — markdown linting was too obtrusive during normal workflow
+- Removed `markdown-validation` skill, PostToolUse hook, validation script, and markdownlint config — markdown linting
+  was too obtrusive during normal workflow
 
 ## [0.7.0] - 2026-03-17
 
 ### Added
 
-- `researching-codebase` skill now uses the LSP tool (`goToDefinition`, `findReferences`, `documentSymbol`, `incomingCalls`/`outgoingCalls`) for deeper structural understanding after file discovery, with graceful fallback when no language server is configured
-- `researching-codebase` and `writing-plans` skills now recommend `WebFetch` for single-page lookups (e.g., checking a library's API docs) instead of spawning a full `web-researcher` agent
-- `research-plan-implement` pipeline now runs the implementation subagent in an isolated worktree (`isolation: "worktree"`), preventing unfinished work from affecting the main branch
-- Model selection rationale table added to `research-plan-implement` skill — `haiku` for file-finder, `sonnet` for research/synthesis, `opus` for planning/implementation
+- `researching-codebase` skill now uses the LSP tool (`goToDefinition`, `findReferences`, `documentSymbol`,
+  `incomingCalls`/`outgoingCalls`) for deeper structural understanding after file discovery, with graceful fallback
+  when no language server is configured
+- `researching-codebase` and `writing-plans` skills now recommend `WebFetch` for single-page lookups (e.g., checking a
+  library's API docs) instead of spawning a full `web-researcher` agent
+- `research-plan-implement` pipeline now runs the implementation subagent in an isolated worktree
+  (`isolation: "worktree"`), preventing unfinished work from affecting the main branch
+- Model selection rationale table added to `research-plan-implement` skill — `haiku` for file-finder, `sonnet` for
+  research/synthesis, `opus` for planning/implementation
 
 ### Changed
 
-- `implementing-plans` skill now uses `TaskCreate`/`TaskUpdate`/`TaskList` for progress tracking instead of `TodoWrite`, providing structured task dependencies, active-form spinners, and better UI integration
+- `implementing-plans` skill now uses `TaskCreate`/`TaskUpdate`/`TaskList` for progress tracking instead of
+  `TodoWrite`, providing structured task dependencies, active-form spinners, and better UI integration
 - `researching-codebase` skill now uses `TaskCreate`/`TaskUpdate` for exploration tracking instead of `TodoWrite`
-- `implementing-plans` skill now uses native `EnterWorktree`/`ExitWorktree` tools for worktree isolation instead of delegating to the `git-worktrees` skill
+- `implementing-plans` skill now uses native `EnterWorktree`/`ExitWorktree` tools for worktree isolation instead of
+  delegating to the `git-worktrees` skill
 - All agent spawns in `research-plan-implement` now include explicit `model` parameters
 
 ### Removed
 
-- Removed all 8 command wrapper files from `commands/` — skills auto-register as slash commands directly from `skills/*/SKILL.md`, making the command wrappers redundant
-  - Slash command names now match skill directory names (e.g., `/rpikit:researching-codebase` instead of `/rpikit:research`)
+- Removed all 8 command wrapper files from `commands/` — skills auto-register as slash commands directly from
+  `skills/*/SKILL.md`, making the command wrappers redundant
+  - Slash command names now match skill directory names (e.g., `/rpikit:researching-codebase` instead of
+    `/rpikit:research`)
   - Eliminates duplicate slash command entries and name mismatch confusion
 
 ## [0.6.1] - 2026-03-12
@@ -43,25 +53,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Multi-line description frontmatter now renders correctly for all agents and skills (replaced unsupported `>-` YAML block scalar with `>`)
+- Multi-line description frontmatter now renders correctly for all agents and skills (replaced unsupported `>-` YAML
+  block scalar with `>`)
 
 ## [0.6.0] - 2026-03-10
 
 ### Added
 
-- `/rpikit:rpi` command for end-to-end research, plan, and implement pipeline in a single session using parallel subagents
-- `research-to-implementation` skill that orchestrates parallel research subagents, synthesis, planning, and implementation with approval gates between phases
+- `/rpikit:rpi` command for end-to-end research, plan, and implement pipeline in a single session using parallel
+  subagents
+- `research-to-implementation` skill that orchestrates parallel research subagents, synthesis, planning, and
+  implementation with approval gates between phases
 - `synthesizing-research` skill for consolidating parallel research findings into a single unified report
 
 ### Changed
 
 - `writing-plans` skill now supports marking independent steps/phases as parallel groups for concurrent execution
-- Updated mocking guidance in `test-driven-development` and `reviewing-code` skills to adopt "never mock what you can use for real" philosophy, replacing boundary-based mocking advice with a preference for real implementations over mocks
-- `markdown-validation` skill now documents project-level markdownlint configuration files and respects the host project's rules when validating
+- Updated mocking guidance in `test-driven-development` and `reviewing-code` skills to adopt "never mock what you can
+  use for real" philosophy, replacing boundary-based mocking advice with a preference for real implementations over
+  mocks
+- `markdown-validation` skill now documents project-level markdownlint configuration files and respects the host
+  project's rules when validating
 
 ### Fixed
 
-- `/rpikit:research`, `/rpikit:plan`, and `/rpikit:implement` commands now reliably load full skill methodology instead of letting the agent skip the Skill tool call and improvise from the short description alone
+- `/rpikit:research`, `/rpikit:plan`, and `/rpikit:implement` commands now reliably load full skill methodology instead
+  of letting the agent skip the Skill tool call and improvise from the short description alone
 
 ## [0.5.1] - 2026-02-27
 
@@ -96,7 +113,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Plugin `hooks.json` now uses correct schema format expected by Claude Code (object with `hooks` wrapper and matcher strings instead of root-level array)
+- Plugin `hooks.json` now uses correct schema format expected by Claude Code (object with `hooks` wrapper and matcher
+  strings instead of root-level array)
 - Removed stray character from plan document heading
 
 ## [0.4.1] - 2026-02-16
@@ -109,7 +127,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Plan and implementation artifact filenames no longer produce double-dash names (e.g., `2026-02-16--plan.md`) when commands are invoked without arguments. Filename patterns now use AI-derived `<topic>` slugs, consistent with research and brainstorming skills.
+- Plan and implementation artifact filenames no longer produce double-dash names (e.g., `2026-02-16--plan.md`) when
+  commands are invoked without arguments. Filename patterns now use AI-derived `<topic>` slugs, consistent with
+  research and brainstorming skills.
 
 ## [0.4.0] - 2026-01-13
 
@@ -132,7 +152,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- `/rpikit:code-review` command now works correctly (renamed internal skill to `reviewing-code` to avoid naming collision with command)
+- `/rpikit:code-review` command now works correctly (renamed internal skill to `reviewing-code` to avoid naming
+  collision with command)
 
 ## [0.3.0] - 2026-01-07
 

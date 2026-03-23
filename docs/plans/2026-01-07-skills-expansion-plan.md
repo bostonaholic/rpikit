@@ -2,12 +2,15 @@
 
 ## Summary
 
-Add 8 new skills to the rpikit plugin to fill identified workflow gaps: test-driven-development, systematic-debugging, verification-before-completion, finishing-work, brainstorming, receiving-code-review, git-worktrees, and parallel-agents. Skills will follow existing conventions and integrate with the RPI workflow phases.
+Add 8 new skills to the rpikit plugin to fill identified workflow gaps: test-driven-development, systematic-debugging,
+verification-before-completion, finishing-work, brainstorming, receiving-code-review, git-worktrees, and
+parallel-agents. Skills will follow existing conventions and integrate with the RPI workflow phases.
 
 ## Stakes Classification
 
 **Level**: Medium
-**Rationale**: Multiple new files but additive-only changes. No modification to existing skills. Easy rollback by deleting skill directories. Testable via skill invocation.
+**Rationale**: Multiple new files but additive-only changes. No modification to existing skills. Easy rollback by
+deleting skill directories. Testable via skill invocation.
 
 ## Context
 

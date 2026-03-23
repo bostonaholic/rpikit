@@ -12,9 +12,8 @@ Verify tests, present options, execute chosen workflow, clean up.
 
 ## Purpose
 
-Implementation without proper completion leaves work in limbo. This skill
-provides structured options for finishing work: merge locally, create PR,
-defer for later, or discard. Each option has specific procedures and cleanup
+Implementation without proper completion leaves work in limbo. This skill provides structured options for finishing
+work: merge locally, create PR, defer for later, or discard. Each option has specific procedures and cleanup
 requirements.
 
 ## Prerequisites

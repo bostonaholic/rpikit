@@ -2,12 +2,15 @@
 
 ## Summary
 
-Add five new CI checks to improve code quality and catch issues early: shellcheck for bash scripts, link validation for markdown, spell checking for user-facing content, YAML frontmatter validation, and integration tests to verify plugin behavior.
+Add five new CI checks to improve code quality and catch issues early: shellcheck for bash scripts, link validation for
+markdown, spell checking for user-facing content, YAML frontmatter validation, and integration tests to verify plugin
+behavior.
 
 ## Stakes Classification
 
 **Level**: Medium
-**Rationale**: Adds new CI jobs and test scripts across multiple files. Changes are additive (not modifying existing behavior), easily testable, and straightforward to rollback by reverting commits.
+**Rationale**: Adds new CI jobs and test scripts across multiple files. Changes are additive (not modifying existing
+behavior), easily testable, and straightforward to rollback by reverting commits.
 
 ## Context
 
@@ -92,7 +95,8 @@ Add five new CI checks to improve code quality and catch issues early: shellchec
 #### Step 4.1: Create frontmatter validation test script
 
 - **Files**: `tests/test-frontmatter.sh` (new file)
-- **Action**: Create bash script that extracts YAML frontmatter from all `.md` files and validates syntax using `yq` or similar
+- **Action**: Create bash script that extracts YAML frontmatter from all `.md` files and validates syntax using `yq`
+  or similar
 - **Verify**: Script runs without errors on valid files, catches invalid YAML
 - **Complexity**: Medium
 

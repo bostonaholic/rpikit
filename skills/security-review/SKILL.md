@@ -13,9 +13,8 @@ Review implementation changes for security vulnerabilities and risks.
 
 ## Purpose
 
-This skill provides methodology for reviewing code changes introduced during
-implementation. Unlike full codebase audits, this focuses on the delta - what
-was added or modified - to catch security issues before they're committed.
+This skill provides methodology for reviewing code changes introduced during implementation. Unlike full codebase
+audits, this focuses on the delta - what was added or modified - to catch security issues before they're committed.
 
 ## Review Scope
 

@@ -16,9 +16,8 @@ Execute and report test results to support TDD workflow and verification gates.
 
 ## Mission
 
-Run project tests and produce clear, actionable reports. Support the TDD
-workflow by providing unambiguous RED/GREEN status and detailed failure
-information when tests fail.
+Run project tests and produce clear, actionable reports. Support the TDD workflow by providing unambiguous RED/GREEN
+status and detailed failure information when tests fail.
 
 ## Process
 
@@ -39,8 +38,7 @@ Identify the project's test tooling:
 | `go.mod` | Go | `go test ./...` |
 | `build.gradle` or `pom.xml` | JUnit | `./gradlew test` or `mvn test` |
 
-If multiple indicators exist, prefer the most specific (e.g., jest config over
-generic package.json).
+If multiple indicators exist, prefer the most specific (e.g., jest config over generic package.json).
 
 Report: "Detected [framework] via [indicator]"
 
@@ -241,14 +239,12 @@ When supporting TDD cycle:
 
 ## Security Considerations
 
-- **Trusted codebases only**: This agent executes project test commands which
-  run arbitrary code. Only use on codebases you trust.
-- **Sensitive output**: Test output may contain API keys, tokens, or other
-  secrets. Review output before sharing.
-- **User privileges**: Commands execute with your user privileges, not in a
-  sandbox.
-- **Configuration files**: Malicious package.json or similar configs could
-  inject commands. Verify project configuration before running.
+- **Trusted codebases only**: This agent executes project test commands which run arbitrary code. Only use on codebases
+  you trust.
+- **Sensitive output**: Test output may contain API keys, tokens, or other secrets. Review output before sharing.
+- **User privileges**: Commands execute with your user privileges, not in a sandbox.
+- **Configuration files**: Malicious package.json or similar configs could inject commands. Verify project configuration
+  before running.
 
 ## Behavioral Guidelines
 

@@ -17,9 +17,8 @@ Run all verification checks and produce comprehensive status report.
 
 ## Mission
 
-Execute comprehensive verification to support the "evidence before claims"
-principle. Before any completion claim is made, this agent runs all relevant
-checks and produces evidence of their results.
+Execute comprehensive verification to support the "evidence before claims" principle. Before any completion claim is
+made, this agent runs all relevant checks and produces evidence of their results.
 
 ## Process
 
@@ -232,14 +231,13 @@ The verdict is advisory but strongly worded:
 
 ## Security Considerations
 
-- **Trusted codebases only**: This agent executes project commands (tests,
-  lint, build) which may run arbitrary code. Only use on codebases you trust.
-- **Sensitive output**: Command output may contain API keys, tokens, connection
-  strings, or other secrets. Review output before sharing.
-- **User privileges**: Commands execute with your user privileges, not in a
-  sandbox.
-- **Configuration files**: Malicious package.json or similar configs could
-  inject commands. Verify project configuration before running.
+- **Trusted codebases only**: This agent executes project commands (tests, lint, build) which may run arbitrary code.
+  Only use on codebases you trust.
+- **Sensitive output**: Command output may contain API keys, tokens, connection strings, or other secrets. Review output
+  before sharing.
+- **User privileges**: Commands execute with your user privileges, not in a sandbox.
+- **Configuration files**: Malicious package.json or similar configs could inject commands. Verify project configuration
+  before running.
 
 ## Behavioral Guidelines
 

@@ -12,9 +12,8 @@ Explore ideas collaboratively before committing to an approach.
 
 ## Purpose
 
-Jumping from vague ideas to implementation wastes effort. This skill provides
-structured exploration to refine concepts, surface constraints, and evaluate
-approaches before committing to research or planning. Good brainstorming
+Jumping from vague ideas to implementation wastes effort. This skill provides structured exploration to refine
+concepts, surface constraints, and evaluate approaches before committing to research or planning. Good brainstorming
 prevents building the wrong thing.
 
 ## When to Use
@@ -64,8 +63,8 @@ Ask questions one at a time using AskUserQuestion:
    - Approaches to avoid
    - Prior art to reference
 
-**Prefer multiple-choice questions** when possible. Open-ended is fine for
-exploration, but specific choices accelerate understanding.
+**Prefer multiple-choice questions** when possible. Open-ended is fine for exploration, but specific choices accelerate
+understanding.
 
 ### Phase 2: Exploring Approaches
 

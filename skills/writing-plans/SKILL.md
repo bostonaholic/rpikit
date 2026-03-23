@@ -14,10 +14,9 @@ Create an implementation plan for: **$ARGUMENTS**
 
 ## Purpose
 
-Planning transforms research findings into actionable implementation
-strategy. A good plan enables disciplined execution by breaking work into
-granular tasks with clear verification criteria. Plans serve as contracts
-between human and AI, ensuring alignment before code is written.
+Planning transforms research findings into actionable implementation strategy. A good plan enables disciplined
+execution by breaking work into granular tasks with clear verification criteria. Plans serve as contracts between human
+and AI, ensuring alignment before code is written.
 
 ## Process
 
@@ -72,8 +71,8 @@ Decompose work into granular, verifiable steps.
 
 **Identify target files:**
 
-Use file paths from research document, or if unavailable, use the
-**file-finder** agent to locate files for each task area:
+Use file paths from research document, or if unavailable, use the **file-finder** agent to locate files for each task
+area:
 
 ```text
 Task tool with subagent_type: "file-finder"
@@ -94,9 +93,8 @@ Group related tasks into phases with checkpoint verifications.
 
 **Identify parallel step groups (when applicable):**
 
-When a plan contains steps that are genuinely independent, mark them as
-a parallel group so the implementer can execute them concurrently. Steps
-are independent when they:
+When a plan contains steps that are genuinely independent, mark them as a parallel group so the implementer can
+execute them concurrently. Steps are independent when they:
 
 - Create new files that don't import from each other
 - Modify separate modules with no shared interfaces
@@ -108,19 +106,16 @@ Steps are NOT independent when:
 - Both steps modify the same file
 - Step B's tests exercise code from Step A
 
-Only mark groups as parallel when independence is clear. When in doubt,
-keep steps sequential — incorrect parallelization causes merge conflicts
-and integration failures. Plans with fewer than 4 steps rarely benefit
-from parallelization.
+Only mark groups as parallel when independence is clear. When in doubt, keep steps sequential — incorrect
+parallelization causes merge conflicts and integration failures. Plans with fewer than 4 steps rarely benefit from
+parallelization.
 
 **Research implementation approaches (when needed):**
 
-For quick lookups (checking a library's API, reading a specific doc page),
-use WebFetch directly. Reserve the web-researcher agent for multi-source
-investigation.
+For quick lookups (checking a library's API, reading a specific doc page), use WebFetch directly. Reserve the
+web-researcher agent for multi-source investigation.
 
-If the plan involves unfamiliar libraries, APIs, or patterns, use the
-**web-researcher** agent to inform task design:
+If the plan involves unfamiliar libraries, APIs, or patterns, use the **web-researcher** agent to inform task design:
 
 ```text
 Task tool with subagent_type: "web-researcher"
@@ -129,20 +124,18 @@ Prompt: "[specific question about implementation approach, library usage, or bes
 
 **Plan test cases for each task:**
 
-Every task that changes code must enumerate its test cases upfront. This
-ensures implementation follows TDD discipline — tests are written before
-production code, not as an afterthought.
+Every task that changes code must enumerate its test cases upfront. This ensures implementation follows TDD
+discipline — tests are written before production code, not as an afterthought.
 
 For each code-changing task, list:
 
-- **Automated tests** (unit, integration): Specific inputs, expected outputs,
-  and edge cases. These become the RED step during implementation.
-- **Manual verification** (UI, CLI, deploy): Steps a human performs to confirm
-  behavior. Use when automated testing is impractical.
+- **Automated tests** (unit, integration): Specific inputs, expected outputs, and edge cases. These become the RED step
+  during implementation.
+- **Manual verification** (UI, CLI, deploy): Steps a human performs to confirm behavior. Use when automated testing is
+  impractical.
 
-Structure task steps so the test is the first sub-step and production code
-follows. This maps directly to the Red-Green-Refactor cycle enforced by the
-`rpikit:test-driven-development` skill during implementation.
+Structure task steps so the test is the first sub-step and production code follows. This maps directly to the
+Red-Green-Refactor cycle enforced by the `rpikit:test-driven-development` skill during implementation.
 
 > **Boundary**: Plans enumerate *what* to test (cases, inputs, expected
 > outputs). The TDD skill covers *how* to execute (Red-Green-Refactor cycle,
@@ -241,9 +234,8 @@ Include edge cases and boundary conditions:
 - **Complexity**: Small
 ```
 
-**Problem**: No test cases enumerated, test and implementation combined into
-one step. Without explicit test cases, the implementer writes tests after the
-code — losing TDD discipline
+**Problem**: No test cases enumerated, test and implementation combined into one step. Without explicit test cases, the
+implementer writes tests after the code — losing TDD discipline
 
 ### 5. Document Risks
 
@@ -254,8 +246,7 @@ Identify what could go wrong:
 - Security considerations
 - Dependencies that might fail
 
-For external dependencies or security concerns, use the **web-researcher**
-agent to investigate known issues:
+For external dependencies or security concerns, use the **web-researcher** agent to investigate known issues:
 
 ```text
 Task tool with subagent_type: "web-researcher"
@@ -314,9 +305,8 @@ Use this structure:
 
 ### Phase 2: [Phase Name] *(parallel with Phase 3)*
 
-[When phases or steps are independent, mark them with
-*(parallel with Phase N)* so the implementer can execute
-them concurrently. Omit this annotation for sequential phases.]
+[When phases or steps are independent, mark them with *(parallel with Phase N)* so the implementer can execute them
+concurrently. Omit this annotation for sequential phases.]
 
 [Continue pattern...]
 

@@ -12,16 +12,15 @@ Find the root cause before attempting fixes. Symptom fixes are failure.
 
 ## Purpose
 
-Debugging without methodology wastes time and creates new bugs. Random fixes
-address symptoms, not causes. This skill enforces systematic investigation
-to find root causes before any fix is attempted.
+Debugging without methodology wastes time and creates new bugs. Random fixes address symptoms, not causes. This skill
+enforces systematic investigation to find root causes before any fix is attempted.
 
 ## The Iron Law
 
 **ALWAYS find root cause before attempting fixes.**
 
-Quick patches mask underlying issues. If you're trying fixes without
-understanding why they might work, you're guessing - stop and investigate.
+Quick patches mask underlying issues. If you're trying fixes without understanding why they might work, you're
+guessing - stop and investigate.
 
 ## The Four Phases
 

@@ -1,7 +1,7 @@
 # Contributing to rpikit
 
-Thank you for your interest in contributing to rpikit! This document provides
-guidelines for contributing to the project.
+Thank you for your interest in contributing to rpikit! This document provides guidelines for contributing to the
+project.
 
 ## Development Setup
 
@@ -39,9 +39,8 @@ guidelines for contributing to the project.
 
 ## Understanding the Architecture
 
-Before making changes, read the [Architecture](docs/architecture.md)
-document. It explains how commands, skills, agents, and hooks connect and
-the design principles behind the project.
+Before making changes, read the [Architecture](docs/architecture.md) document. It explains how commands, skills, agents,
+and hooks connect and the design principles behind the project.
 
 ## Making Changes
 

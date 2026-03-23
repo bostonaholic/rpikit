@@ -14,20 +14,18 @@ Research topic: **$ARGUMENTS**
 
 ## Overview
 
-Help turn research requests into thorough codebase understanding through
-natural collaborative dialogue.
+Help turn research requests into thorough codebase understanding through natural collaborative dialogue.
 
-Start by understanding what the user needs to learn, then ask questions one
-at a time to refine the scope. Once you understand what you're researching,
-explore the codebase systematically, presenting findings in digestible
-sections and validating as you go.
+Start by understanding what the user needs to learn, then ask questions one at a time to refine the scope. Once you
+understand what you're researching, explore the codebase systematically, presenting findings in digestible sections and
+validating as you go.
 
 ## The Iron Law
 
 **Ask questions BEFORE exploring code.**
 
-Do not touch the codebase until the problem is understood. Resist the urge
-to immediately search for files or read code.
+Do not touch the codebase until the problem is understood. Resist the urge to immediately search for files or read
+code.
 
 ## Phase 1: Understanding the Request
 
@@ -83,9 +81,8 @@ The file-finder will return a structured report with:
 
 ### Explore the Discovered Files
 
-Use TaskCreate to track exploration based on the file-finder report. Create
-one task per file category (core, supporting, test, config) and update via
-TaskUpdate as you examine each.
+Use TaskCreate to track exploration based on the file-finder report. Create one task per file category (core,
+supporting, test, config) and update via TaskUpdate as you examine each.
 
 **Examine core files first:**
 
@@ -113,28 +110,22 @@ TaskUpdate as you examine each.
 
 ### Deepen Understanding with LSP
 
-After identifying relevant files, use the LSP tool for deeper structural
-understanding:
+After identifying relevant files, use the LSP tool for deeper structural understanding:
 
 - `goToDefinition` — trace how functions and types connect across files
 - `findReferences` — understand where symbols are used throughout the codebase
-- `documentSymbol` — get a structured overview of a file's exports and
-  structure
-- `incomingCalls` / `outgoingCalls` — map call hierarchies to understand
-  data flow
+- `documentSymbol` — get a structured overview of a file's exports and structure
+- `incomingCalls` / `outgoingCalls` — map call hierarchies to understand data flow
 
 > If LSP is unavailable (no configured language server), skip this step
 > and rely on Grep-based content search.
 
 ### Research External Context (When Needed)
 
-For single-page lookups (e.g., checking a library's API docs or a specific
-GitHub issue), use WebFetch directly instead of spawning a web-researcher
-agent. Reserve the web-researcher for multi-source research requiring
-synthesis.
+For single-page lookups (e.g., checking a library's API docs or a specific GitHub issue), use WebFetch directly instead
+of spawning a web-researcher agent. Reserve the web-researcher for multi-source research requiring synthesis.
 
-If codebase exploration reveals external factors that need broader
-investigation, use the **web-researcher** agent:
+If codebase exploration reveals external factors that need broader investigation, use the **web-researcher** agent:
 
 ```text
 Task tool with subagent_type: "web-researcher"
@@ -148,8 +139,7 @@ Use web research for:
 - Investigating third-party service documentation
 - Researching security implications or known issues
 
-The web-researcher returns findings with source citations and confidence
-assessments.
+The web-researcher returns findings with source citations and confidence assessments.
 
 **Present findings incrementally:**
 

@@ -2,7 +2,8 @@
 
 ## Problem Statement
 
-Compare the rpikit git-worktrees skill with the superpowers using-git-worktrees skill to identify gaps and combine the best elements of both into a superior rpikit version.
+Compare the rpikit git-worktrees skill with the superpowers using-git-worktrees skill to identify gaps and combine the
+best elements of both into a superior rpikit version.
 
 ## Requirements
 
@@ -77,7 +78,8 @@ superpowers says:
 - `~/.config/superpowers/worktrees/<project-name>/` (global location)
 ```
 
-**Impact**: The superpowers path integrates with the broader superpowers ecosystem. rpikit should have its own consistent path, perhaps `~/.config/rpikit/worktrees/<project-name>/`.
+**Impact**: The superpowers path integrates with the broader superpowers ecosystem. rpikit should have its own
+consistent path, perhaps `~/.config/rpikit/worktrees/<project-name>/`.
 
 ##### Gap 3: Missing quick reference decision table
 
@@ -145,11 +147,14 @@ superpowers shows actual session flow with user/assistant interaction.
 | **Cleanup phase** | ✓ finishing-work handles cleanup | ✓ finishing-a-development-branch handles cleanup |
 | **Brainstorming** | ✗ Not integrated | ✓ Phase 4 calls worktrees |
 
-**Gap**: rpikit brainstorming skill does not offer worktree creation. superpowers brainstorming Phase 4 explicitly calls using-git-worktrees.
+**Gap**: rpikit brainstorming skill does not offer worktree creation. superpowers brainstorming Phase 4 explicitly
+calls using-git-worktrees.
 
 ### External Research
 
-The superpowers plugin is maintained by Jesse Vincent (@obra) and represents a well-established Claude Code plugin with mature patterns. The explicit "Called by" / "Pairs with" format appears to be a deliberate design pattern for skill discoverability.
+The superpowers plugin is maintained by Jesse Vincent (@obra) and represents a well-established Claude Code plugin
+with mature patterns. The explicit "Called by" / "Pairs with" format appears to be a deliberate design pattern for
+skill discoverability.
 
 ## Open Questions
 

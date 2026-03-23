@@ -4,7 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-rpikit is a Claude Code plugin implementing the **Research-Plan-Implement (RPI)** framework. It enforces disciplined software engineering through structured workflows with human approval gates between phases.
+rpikit is a Claude Code plugin implementing the **Research-Plan-Implement (RPI)** framework. It enforces disciplined
+software engineering through structured workflows with human approval gates between phases.
 
 ## Architecture
 
@@ -25,17 +26,24 @@ agents/                  # Autonomous agents for specialized tasks
 ```
 
 **Workflow:** `/rpikit:research-plan-implement` runs the full pipeline, or use individual skills:
-`/rpikit:researching-codebase` → (approval) → `/rpikit:writing-plans` → (approval) → `/rpikit:implementing-plans`
+`/rpikit:researching-codebase` → (approval) → `/rpikit:writing-plans` → (approval) →
+`/rpikit:implementing-plans`
 
 ## Changelog Rules
 
-CHANGELOG.md tracks **plugin user-facing changes only** — features, skills, agents, commands, and behaviors that ship to users who install rpikit. Never log local development tooling, CI config, or repo-internal conveniences (e.g., local slash commands, dev scripts) as changelog entries.
+CHANGELOG.md tracks **plugin user-facing changes only** — features, skills, agents, commands, and behaviors that ship
+to users who install rpikit. Never log local development tooling, CI config, or repo-internal conveniences (e.g., local
+slash commands, dev scripts) as changelog entries.
 
 ## Documentation Requirements
 
-**README.md is updated only during release prep — never between releases.** The README is the primary user-facing documentation and must match what marketplace users have installed. After changes that affect user-visible behavior, update CHANGELOG.md's `[Unreleased]` section instead. At release time, batch-update the README to reflect all accumulated changes.
+**README.md is updated only during release prep — never between releases.** The README is the primary user-facing
+documentation and must match what marketplace users have installed. After changes that affect user-visible behavior,
+update CHANGELOG.md's `[Unreleased]` section instead. At release time, batch-update the README to reflect all
+accumulated changes.
 
-Do NOT document implementation details (specific agents, internal patterns) in README — these change frequently and create maintenance burden.
+Do NOT document implementation details (specific agents, internal patterns) in README — these change frequently and
+create maintenance burden.
 
 ## Key Patterns
 
