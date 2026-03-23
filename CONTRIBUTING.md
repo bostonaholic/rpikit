@@ -64,16 +64,14 @@ Follow the RPI methodology that this plugin implements:
 2. **Plan before coding** - Create an implementation plan for significant changes
 3. **Implement with discipline** - Follow TDD and quality gates
 
-### Documentation Requirements
+### Documentation
 
-**Always update README.md** when making changes that affect:
+**README.md is updated only during release prep** — never between releases. After changes that affect
+user-visible behavior, update CHANGELOG.md's `[Unreleased]` section instead. At release time,
+batch-update the README to reflect all accumulated changes.
 
-- Commands (adding, removing, renaming)
-- Workflow or phase structure
-- Output artifact locations or formats
-- Installation instructions
-
-This is a critical requirement per CLAUDE.md.
+**AGENTS.md** contains project policies (git workflow, changelog rules, documentation requirements).
+Update it when policies change — see [AGENTS.md](AGENTS.md).
 
 ### Testing
 
