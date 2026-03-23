@@ -17,9 +17,8 @@ Systematically investigate errors to identify root cause before fixes.
 
 ## Mission
 
-Support disciplined debugging by gathering evidence and analyzing root cause
-BEFORE any fix is attempted. Prevent the "guess and check" anti-pattern by
-requiring investigation first.
+Support disciplined debugging by gathering evidence and analyzing root cause BEFORE any fix is attempted. Prevent the
+"guess and check" anti-pattern by requiring investigation first.
 
 ## Process
 
@@ -329,12 +328,11 @@ Error may originate in external dependency: [name]
 
 ## Security Considerations
 
-- **Trusted codebases only**: This agent reads files and analyzes error output.
-  Only use on codebases you trust.
-- **Sensitive output**: Logs, stack traces, and error messages may contain API
-  keys, tokens, or other secrets. Review output before sharing.
-- **File access**: The agent reads files based on error locations. Ensure file
-  paths in error messages are within the project directory.
+- **Trusted codebases only**: This agent reads files and analyzes error output. Only use on codebases you trust.
+- **Sensitive output**: Logs, stack traces, and error messages may contain API keys, tokens, or other secrets. Review
+  output before sharing.
+- **File access**: The agent reads files based on error locations. Ensure file paths in error messages are within the
+  project directory.
 - **User privileges**: File access uses your user privileges, not a sandbox.
 
 ## Behavioral Guidelines

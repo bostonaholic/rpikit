@@ -12,17 +12,15 @@ Verify feedback before implementing. No performative agreement.
 
 ## Purpose
 
-Code review feedback requires rigorous evaluation, not automatic acceptance.
-Reviewers may lack context, make incorrect suggestions, or propose changes
-that conflict with project requirements. This skill enforces verification
-before implementation.
+Code review feedback requires rigorous evaluation, not automatic acceptance. Reviewers may lack context, make incorrect
+suggestions, or propose changes that conflict with project requirements. This skill enforces verification before
+implementation.
 
 ## The Iron Law
 
 **Evaluate suggestions rigorously before implementing.**
 
-Not all feedback is correct. Not all suggestions improve the code. Your job
-is to verify, not to agree performatively.
+Not all feedback is correct. Not all suggestions improve the code. Your job is to verify, not to agree performatively.
 
 ## Prohibited Responses
 
@@ -34,8 +32,7 @@ Never respond with:
 - "Of course, I should have seen that!"
 - Any excessive praise or validation
 
-These are performative, not technical. They waste time and signal you're not
-actually evaluating the feedback.
+These are performative, not technical. They waste time and signal you're not actually evaluating the feedback.
 
 ## The Response Pattern
 
@@ -143,8 +140,8 @@ Ask for clarification:
 Are you suggesting [interpretation A] or [interpretation B]?"
 ```
 
-**Never guess** at unclear feedback. Implementation based on misunderstanding
-wastes time and may create cascading errors.
+**Never guess** at unclear feedback. Implementation based on misunderstanding wastes time and may create cascading
+errors.
 
 ## Implementation Sequence
 

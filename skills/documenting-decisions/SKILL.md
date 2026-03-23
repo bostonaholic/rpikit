@@ -13,11 +13,9 @@ Capture architectural decisions as Architecture Decision Records (ADRs).
 
 ## Purpose
 
-Design decisions made during brainstorming and planning need a standardized,
-discoverable format for long-term reference. ADRs record what was decided, why,
-and what alternatives were considered. This skill reads design documents and
-produces structured ADR files that provide historical context for future
-engineers.
+Design decisions made during brainstorming and planning need a standardized, discoverable format for long-term
+reference. ADRs record what was decided, why, and what alternatives were considered. This skill reads design documents
+and produces structured ADR files that provide historical context for future engineers.
 
 ## When to Use
 
@@ -208,8 +206,7 @@ Proposed ──► Accepted ──► Deprecated
 - **Deprecated**: No longer recommended, kept for historical context
 - **Superseded**: Replaced by a newer decision (link to replacement)
 
-When superseding a decision, the new ADR should reference the old one
-in its Context section.
+When superseding a decision, the new ADR should reference the old one in its Context section.
 
 ## Integration with RPI Workflow
 
@@ -219,9 +216,8 @@ This skill fits into the workflow after planning or design work:
 /rpikit:brainstorming ──► /rpikit:writing-plans ──► /rpikit:documenting-decisions ──► docs/decisions/NNNN-*.md
 ```
 
-Design documents (`*-design.md`) and planning documents (`*-plan.md`) are the
-primary inputs. Record decisions after the design and planning phases, when the
-rationale and alternatives are fully understood.
+Design documents (`*-design.md`) and planning documents (`*-plan.md`) are the primary inputs. Record decisions after
+the design and planning phases, when the rationale and alternatives are fully understood.
 
 ## Anti-Patterns
 

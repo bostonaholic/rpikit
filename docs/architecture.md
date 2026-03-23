@@ -1,10 +1,8 @@
 # Architecture
 
-rpikit is a Claude Code plugin built on a layered component model. Skills are
-user-facing entry points that auto-register as slash commands from
-`skills/*/SKILL.md`. Skills contain methodology instructions and orchestrate
-agents. Agents are autonomous task performers. Hooks enforce quality
-automatically.
+rpikit is a Claude Code plugin built on a layered component model. Skills are user-facing entry points that
+auto-register as slash commands from `skills/*/SKILL.md`. Skills contain methodology instructions and orchestrate
+agents. Agents are autonomous task performers. Hooks enforce quality automatically.
 
 ## Component Types
 
@@ -16,8 +14,7 @@ automatically.
 
 ## Skills
 
-Skills are self-contained methodology documents that define how to perform
-each activity and which agents to use.
+Skills are self-contained methodology documents that define how to perform each activity and which agents to use.
 
 ### Core RPI Workflow
 
@@ -57,8 +54,8 @@ each activity and which agents to use.
 
 ## Agents
 
-Agents are specialized task performers invoked by skills via the Task tool.
-Each has a model assignment and color for terminal display.
+Agents are specialized task performers invoked by skills via the Task tool. Each has a model assignment and color for
+terminal display.
 
 | Agent             | Model  | Color   | Purpose                               |
 | ----------------- | ------ | ------- | ------------------------------------- |
@@ -70,9 +67,8 @@ Each has a model assignment and color for terminal display.
 | debugger          | sonnet | orange  | Root cause investigation              |
 | verifier          | haiku  | yellow  | Verification checks before completion |
 
-Model selection follows a pattern: **haiku** for fast, mechanical tasks
-(file search, test running, verification) and **sonnet** for tasks requiring
-judgment (research, review, debugging).
+Model selection follows a pattern: **haiku** for fast, mechanical tasks (file search, test running, verification) and
+**sonnet** for tasks requiring judgment (research, review, debugging).
 
 ## How Components Connect
 
@@ -85,8 +81,8 @@ graph TD
 
 ### RPI Pipeline Flow
 
-The `/rpikit:research-plan-implement` skill orchestrates the full workflow in a
-single session using subagents. The orchestrator spawns subagents for each phase.
+The `/rpikit:research-plan-implement` skill orchestrates the full workflow in a single session using subagents. The
+orchestrator spawns subagents for each phase.
 
 ```mermaid
 graph TD
@@ -153,20 +149,15 @@ graph LR
 
 ## Infrastructure
 
-**CI**: `.github/workflows/ci.yml` provides automated validation on push and
-pull requests.
+**CI**: `.github/workflows/ci.yml` provides automated validation on push and pull requests.
 
 ## Design Principles
 
-1. **Skills are entry points** - Skills auto-register as slash commands from
-   `skills/*/SKILL.md`. No separate command wrappers needed.
-2. **Skills own methodology** - All decision logic and instructions live in
-   skills, not agents.
-3. **Agents are reusable** - file-finder and web-researcher are used across
-   multiple skills rather than duplicated.
-4. **Model selection by task type** - haiku for mechanical tasks, sonnet for
-   judgment tasks.
-5. **Output to docs/** - Research and plans written to `docs/plans/`,
-   decisions written to `docs/decisions/` as numbered ADRs.
-6. **Human approval gates** - Users review output between each RPI phase
-   before the next phase begins.
+1. **Skills are entry points** - Skills auto-register as slash commands from `skills/*/SKILL.md`. No separate command
+   wrappers needed.
+2. **Skills own methodology** - All decision logic and instructions live in skills, not agents.
+3. **Agents are reusable** - file-finder and web-researcher are used across multiple skills rather than duplicated.
+4. **Model selection by task type** - haiku for mechanical tasks, sonnet for judgment tasks.
+5. **Output to docs/** - Research and plans written to `docs/plans/`, decisions written to `docs/decisions/` as numbered
+   ADRs.
+6. **Human approval gates** - Users review output between each RPI phase before the next phase begins.

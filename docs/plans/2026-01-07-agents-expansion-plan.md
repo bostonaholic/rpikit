@@ -2,12 +2,15 @@
 
 ## Summary
 
-Add 3 new agents to support the recently added skills: test-runner (supports TDD), verifier (supports verification-before-completion), and debugger (supports systematic-debugging). Each agent will follow existing patterns with YAML frontmatter, clear mission, structured methodology, and defined output formats.
+Add 3 new agents to support the recently added skills: test-runner (supports TDD), verifier (supports
+verification-before-completion), and debugger (supports systematic-debugging). Each agent will follow existing patterns
+with YAML frontmatter, clear mission, structured methodology, and defined output formats.
 
 ## Stakes Classification
 
 **Level**: Medium
-**Rationale**: Additive-only changes to agents/ directory. No modification to existing agents or skills. Easy rollback by deleting agent files. Testable via Task tool invocation.
+**Rationale**: Additive-only changes to agents/ directory. No modification to existing agents or skills. Easy rollback
+by deleting agent files. Testable via Task tool invocation.
 
 ## Context
 

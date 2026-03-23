@@ -12,16 +12,15 @@ Evidence before claims, always. No completion claims without fresh verification.
 
 ## Purpose
 
-Claiming work is done without verification breaks trust and wastes time. This
-skill enforces running verification commands and confirming output before any
-success claim. "It should work" is not verification.
+Claiming work is done without verification breaks trust and wastes time. This skill enforces running verification
+commands and confirming output before any success claim. "It should work" is not verification.
 
 ## The Iron Law
 
 **NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE.**
 
-Every claim must be backed by evidence you just observed. Not evidence from
-earlier. Not evidence you expect. Evidence you just saw.
+Every claim must be backed by evidence you just observed. Not evidence from earlier. Not evidence you expect. Evidence
+you just saw.
 
 ## The Five-Step Gate
 

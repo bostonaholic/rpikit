@@ -1,14 +1,13 @@
 # rpikit
 
-A plugin implementing the **Research-Plan-Implement (RPI)** framework for
-disciplined software engineering.
+A plugin implementing the **Research-Plan-Implement (RPI)** framework for disciplined software engineering.
 
 ## Philosophy
 
 > Understand before acting. Plan before coding. Implement with discipline.
 
-This plugin enforces a structured workflow that prevents premature
-implementation and ensures human oversight at critical decision points.
+This plugin enforces a structured workflow that prevents premature implementation and ensures human oversight at
+critical decision points.
 
 ## Installation
 
@@ -49,9 +48,8 @@ flowchart LR
     implement --> done((done))
 ```
 
-The `/rpikit:research-plan-implement` skill runs the full pipeline in a single
-session using parallel subagents, with approval gates between phases.
-Implementation runs in an isolated worktree to protect the main branch.
+The `/rpikit:research-plan-implement` skill runs the full pipeline in a single session using parallel subagents, with
+approval gates between phases. Implementation runs in an isolated worktree to protect the main branch.
 
 ### Individual Skills
 
@@ -64,14 +62,12 @@ flowchart LR
     implement -->|approval| done((done))
 ```
 
-For more control, run each phase as a separate skill. Each phase produces
-artifacts in `docs/plans/` and requires human approval before transitioning
-to the next phase.
+For more control, run each phase as a separate skill. Each phase produces artifacts in `docs/plans/` and requires human
+approval before transitioning to the next phase.
 
 ### Brainstorming vs. Research
 
-Both commands start by asking clarifying questions before acting. The key
-difference is their purpose:
+Both commands start by asking clarifying questions before acting. The key difference is their purpose:
 
 | Brainstorming | Research |
 |---------------|----------|
@@ -114,8 +110,8 @@ Run the entire research-plan-implement workflow in a single session:
 /rpikit:research-plan-implement Add OAuth login with Google and GitHub providers
 ```
 
-This spawns parallel research subagents, synthesizes findings, creates a plan,
-and implements it — with approval gates between each phase.
+This spawns parallel research subagents, synthesizes findings, creates a plan, and implements it — with approval gates
+between each phase.
 
 ### Step-by-Step Workflow
 
@@ -201,22 +197,17 @@ The plugin includes methodology skills that guide disciplined development:
 
 ## Architecture
 
-For a detailed overview of how skills, agents, and hooks connect, see
-[Architecture](docs/architecture.md).
+For a detailed overview of how skills, agents, and hooks connect, see [Architecture](docs/architecture.md).
 
 ## Inspired By
 
-- [No Vibes Allowed](https://www.youtube.com/watch?v=rmvDxxNubIg) - Dex
-  Horthy's talk on context engineering and the RPI workflow for solving hard
-  problems in complex codebases
+- [No Vibes Allowed](https://www.youtube.com/watch?v=rmvDxxNubIg) - Dex Horthy's talk on context engineering and the RPI
+  workflow for solving hard problems in complex codebases
 - [superpowers](https://github.com/obra/superpowers) - Composable skills
-- [BMAD Method](https://github.com/bmad-code-org/BMAD-METHOD) - Scale-adaptive
-  planning
+- [BMAD Method](https://github.com/bmad-code-org/BMAD-METHOD) - Scale-adaptive planning
 - [SuperClaude Framework](https://github.com/SuperClaude-Org/SuperClaude_Framework) - Behavioral modes and deep research
-- [RPI Framework](https://github.com/acampb/claude-rpi-framework) - RPI
-  structure
-- [HumanLayer](https://github.com/humanlayer/humanlayer) - Human-in-the-loop
-  approval patterns
+- [RPI Framework](https://github.com/acampb/claude-rpi-framework) - RPI structure
+- [HumanLayer](https://github.com/humanlayer/humanlayer) - Human-in-the-loop approval patterns
 
 ## License
 

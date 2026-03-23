@@ -2,7 +2,10 @@
 
 ## Summary
 
-Enhance the rpikit git-worktrees skill by incorporating the best elements from the superpowers using-git-worktrees skill while preserving rpikit's existing strengths. This includes adding technical precision (exact commands), UX improvements (quick reference tables, example workflow), and better documentation structure (integration docs, red flags format).
+Enhance the rpikit git-worktrees skill by incorporating the best elements from the superpowers using-git-worktrees
+skill while preserving rpikit's existing strengths. This includes adding technical precision (exact commands), UX
+improvements (quick reference tables, example workflow), and better documentation structure (integration docs, red
+flags format).
 
 ## Stakes Classification
 
@@ -17,7 +20,8 @@ Enhance the rpikit git-worktrees skill by incorporating the best elements from t
 
 ## Context
 
-**Research**: [docs/plans/2026-01-13-git-worktrees-skill-comparison-research.md](./2026-01-13-git-worktrees-skill-comparison-research.md)
+**Research**:
+[docs/plans/2026-01-13-git-worktrees-skill-comparison-research.md](./2026-01-13-git-worktrees-skill-comparison-research.md)
 **Affected Areas**: `skills/git-worktrees/SKILL.md`
 
 ## Success Criteria
@@ -28,7 +32,8 @@ Enhance the rpikit git-worktrees skill by incorporating the best elements from t
 - [ ] Anti-patterns reformatted as "Never Do These" red flags
 - [ ] Integration section with "Called by" / "Pairs with" added
 - [ ] Example workflow section added
-- [ ] All existing rpikit strengths preserved (When to Use, Multi-language, Worktree Management, External vs Local, Cleanup Checklist, Commands Reference)
+- [ ] All existing rpikit strengths preserved (When to Use, Multi-language, Worktree Management, External vs Local,
+      Cleanup Checklist, Commands Reference)
 
 ## Implementation Steps
 
@@ -82,7 +87,8 @@ Enhance the rpikit git-worktrees skill by incorporating the best elements from t
 
 - **Files**: `skills/git-worktrees/SKILL.md` (new section after "Safety Verification")
 - **Action**: Add quick reference table for common situations
-- **Content**: Table with columns Situation and Action, covering: existing directories, neither exists, not ignored, tests fail
+- **Content**: Table with columns Situation and Action, covering: existing directories, neither exists, not ignored,
+  tests fail
 - **Verify**: New "Quick Reference" section exists with table
 - **Complexity**: Small
 
@@ -91,7 +97,8 @@ Enhance the rpikit git-worktrees skill by incorporating the best elements from t
 - **Files**: `skills/git-worktrees/SKILL.md:273-298`
 - **Action**: Replace current format with scannable red flags list
 - **Before**: Current "Wrong/Right" prose format
-- **After**: Bullet list of 8 items covering: unverified ignore, skipping deps, skipping tests, failing tests, ambiguous location, skipping CLAUDE.md, stale worktrees, overuse
+- **After**: Bullet list of 8 items covering: unverified ignore, skipping deps, skipping tests, failing tests,
+  ambiguous location, skipping CLAUDE.md, stale worktrees, overuse
 - **Verify**: Section renamed to "Never Do These" with bullet list format
 - **Complexity**: Small
 
@@ -105,7 +112,8 @@ Enhance the rpikit git-worktrees skill by incorporating the best elements from t
 #### Step 2.4: Add Example Workflow section
 
 - **Files**: `skills/git-worktrees/SKILL.md` (new section, place near end before Commands Reference)
-- **Action**: Add concrete example showing expected session flow with User/Assistant interaction demonstrating: directory check, ignore verification, worktree creation, dependency setup, baseline tests, ready state
+- **Action**: Add concrete example showing expected session flow with User/Assistant interaction demonstrating:
+  directory check, ignore verification, worktree creation, dependency setup, baseline tests, ready state
 - **Verify**: New "Example Workflow" section exists with session example
 - **Complexity**: Small
 
@@ -132,7 +140,8 @@ Enhance the rpikit git-worktrees skill by incorporating the best elements from t
 
 ## Rollback Strategy
 
-Git revert a single commit - all changes are in one file (`skills/git-worktrees/SKILL.md`). Previous version easily recoverable.
+Git revert a single commit - all changes are in one file (`skills/git-worktrees/SKILL.md`). Previous version easily
+recoverable.
 
 ## Status
 

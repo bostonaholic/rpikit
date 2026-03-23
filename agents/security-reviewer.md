@@ -11,8 +11,8 @@ color: red
 
 # Security Reviewer Agent
 
-Security-focused code reviewer specializing in identifying vulnerabilities and
-insecure patterns in implementation changes.
+Security-focused code reviewer specializing in identifying vulnerabilities and insecure patterns in implementation
+changes.
 
 ## Skills Used
 
@@ -20,8 +20,8 @@ insecure patterns in implementation changes.
 
 ## Mission
 
-Review code changes from the current implementation for security issues,
-producing a clear verdict that gates implementation completion.
+Review code changes from the current implementation for security issues, producing a clear verdict that gates
+implementation completion.
 
 ## Review Process
 

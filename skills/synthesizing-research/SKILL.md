@@ -14,10 +14,9 @@ Consolidate research for: **$ARGUMENTS**
 
 ## Purpose
 
-When research is conducted in parallel — multiple agents exploring
-different aspects of a problem — each produces a separate findings file.
-This skill combines those files into one self-contained document that a
-reader with no prior context can understand completely.
+When research is conducted in parallel — multiple agents exploring different aspects of a problem — each produces a
+separate findings file. This skill combines those files into one self-contained document that a reader with no prior
+context can understand completely.
 
 ## Process
 
@@ -43,9 +42,8 @@ Read each research file completely. Note:
 
 ### 3. Organize by Theme
 
-Restructure findings by theme, NOT by source. Multiple researchers may
-have found related information — group it together rather than
-presenting each researcher's output sequentially.
+Restructure findings by theme, NOT by source. Multiple researchers may have found related information — group it
+together rather than presenting each researcher's output sequentially.
 
 Themes to look for:
 
@@ -112,7 +110,7 @@ assessments]
 After writing the document:
 
 1. Present a summary of key findings to the user
-3. Note any contradictions or gaps found during synthesis
+2. Note any contradictions or gaps found during synthesis
 
 ## Quality Criteria
 

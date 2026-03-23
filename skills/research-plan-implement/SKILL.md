@@ -1,29 +1,29 @@
 ---
 name: research-plan-implement
-description: End-to-end pipeline that orchestrates the full RPI workflow in a single session using parallel subagents. Spawns research subagents, synthesizes findings into a plan, and executes implementation — each subagent gets its own context window. Use when implementing a feature or change that requires research, planning, and execution rather than running each phase manually across separate sessions.
+description: >
+  End-to-end pipeline that orchestrates the full RPI workflow in a single session using parallel subagents. Spawns
+  research subagents, synthesizes findings into a plan, and executes implementation — each subagent gets its own
+  context window. Use when implementing a feature or change that requires research, planning, and execution rather
+  than running each phase manually across separate sessions.
 ---
 
 # Research-Plan-Implement Pipeline
 
-Orchestrate the full Research → Plan → Implement workflow in a single
-session using subagents. Each phase runs as a separate subagent with
-its own context window, coordinated by the orchestrator that handles
-approval gates and phase transitions.
+Orchestrate the full Research → Plan → Implement workflow in a single session using subagents. Each phase runs as a
+separate subagent with its own context window, coordinated by the orchestrator that handles approval gates and phase
+transitions.
 
 ## Purpose
 
-Running RPI phases across separate sessions loses context and requires
-manual bridging. This skill collapses the three phases into one
-orchestrated pipeline using subagents via the Agent tool. Each subagent
-gets maximum context for its work, with file artifacts on disk as the
-communication channel between phases.
+Running RPI phases across separate sessions loses context and requires manual bridging. This skill collapses the three
+phases into one orchestrated pipeline using subagents via the Agent tool. Each subagent gets maximum context for its
+work, with file artifacts on disk as the communication channel between phases.
 
 ## Architecture
 
-The orchestrator (you) stays thin. It spawns subagents for each phase
-via the Agent tool, reads their output artifacts, presents summaries
-to the user, and handles approval gates. The orchestrator does NOT do
-research, planning, or implementation itself.
+The orchestrator (you) stays thin. It spawns subagents for each phase via the Agent tool, reads their output artifacts,
+presents summaries to the user, and handles approval gates. The orchestrator does NOT do research, planning, or
+implementation itself.
 
 ```text
 ORCHESTRATOR (main context — stays thin)
@@ -47,9 +47,8 @@ ORCHESTRATOR (main context — stays thin)
         └── Output: code changes, test results
 ```
 
-**Key principle**: Subagents communicate through files, not conversation
-context. Each subagent reads the artifacts from prior phases and writes
-its own artifacts for the next phase.
+**Key principle**: Subagents communicate through files, not conversation context. Each subagent reads the artifacts from
+prior phases and writes its own artifacts for the next phase.
 
 ## When to Use
 
@@ -71,8 +70,7 @@ Do NOT use when:
 
 ### Step 1: Define Research Questions
 
-Before spawning subagents, break the feature into independent research
-questions. Typically 2-3 questions covering:
+Before spawning subagents, break the feature into independent research questions. Typically 2-3 questions covering:
 
 - **Codebase context**: How does the relevant code work today?
 - **External context**: What APIs, libraries, or patterns are involved?
@@ -80,10 +78,9 @@ questions. Typically 2-3 questions covering:
 
 ### Step 2: Spawn Research Subagents
 
-Spawn subagents for each research question using the Agent tool. Each
-subagent gets its own context window. Use existing skills to ensure
-consistent methodology. Launch independent subagents in parallel by
-including multiple Agent tool calls in a single message.
+Spawn subagents for each research question using the Agent tool. Each subagent gets its own context window. Use
+existing skills to ensure consistent methodology. Launch independent subagents in parallel by including multiple Agent
+tool calls in a single message.
 
 **Codebase researcher:**
 
@@ -136,8 +133,7 @@ Guidelines:
 
 ### Step 3: Synthesize Research
 
-After research subagents complete, spawn a synthesis subagent that
-consolidates all findings using the synthesis skill.
+After research subagents complete, spawn a synthesis subagent that consolidates all findings using the synthesis skill.
 
 ```text
 Spawn a subagent with the Agent tool:
@@ -157,8 +153,7 @@ Spawn a subagent with the Agent tool:
 
 ### Step 4: Present Summary and Gate
 
-Read the research document and present a brief summary to the user.
-Include the subagent results table:
+Read the research document and present a brief summary to the user. Include the subagent results table:
 
 | Agent | Task | Status | Key Findings |
 | ----- | ---- | ------ | ------------ |
@@ -182,9 +177,8 @@ Use AskUserQuestion:
 
 ## Phase 2: Plan (Dedicated Subagent)
 
-Spawn a planning subagent that reads the research document and creates
-the implementation plan. The subagent gets a fresh context window with
-only the research file as input.
+Spawn a planning subagent that reads the research document and creates the implementation plan. The subagent gets a
+fresh context window with only the research file as input.
 
 ```text
 Spawn a subagent with the Agent tool:
@@ -206,8 +200,7 @@ source of truth for requirements and constraints."
 
 ### Present Plan and Gate
 
-When the planning subagent completes, read the plan document and present
-a summary to the user:
+When the planning subagent completes, read the plan document and present a summary to the user:
 
 ```text
 Plan created for '<topic>'.
@@ -225,14 +218,12 @@ Use AskUserQuestion:
 - "Request changes" — describe what to modify, spawn new planner
 - "Stop here" — end with plan document
 
-**Do not skip this approval gate.** The user must explicitly approve
-the plan before implementation begins.
+**Do not skip this approval gate.** The user must explicitly approve the plan before implementation begins.
 
 ## Phase 3: Implement (Dedicated Subagent)
 
-After plan approval, spawn an implementation subagent that reads the
-plan and executes it. The subagent gets a fresh context window with
-only the plan file as input.
+After plan approval, spawn an implementation subagent that reads the plan and executes it. The subagent gets a fresh
+context window with only the plan file as input.
 
 ```text
 Spawn a subagent with the Agent tool:
@@ -275,8 +266,7 @@ Tests: [pass/fail]
 Reviews: [code review status, security review status]
 ```
 
-If the subagent reported deviations or blockers, present them and ask
-the user how to proceed.
+If the subagent reported deviations or blockers, present them and ask the user how to proceed.
 
 ## Customizing the Pipeline
 
@@ -312,13 +302,10 @@ Then resume the pipeline at Phase 1 with clarified requirements.
 
 The orchestrator MUST stay thin:
 
-- **Do**: Spawn subagents, read artifacts, present summaries, gate
-  approvals
-- **Do NOT**: Research code, write plans, implement changes, or read
-  source files beyond the phase artifacts
+- **Do**: Spawn subagents, read artifacts, present summaries, gate approvals
+- **Do NOT**: Research code, write plans, implement changes, or read source files beyond the phase artifacts
 
-This ensures the orchestrator's context remains small, leaving maximum
-context for each subagent.
+This ensures the orchestrator's context remains small, leaving maximum context for each subagent.
 
 ## Model Selection
 

@@ -14,10 +14,9 @@ Execute the implementation plan for: **$ARGUMENTS**
 
 ## Purpose
 
-Implementation executes an approved plan with discipline and verification.
-The goal is not just working code, but verified, documented progress that
-matches the plan. Implementation follows the plan strictly, verifying each
-step before proceeding.
+Implementation executes an approved plan with discipline and verification. The goal is not just working code, but
+verified, documented progress that matches the plan. Implementation follows the plan strictly, verifying each step
+before proceeding.
 
 ## Process
 

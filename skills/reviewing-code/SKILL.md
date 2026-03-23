@@ -9,14 +9,13 @@ description: >
 
 # Code Review Methodology
 
-Deep code reviews that protect architecture, catch correctness issues, and
-provide mentoring-quality feedback using Conventional Comments.
+Deep code reviews that protect architecture, catch correctness issues, and provide mentoring-quality feedback using
+Conventional Comments.
 
 ## Purpose
 
-This skill provides methodology for reviewing code changes introduced during
-implementation. Unlike full codebase audits, this focuses on the delta - what
-was added or modified - to catch quality issues before they're committed.
+This skill provides methodology for reviewing code changes introduced during implementation. Unlike full codebase
+audits, this focuses on the delta - what was added or modified - to catch quality issues before they're committed.
 
 ## Review Workflow
 

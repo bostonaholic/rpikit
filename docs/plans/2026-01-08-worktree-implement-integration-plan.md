@@ -2,16 +2,20 @@
 
 ## Summary
 
-Add worktree creation offer to the implement-methodology skill. After stakes assessment but before any code changes, the skill will detect if already in a worktree (skip prompt if so) and offer to create one with recommendation strength varying by stakes level. High-stakes work will strongly recommend worktree usage.
+Add worktree creation offer to the implement-methodology skill. After stakes assessment but before any code changes,
+the skill will detect if already in a worktree (skip prompt if so) and offer to create one with recommendation
+strength varying by stakes level. High-stakes work will strongly recommend worktree usage.
 
 ## Stakes Classification
 
 **Level**: Medium
-**Rationale**: Changes affect one skill file (implement-methodology), with clear verification through manual testing. Moderate impact on workflow but easy to rollback by reverting the skill file.
+**Rationale**: Changes affect one skill file (implement-methodology), with clear verification through manual testing.
+Moderate impact on workflow but easy to rollback by reverting the skill file.
 
 ## Context
 
-**Research**: [2026-01-08-worktree-implement-integration-research.md](2026-01-08-worktree-implement-integration-research.md)
+**Research**:
+[2026-01-08-worktree-implement-integration-research.md](2026-01-08-worktree-implement-integration-research.md)
 **Affected Areas**: `skills/implement-methodology/SKILL.md`
 
 ## Success Criteria
@@ -39,7 +43,8 @@ Add worktree creation offer to the implement-methodology skill. After stakes ass
 #### Step 1.2: Add worktree detection instructions
 
 - **Files**: `skills/implement-methodology/SKILL.md` (new section)
-- **Action**: Add instructions to check if currently in a worktree using `git rev-parse --show-toplevel` compared to main repo, or check `git worktree list`
+- **Action**: Add instructions to check if currently in a worktree using `git rev-parse --show-toplevel` compared to
+  main repo, or check `git worktree list`
 - **Verify**: Section includes detection method
 - **Complexity**: Small
 
@@ -57,7 +62,8 @@ Add worktree creation offer to the implement-methodology skill. After stakes ass
 #### Step 1.4: Add worktree skill invocation
 
 - **Files**: `skills/implement-methodology/SKILL.md` (new section)
-- **Action**: Add instructions to invoke git-worktrees skill if user chooses worktree option, then continue implementation in new worktree directory
+- **Action**: Add instructions to invoke git-worktrees skill if user chooses worktree option, then continue
+  implementation in new worktree directory
 - **Verify**: Skill invocation syntax present
 - **Complexity**: Small
 
@@ -75,7 +81,8 @@ Add worktree creation offer to the implement-methodology skill. After stakes ass
 #### Step 3.1: Manual verification
 
 - **Files**: N/A
-- **Action**: Read through updated skill to verify logical flow from stakes assessment → worktree offer → progress tracking
+- **Action**: Read through updated skill to verify logical flow from stakes assessment → worktree offer → progress
+  tracking
 - **Verify**: Flow is coherent and matches intended behavior
 - **Complexity**: Small
 
@@ -96,7 +103,8 @@ Add worktree creation offer to the implement-methodology skill. After stakes ass
 
 ## Rollback Strategy
 
-Revert `skills/implement-methodology/SKILL.md` to previous version using `git checkout HEAD~1 -- skills/implement-methodology/SKILL.md`.
+Revert `skills/implement-methodology/SKILL.md` to previous version using
+`git checkout HEAD~1 -- skills/implement-methodology/SKILL.md`.
 
 ## Status
 

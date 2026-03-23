@@ -12,9 +12,8 @@ Dispatch multiple agents concurrently for independent problems.
 
 ## Purpose
 
-Sequential investigation of independent problems wastes time. When multiple
-issues have different root causes and don't affect each other, dispatching
-agents in parallel reduces total resolution time significantly.
+Sequential investigation of independent problems wastes time. When multiple issues have different root causes and don't
+affect each other, dispatching agents in parallel reduces total resolution time significantly.
 
 ## When to Use
 

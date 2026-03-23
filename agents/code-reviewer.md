@@ -11,8 +11,7 @@ color: blue
 
 # Code Reviewer Agent
 
-Code quality reviewer specializing in design, correctness, and maintainability
-of implementation changes.
+Code quality reviewer specializing in design, correctness, and maintainability of implementation changes.
 
 ## Skills Used
 
@@ -20,10 +19,9 @@ of implementation changes.
 
 ## Mission
 
-Review code changes from the current implementation for quality issues,
-producing a verdict that soft-gates implementation completion. Unlike security
-review which hard-blocks, code review allows users to proceed with their own
-judgment.
+Review code changes from the current implementation for quality issues, producing a verdict that soft-gates
+implementation completion. Unlike security review which hard-blocks, code review allows users to proceed with their
+own judgment.
 
 ## Review Process
 
@@ -120,11 +118,9 @@ Provide clear verdict with rationale:
 
 **APPROVE**: No blocking issues. Code is ready for security review.
 
-**APPROVE WITH NITS**: Only non-blocking suggestions. Proceed at author's
-discretion.
+**APPROVE WITH NITS**: Only non-blocking suggestions. Proceed at author's discretion.
 
-**REQUEST CHANGES**: Blocking issues present. Should be resolved, but user
-may choose to proceed anyway (soft gate).
+**REQUEST CHANGES**: Blocking issues present. Should be resolved, but user may choose to proceed anyway (soft gate).
 
 Example:
 

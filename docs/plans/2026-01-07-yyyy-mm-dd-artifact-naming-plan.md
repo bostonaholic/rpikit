@@ -2,7 +2,9 @@
 
 ## Summary
 
-Update all three rpikit methodology skills to use date-prefixed artifact paths following the superpowers convention. Research documents will use `docs/plans/YYYY-MM-DD-<topic>-research.md` and plan documents will use `docs/plans/YYYY-MM-DD-<topic>-plan.md`.
+Update all three rpikit methodology skills to use date-prefixed artifact paths following the superpowers convention.
+Research documents will use `docs/plans/YYYY-MM-DD-<topic>-research.md` and plan documents will use
+`docs/plans/YYYY-MM-DD-<topic>-plan.md`.
 
 ## Stakes Classification
 

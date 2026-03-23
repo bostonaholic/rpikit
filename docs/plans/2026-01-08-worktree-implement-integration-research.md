@@ -2,7 +2,8 @@
 
 ## Problem Statement
 
-Determine if the rpikit:implement command/skill offers worktree creation before making code changes, and if not, add this capability.
+Determine if the rpikit:implement command/skill offers worktree creation before making code changes, and if not, add
+this capability.
 
 ## Requirements
 
@@ -15,7 +16,8 @@ Determine if the rpikit:implement command/skill offers worktree creation before 
 
 **No, the implement command does NOT use worktrees or ask about creating them.**
 
-The implement methodology skill makes no mention of worktrees. It proceeds directly to modifying files after plan verification.
+The implement methodology skill makes no mention of worktrees. It proceeds directly to modifying files after plan
+verification.
 
 ### Relevant Files
 
@@ -27,11 +29,14 @@ The implement methodology skill makes no mention of worktrees. It proceeds direc
 
 ### Current State
 
-1. **implement-methodology**: Focuses on plan verification, stakes enforcement, progress tracking, step execution with verification, and code/security review. Worktrees are not part of this workflow.
+1. **implement-methodology**: Focuses on plan verification, stakes enforcement, progress tracking, step execution with
+   verification, and code/security review. Worktrees are not part of this workflow.
 
-2. **git-worktrees**: Exists as an independent skill. Lines 219-243 describe "Integration with RPI Workflow" conceptually but this is documentation about intended usage, not actual integration code.
+2. **git-worktrees**: Exists as an independent skill. Lines 219-243 describe "Integration with RPI Workflow"
+   conceptually but this is documentation about intended usage, not actual integration code.
 
-3. **finishing-work**: Has worktree cleanup procedures (lines 156-171) that handle cleanup "if work was done in a worktree" - but this assumes worktree was created manually beforehand.
+3. **finishing-work**: Has worktree cleanup procedures (lines 156-171) that handle cleanup "if work was done in a
+   worktree" - but this assumes worktree was created manually beforehand.
 
 ### Existing Patterns
 
@@ -49,7 +54,8 @@ This pattern exists in documentation but is not implemented in the actual workfl
 
 ### Gap Analysis
 
-The implement-methodology skill should offer worktree creation after stakes assessment (around line 77-79) but before any code changes begin. This is where the workflow transitions from "verify plan exists" to "execute steps in order."
+The implement-methodology skill should offer worktree creation after stakes assessment (around line 77-79) but before
+any code changes begin. This is where the workflow transitions from "verify plan exists" to "execute steps in order."
 
 ### Technical Constraints
 
@@ -66,7 +72,8 @@ The implement-methodology skill should offer worktree creation after stakes asse
 
 ## Recommendations
 
-Add worktree integration to implement-methodology skill at the point between plan verification (step 2) and progress tracking initialization (step 3):
+Add worktree integration to implement-methodology skill at the point between plan verification (step 2) and progress
+tracking initialization (step 3):
 
 1. After stakes-based enforcement, check if currently in a worktree
 2. If not in a worktree, offer to create one

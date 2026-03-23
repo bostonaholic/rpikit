@@ -8,15 +8,13 @@ description: >
 
 # Git Worktrees
 
-Create isolated workspaces for parallel development without disrupting
-current work.
+Create isolated workspaces for parallel development without disrupting current work.
 
 ## Purpose
 
-Git worktrees allow multiple branches to be checked out simultaneously in
-separate directories. This enables parallel work without stashing, context
-switching, or polluting the main workspace. This skill provides structured
-worktree creation with safety verification.
+Git worktrees allow multiple branches to be checked out simultaneously in separate directories. This enables parallel
+work without stashing, context switching, or polluting the main workspace. This skill provides structured worktree
+creation with safety verification.
 
 ## Integration
 
@@ -83,8 +81,7 @@ If no preference found:
 
 **Critical for project-local worktrees:**
 
-Before creating a worktree in `.worktrees/` or `worktrees/`, verify the specific
-directory you're using is ignored:
+Before creating a worktree in `.worktrees/` or `worktrees/`, verify the specific directory you're using is ignored:
 
 ```bash
 # For .worktrees/ (check returns 0 if ignored)
@@ -110,8 +107,7 @@ If the command returns exit code 0, the directory is properly ignored.
 3. Then proceed with worktree creation
 ```
 
-**Why this matters:** Accidentally committing worktree contents creates
-massive, confusing commits with duplicate code.
+**Why this matters:** Accidentally committing worktree contents creates massive, confusing commits with duplicate code.
 
 ## Quick Reference
 

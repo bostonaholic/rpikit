@@ -8,22 +8,20 @@ description: >
 
 # Test-Driven Development
 
-Write tests first, then implementation. No production code without a failing
-test.
+Write tests first, then implementation. No production code without a failing test.
 
 ## Purpose
 
-TDD ensures code correctness through disciplined test-first development. Tests
-written after implementation prove nothing - they pass immediately, providing
-no evidence the code works correctly. This skill enforces the RED-GREEN-REFACTOR
-cycle as a non-negotiable practice.
+TDD ensures code correctness through disciplined test-first development. Tests written after implementation prove
+nothing - they pass immediately, providing no evidence the code works correctly. This skill enforces the
+RED-GREEN-REFACTOR cycle as a non-negotiable practice.
 
 ## The Iron Law
 
 **NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST.**
 
-If you write code before the test, you must delete it and start over. The test
-drives the implementation, not the other way around.
+If you write code before the test, you must delete it and start over. The test drives the implementation, not the other
+way around.
 
 ## The Cycle
 
@@ -47,8 +45,7 @@ Run the test. Confirm it fails for the RIGHT reason:
 - NOT: Test framework misconfiguration
 ```
 
-If the test passes immediately, you've written it wrong or the feature already
-exists. Investigate before proceeding.
+If the test passes immediately, you've written it wrong or the feature already exists. Investigate before proceeding.
 
 ### GREEN: Write Minimal Code
 
