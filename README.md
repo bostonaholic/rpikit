@@ -1,5 +1,8 @@
 # rpikit
 
+> [!WARNING]
+> **Deprecated** in favor of [bostonaholic/team](https://github.com/bostonaholic/team).
+
 A plugin implementing the **Research-Plan-Implement (RPI)** framework for disciplined software engineering.
 
 ## Philosophy
