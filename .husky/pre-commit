@@ -19,7 +19,7 @@ fi
 # 2. Shellcheck
 if command -v shellcheck &>/dev/null; then
     echo "  Checking shell scripts..."
-    shellcheck tests/*.sh bin/start .husky/pre-commit .husky/pre-push
+    shellcheck tests/*.sh bin/start .husky/pre-commit .husky/pre-push .github/scripts/*.sh
 else
     echo "  SKIP: shellcheck not found (install via brew install shellcheck)"
 fi

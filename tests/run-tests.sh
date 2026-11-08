@@ -75,6 +75,7 @@ echo "Project root: $PROJECT_ROOT"
 run_suite "agents"
 run_suite "skills"
 run_suite "frontmatter"
+run_suite "auto-merge-gate"
 run_suite "plugin"
 
 # Read final counts
