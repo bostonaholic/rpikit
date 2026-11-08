@@ -33,10 +33,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-          BASE_REF: ${{ github.event.pull_request.base.ref }}
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           EXPECTED_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-          SCRIPT_PATH: .github/scripts/enable-dependabot-auto-merge.sh
+          GATE_MODE: dependabot
+          EVENT_NAME: ${{ github.event_name }}
+          SCRIPT_PATH: .github/scripts/enable-native-auto-merge.sh
         run: |
           set -euo pipefail
           if [[ ! "$BASE_SHA" =~ ^[0-9a-f]{40}$ ]]; then
@@ -47,11 +48,11 @@ jobs:
             echo "Refusing: repository name is unexpected" >&2
             exit 1
           fi
-          if [[ "$SCRIPT_PATH" != ".github/scripts/enable-dependabot-auto-merge.sh" ]]; then
+          if [[ "$SCRIPT_PATH" != ".github/scripts/enable-native-auto-merge.sh" ]]; then
             echo "Refusing: unexpected trusted script path" >&2
             exit 1
           fi
-          dest="${RUNNER_TEMP}/enable-dependabot-auto-merge.sh"
+          dest="${RUNNER_TEMP}/enable-native-auto-merge.sh"
           meta="$(gh api "repos/${REPO}/contents/${SCRIPT_PATH}?ref=${BASE_SHA}")"
           encoding="$(jq -r '.encoding' <<<"$meta")"
           if [[ "$encoding" != "base64" ]]; then
