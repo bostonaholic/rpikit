@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Plugin manifest description and listing icon required by current Claude plugin validation
+- Plugin manifest description and an RPI listing icon for the Claude Code plugin directory
 
 ### Changed
 
