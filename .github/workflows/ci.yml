@@ -25,7 +25,7 @@ jobs:
 
       - name: Cache Claude CLI
         id: cache-claude
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ${{ steps.npm-prefix.outputs.path }}
           key: claude-cli-${{ runner.os }}-node${{ runner.arch }}-${{ hashFiles('.claude-code-version') }}
@@ -36,7 +36,7 @@ jobs:
 
       - name: Cache yq
         id: cache-yq
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: /usr/local/bin/yq
           key: yq-${{ runner.os }}-${{ runner.arch }}-4.52.4
@@ -80,7 +80,7 @@ jobs:
 
       - name: Cache shellcheck
         id: cache-shellcheck
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: /usr/local/bin/shellcheck
           key: shellcheck-${{ runner.os }}-${{ runner.arch }}-0.11.0
