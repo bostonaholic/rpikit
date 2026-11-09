@@ -1,0 +1,12 @@
+# Version updates include major, minor, and patch. This file has no ignore
+# rules and no versioning-strategy that would limit updates to patches.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
