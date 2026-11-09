@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Plugin manifest description and an RPI listing icon for the Claude Code plugin directory
+
 ### Changed
 
 - Rewrote skill descriptions to concise, behavior-focused style for 5 skills that used verbose trigger-phrase lists
